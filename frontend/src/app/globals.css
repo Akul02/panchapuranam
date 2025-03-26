@@ -37,9 +37,9 @@ nav {
     flex-direction: column;
     
 }
-
+/* layout of page excluding nav */
 .title, .instructions, .footer {
-    flex-grow: 1;
+    flex-grow: 0.5;
 }
 
 .songs {
@@ -47,6 +47,19 @@ nav {
 }
 
 .title, .instructions, .songs, .footer {
+    display: flex;
+    justify-content: center;
+}
+
+/* layout of songs */
+
+.songs {
+    display: flex;
+    flex-direction: column;
+}
+
+.verse {
+    flex: 1;
     display: flex;
     justify-content: center;
 }
