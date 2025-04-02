@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import "../styles/globals.css";
 
 //  components
-import Navbar from "./components/Navbar";
-import Home from  "./components/Home";
+import Navbar from "../components/Navbar";
+import Home from "./page";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -20,7 +20,6 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Navbar/>
-        <Home/>
         {children}
       </body>
     </html>
