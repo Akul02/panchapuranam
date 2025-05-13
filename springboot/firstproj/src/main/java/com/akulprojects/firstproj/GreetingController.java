@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class GreetingController {
-    @CrossOrigin(origins = "http://localhost:3000")
-    @RequestMapping("/hello")    
+    @RequestMapping("/hello") 
     public String  hello() {
-        String jString = "lets gooooooooo";
+        String jString = "hello";
         JSONObject obj = new JSONObject();
         obj.put("msg", jString);
 

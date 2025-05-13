@@ -1,48 +1,38 @@
 "use client"
 
 import React, { useEffect, useState } from 'react';
+import internal from 'stream';
+
+type Song = {
+    songId: number;
+    title: string;
+    verse: string[];
+};
 
 export default function Songs () {
 
-    const [message, setMessage] = useState("Loading");
+    const [songs, setSongs] = useState<Song[]>([]);
 
     useEffect(() => {
-      fetch("http://localhost:8080/hello").then(
+      fetch("http://localhost:8080/song").then(
         response => response.json()
-      ).then((data) => {
-            setMessage(data.msg);
-        });
+      ).then((data) => { setSongs(data);})
+      .catch((err) => console.error('Error fetching songs', err));
     }, []);
-    
-
 
     return (
         <div className="songs">
-            <div className="verse">
-                <p>
-                    {message}
-                </p>
-            </div>
-            <div className="verse">
-                <p>
-                    song 2
-                </p>
-            </div> 
-            <div className="verse">
-                <p>
-                    song 3
-                </p>
-            </div>
-            <div className="verse">
-                <p>
-                    song 4
-                </p>
-            </div>
-            <div className="verse">
-                <p>
-                    song 5
-                </p>
-            </div>
+            {songs.map((song) => (
+                <div className="verse" key={song.songId}>
+                    <p>{song.title} </p>
+                    {song.verse.map((line, index) => (
+                        <div key={index}>
+                            <p>{line}</p>
+                        </div>    
+                    ))}
+                    <p>{song.verse[0]}</p>
+                </div>
+            ))}
         </div>
     )
 }
