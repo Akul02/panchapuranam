@@ -2,18 +2,12 @@ package com.akulprojects.firstproj.controller;
 
 import java.util.List;
 
-import javax.management.RuntimeErrorException;
-
-import org.json.JSONObject;
-// import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.akulprojects.firstproj.model.Song;
 import com.akulprojects.firstproj.repository.SongRepo;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.springframework.web.bind.annotation.GetMapping;
 

@@ -19,6 +19,7 @@ public class Song {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int songId;
     private String title;
+    // choosing to use hypersistence tool as opposed to @elementcollection for a simpler faster solution
     @Type(StringArrayType.class)
     @Column(name = "verse", columnDefinition = "text[]")
     private String[] verse;
