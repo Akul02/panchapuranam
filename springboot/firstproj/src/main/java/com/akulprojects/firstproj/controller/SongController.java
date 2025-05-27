@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.akulprojects.firstproj.model.Song;
 import com.akulprojects.firstproj.repository.SongRepo;
+import com.akulprojects.firstproj.model.Language;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -19,8 +21,11 @@ public class SongController {
     SongRepo repo;
 
     @GetMapping("/song")
-    public List<Song> getSong() {
+    public List<Song> getSong(@RequestParam String languageString) {
+        
 
-        return repo.findAll();
+        Language lang = Language.valueOf(languageString.toUpperCase());
+
+        return repo.findByLanguageOrderBySongIdAsc(lang);
     }
 }

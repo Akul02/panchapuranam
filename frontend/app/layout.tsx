@@ -4,7 +4,7 @@ import "../styles/globals.css";
 
 //  components
 import Navbar from "../components/Navbar";
-import Home from "./page";
+import LanguageProvider from "../context/LanguageContext";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,8 +19,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Navbar/>
-        {children}
+        <LanguageProvider>
+            <Navbar/>
+            {children}
+        </LanguageProvider>
       </body>
     </html>
   );
