@@ -24,7 +24,7 @@ export default function Songs () {
     return (
         <div className="songs">
             {songs.map((song) => (
-                <div className="song_row text_colour song_background" key={song.songId}>
+                <div className="song_row song_background" key={song.songId}>
                         <p className='song_title'>{song.title} </p>
                         {song.verse.map((line, index) => (
                             <div key={index}>

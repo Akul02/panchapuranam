@@ -30,7 +30,7 @@ const Language = () => {
     return (
         <div>
             <div className='dropdown_btn' onClick={toggleDropdown}>
-                Select Language
+                <span>Select Language</span>
                 <span className='toggle_icon'>
                     {isOpen ? <IoIosArrowDropup/> : <IoIosArrowDropdown/>}
                 </span>
