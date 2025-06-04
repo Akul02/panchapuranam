@@ -22,10 +22,9 @@ export default function Songs () {
     }, [language]);
 
     return (
-        <div className="songs song_background">
+        <div className="songs">
             {songs.map((song) => (
-                <div className="song_row text_colour" key={song.songId}>
-                    <div className='lyrics'>
+                <div className="song_row text_colour song_background" key={song.songId}>
                         <p className='song_title'>{song.title} </p>
                         {song.verse.map((line, index) => (
                             <div key={index}>
@@ -33,11 +32,10 @@ export default function Songs () {
                             </div>    
                         ))}
                         <p>{song.verse[0]}</p>
-                        <audio className='test' controls>
+                        <audio className='audio_controls' controls>
                             <source src={`http://localhost:8080/audios/${song.songId}`} type='audio/mpeg'></source>
                             Your browser does not support the audio element
                         </audio>
-                    </div>
                     {/* <Audio songId={song.songId}></Audio> */}
                     
                 </div>

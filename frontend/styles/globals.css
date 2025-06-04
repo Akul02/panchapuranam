@@ -18,10 +18,12 @@ body {
 nav {
     display: flex;
     flex-direction: column;
-    row-gap: 2%;
+    row-gap: 2vh;
     align-items: center;
     background-color:#ecc2a8;
     width: 10%;
+    position: fixed;
+    height: 100%;
 }
 
 .home {
@@ -60,45 +62,38 @@ nav {
 
 .song_row {
     margin-left: 25%;
-    margin-right: 25%;
+    margin-right: 40%;
     flex: 1;
-    display: grid;
-    grid-template-columns: 1fr 0.5fr;
+    box-shadow: 10px 10px 8px #FFF8E1;
+    border-radius: 0.5rem;
 }
 
-.audio {
-    place-self: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 
-.audio_progress {
-    display: flex;
-    flex-direction: row;
-}
-
-.test {
+.audio_controls {
     margin-top: 1rem;
 }
 
 /* STYLING */
 
 .background {
-    background-color: #FAEBD7;
+    background-color: #F4F1DE;
+}
+
+.song_background {
+    background-color: #ffffff;
 }
 
 .text_colour {
-    color: #aa1949;
+    color: #be2406;
 }
 
 /* .song_background {
-    background-image: url('../public/Shiva.webp');
+    background-image: url('../public/Shiv And Vishnu Together.jpg');
     background-size: contain;
     background-color: transparent;
-    background-repeat:round;
+    background-repeat: no-repeat;
     background-position: 50%;
-    opacity: 0.5;
+    opacity: 0.15;
 } */
 
 .title {
@@ -124,8 +119,8 @@ nav {
     display: flex;
     align-items: center;
     width: fit-content;
-    padding: 1rem;
     cursor: pointer;
+    margin-top: 1vh;
 }
 
 .dropdown_options {
@@ -144,7 +139,7 @@ nav {
     display: flex;
     justify-content: center;
     cursor: pointer;
-    background-color: aqua;
+    background-color: #aa1949;
     width: 6rem;
     height: 3rem;
     border-radius: 0.5rem;
