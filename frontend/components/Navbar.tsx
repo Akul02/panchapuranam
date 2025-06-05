@@ -3,8 +3,8 @@ import Language from "./Language";
 
 export default function Navbar () {
     return (
-        <nav className="navbar_background"> 
-            <img className="profile_pic" src="/logo_final.PNG"/>
+        <nav className="navbar navbar_background"> 
+            {/* <img className="profile_pic" src="/logo_final.PNG"/> */}
             <Language/>
             <a href="/events">Events</a>
             <h1>Download Certificate</h1>

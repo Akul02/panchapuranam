@@ -21,14 +21,9 @@ body {
     
 }
 
-nav {
+.navbar {
     display: flex;
-    flex-direction: column;
-    row-gap: 3vh;
-    align-items: center;
-    width: 10%;
-    position: fixed;
-    height: 100%;
+    justify-content: space-between;
 }
 
 .title, .instructions {
@@ -49,7 +44,6 @@ nav {
     margin-bottom: 3vh;
 }
 .instructions {
-    margin-bottom: 3vh;
     border-bottom: 5px solid #1B4F72;
 }
 
@@ -78,7 +72,7 @@ nav {
     background-color: #FFF8E7;
 }
 
-.navbar_background {
+.header_background {
     background-color: #FFBA4C;
     color: #333333;
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
@@ -125,8 +119,6 @@ nav {
 }
 
 .contact_info {
-    margin-top: auto;
-    margin-bottom: 4vh;
     cursor: pointer;
 }
 
@@ -143,9 +135,7 @@ nav {
 .dropdown_btn {
     display: flex;
     align-items: center;
-    justify-content: center;
     cursor: pointer;
-    margin-top: 1vh;
 }
 
 .dropdown_options {
