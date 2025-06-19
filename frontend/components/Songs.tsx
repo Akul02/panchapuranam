@@ -18,7 +18,7 @@ export default function Songs () {
       fetch(`http://localhost:8080/song?languageString=${language}`).then(
         response => response.json()
       ).then((data) => { setSongs(data); console.log(songs)})
-      .catch((err) => console.error('Error fetching songs', err));
+      .catch((err) => console.log(err));
     }, [language]);
 
     return (

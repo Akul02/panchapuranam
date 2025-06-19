@@ -1,3 +1,3 @@
-const languages = ['tamil', 'english']
+const languages = ['Tamil', 'English']
 
 export {languages}
