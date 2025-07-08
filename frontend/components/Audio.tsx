@@ -23,11 +23,12 @@ export default function Audio ({songId} : {songId: number}) {
         }
     }
     
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
     return (
         <div className="audio">
             <audio ref={audioRef}>
-                <source src={`http://localhost:8080/audios?songId=${songId}`} type='audio/mpeg'></source>
+                <source src={`${apiUrl}/audios?songId=${songId}`} type='audio/mpeg'></source>
                 Your browser does not support the audio element
             </audio>
 

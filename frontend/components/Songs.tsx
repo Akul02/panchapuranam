@@ -14,8 +14,10 @@ export default function Songs () {
     const [songs, setSongs] = useState<Song[]>([]);
     const [language] = useLanguage();
 
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
     useEffect(() => {
-      fetch(`http://localhost:8080/song?languageString=${language}`).then(
+      fetch(`${apiUrl}/song?languageString=${language}`).then(
         response => response.json()
       ).then((data) => { setSongs(data); console.log(songs)})
       .catch((err) => console.log(err));
