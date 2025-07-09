@@ -24,7 +24,7 @@ export default function Audio ({songId} : {songId: number}) {
     }
     
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-
+    // THIS COMPONENT NOT IN USE
     return (
         <div className="audio">
             <audio ref={audioRef}>
