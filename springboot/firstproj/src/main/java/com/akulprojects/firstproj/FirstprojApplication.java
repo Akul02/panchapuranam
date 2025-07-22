@@ -20,7 +20,7 @@ public class FirstprojApplication {
             @Override
             public void addCorsMappings(@NonNull CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("https://panchapuranam.org", "https://www.panchapuranam.org", "https://localhost:3000")
+                        .allowedOrigins("https://panchapuranam.org", "https://www.panchapuranam.org", "http://localhost:3000")
                         .allowedMethods("GET")
                         .allowedHeaders("*");
             }
