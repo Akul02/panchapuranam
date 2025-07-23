@@ -71,6 +71,35 @@ nav {
     margin-top: 2vh;
 }
 
+/* ------------------------------ RESPONSIVENESS ------------------------------ */
+@media (min-width: 1601px) {
+    .profile_pic_nav {
+        display: none;
+    }
+}
+
+@media (max-width: 1600px) {
+    nav {
+        display: none;
+    }
+    .song_row {
+        width: 700px;
+    }
+
+    .header_outer {
+        display: flex;
+    }
+
+    .header-inner {
+        display: flex;
+        flex-direction: column;    }
+
+    .profile_pic_nav {
+        width: 13vw;
+    }
+
+}
+
 /* ------------------------------ PAGE STYLING ------------------------------ */
 
 .background {
