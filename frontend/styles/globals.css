@@ -185,10 +185,64 @@ nav {
 
 }
 
-.dropdown_item:hover {
-    box-shadow: 0px 0px 5px #56445c;
-    border: 2px solid #56445c}
+/* ------------------------------ Login Page ------------------------------ */
 
-.toggle_icon {
-    margin-left: 0.5vw;
+.login_form{
+    width: 350px;
+    height: 400px;
+    background-color: #FFF8E1;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 3%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
+    flex-direction: column;
+}
+
+.login_heading {
+    text-align: center;
+    font-weight: bold;
+    font-size:x-large;
+    margin-top: 10%;
+}                                                      
+
+.email_input, .password_input {
+    margin-top: 3vh;
+    margin-left: 20%;
+    background-color: #FFF8E1;
+
+}
+
+
+input[type=email], input[type=password] {
+    background-color: #FFF8E1;
+    padding: 1%;
+    display: block;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 30px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+}
+
+.error {
+    border: 1px solid red;
+}
+
+.login_error {
+    color: red;
+    margin-top: 2vh;
+    margin-left: 20%;
+
+}
+
+.login_btn {
+    width: 50%;
+    margin-left: 50%;
+    margin-top: 20%;
+    transform: translate(-50%, -50%);
+
+    background-color: #926e9e;
+    border-radius: 3px;
+    padding: 2% 0 2% 0;
 }

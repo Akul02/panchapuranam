@@ -4,7 +4,7 @@ import Songs from "../components/Songs";
 export default function Home() {
   return (
     <div className="home text_colour">
-        <Navbar/>
+        {/* <Navbar/> */}
         <div className="title">
             <h1>பஞ்சபுராணம் ~ PANCHAPURANAM</h1>
         </div>
