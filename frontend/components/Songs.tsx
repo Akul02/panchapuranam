@@ -19,7 +19,7 @@ export default function Songs() {
     useEffect(() => {
         fetch(`${apiUrl}/song?languageString=${language}`)
             .then(response => response.json())
-            .then((data) => { setSongs(data); console.log(songs) })
+            .then((data) => { setSongs(data)})
             .catch((err) => console.log(err));
     }, [language]);
 

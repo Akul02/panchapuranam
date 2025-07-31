@@ -1,3 +1,13 @@
 const languages = ['Tamil', 'English']
 
-export {languages}
+const TEACHER = "TEACHER"
+const ADMIN = "ADMIN"
+const NO_USER = ""
+
+enum UserRole {
+    TEACHER = "TEACHER",
+    ADMIN = "ADMIN",
+    NO_USER = ""
+}
+
+export {languages, UserRole}
