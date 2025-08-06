@@ -9,7 +9,7 @@ import { IoIosArrowDropdown } from "react-icons/io";
 import { IoIosArrowDropup } from "react-icons/io";
 
 
-const Language = () => {
+export default function Language () {
 
     const [isOpen, setIsOpen] = useState(false);
     const [language, setLanguage] = useLanguage();
@@ -45,5 +45,3 @@ const Language = () => {
         </div>
     )
 }
-
-export default Language

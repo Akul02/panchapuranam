@@ -17,9 +17,12 @@ import com.akulprojects.firstproj.repository.UserRepo;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.auth0.jwt.interfaces.DecodedJWT;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
@@ -45,7 +48,7 @@ public class UserController {
                 .withIssuer("panchapuranam.org")
                 .withSubject(String.valueOf(user.getUId()))
                 .withIssuedAt(new Date())
-                .withExpiresAt(new Date(System.currentTimeMillis() + 5000L))
+                .withExpiresAt(new Date(System.currentTimeMillis() + 60*60*1000L))
                 .withJWTId(UUID.randomUUID().toString())
                 .withClaim("role", user.getRole().toString())
                 .sign(algo);
@@ -65,13 +68,15 @@ public class UserController {
         }
     }
 
-    // @GetMapping("/role")
-    // public String getRole() {
-    //     try {
-    //         DecodedJWT decodedJWT = verifier.verify(null)
-    //     }
-    //     return new String();
-    // }
-    
+    @GetMapping("/role")
+    public String getRole(@CookieValue(name = "AUTH_TOKEN") String cookie) {
+        try {
+            DecodedJWT decodedJWT = verifier.verify(cookie);
+            return decodedJWT.getClaim("role").asString();
+        } catch (JWTVerificationException e) {
+            System.out.println("error");
+            return e.getMessage();
+        }
+    }
     
 }

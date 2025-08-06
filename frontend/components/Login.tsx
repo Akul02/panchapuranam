@@ -3,8 +3,9 @@
 import { useRouter } from 'next/navigation';
 import React, { FormEvent, useState } from 'react'
 import useUser from '../hooks/useUser';
+import { UserRole } from '../constants/global';
 
-const Login = () => {
+export default function Login () {
     const [emailString, setEmailString] = useState("");
     const [passwordString, setPasswordString] = useState("");
 
@@ -18,9 +19,7 @@ const Login = () => {
     const handleSubmit = (e: FormEvent) => {
 
         e.preventDefault();
-
-        const request_body = {emailString, passwordString};
-
+4
         fetch(`${apiUrl}/login`, {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
@@ -35,15 +34,39 @@ const Login = () => {
                 const errMsg = await res.text();
                 throw new Error(errMsg);
             }
-            const headers = await res.headers.has("Set-Cookie");
-            const msg = await res.text();
-            console.log(headers);
-            console.log(msg);
+            
+            // login successful
             router.push("/")
-            //  do something here related to user role??
-            // call backend to get user that just logged in role
-            // setUserRole(what backend returned)
+            // useRoleSetter();
 
+            fetch(`${apiUrl}/role`,{credentials: "include"})
+            .then(async (res) => {
+                if (!res.ok) {
+                    throw new Error("failed to fetch user role")
+                }
+        
+                const role = await res.text();
+        
+                switch (role) {
+                    case UserRole.ADMIN:
+                        setUserRole(UserRole.ADMIN);
+                        break;
+        
+                    case UserRole.TEACHER:
+                        setUserRole(UserRole.TEACHER);
+                        break;
+        
+                    case UserRole.NO_USER:
+                        setUserRole(UserRole.NO_USER);
+                        // HANDLE THIS ERROR
+                        // INCORRECT LOGIN
+                        break;
+                    default:
+                        // HANDLE THIS ERRO
+                        // INCORRECT ROLE VALUE
+                        break;
+                }
+            })
         })
         . catch(err => {
             setIsError(true);
@@ -72,5 +95,3 @@ const Login = () => {
         </form>
     )
 }
-
-export default Login

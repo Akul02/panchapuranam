@@ -1,7 +1,13 @@
+"use client"
+
+import { useEffect } from "react";
+import useUser from "../hooks/useUser";
 import Contact from "./ContactInfo";
 import Language from "./Language";
+import { UserRole } from "../constants/global";
 
 export default function Navbar () {
+    const [userRole] = useUser();
 
     return (
         <nav className="navbar_background"> 
@@ -9,7 +15,8 @@ export default function Navbar () {
             <Language/>
             <a href="/events">Events</a>
             <h1>Download Certificate</h1>
-            <a href="/login">Login</a>
+            {userRole == UserRole.NO_USER ? <a href="/login">Login</a> : <button>logout</button>}
+            
             <Contact/>
         </nav>
     );

@@ -1,7 +1,10 @@
+"use client"
+
 import Navbar from "../components/Navbar";
 import Songs from "../components/Songs";
 
 export default function Home() {
+
   return (
     <div className="home text_colour">
         {/* <Navbar/> */}
