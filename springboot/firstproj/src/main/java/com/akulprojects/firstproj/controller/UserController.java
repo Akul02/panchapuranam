@@ -68,6 +68,21 @@ public class UserController {
         }
     }
 
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout() {
+        
+        ResponseCookie cookie = ResponseCookie.from("AUTH_TOKEN", "")
+                .httpOnly(true)
+                .secure(false)
+                .sameSite("strict")
+                .path("/")
+                .maxAge(0)
+                .build();
+        
+        return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString()).body("logout success");
+    }
+    
+
     @GetMapping("/role")
     public String getRole(@CookieValue(name = "AUTH_TOKEN") String cookie) {
         try {
