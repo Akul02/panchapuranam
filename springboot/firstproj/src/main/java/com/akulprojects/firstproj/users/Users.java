@@ -12,6 +12,7 @@ import lombok.Data;
 @Data
 @Table(name="users")
 public class Users {
+
     @Id
     @Column(name = "u_id")
     private int uId;
@@ -34,4 +35,16 @@ public class Users {
 
     @Column(name = "is_first_login")
     private boolean isFirstLogin;
+
+    public Users() {}
+
+    public Users(String firstName2, String lastName2, String email2, String password2, Role teacher, boolean b) {
+        // sort out id generation
+        this.setFirstName(firstName2);
+        this.setLastName(lastName2);
+        this.setEmail(email2);
+        this.setPassword(password2);
+        this.setRole(teacher);
+        this.setFirstLogin(b);
+    }
 }

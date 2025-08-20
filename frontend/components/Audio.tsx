@@ -28,6 +28,7 @@ export default function Audio ({songId} : {songId: number}) {
     return (
         <div className="audio">
             <audio ref={audioRef}>
+                {/* incorrect way to call audios */}
                 <source src={`${apiUrl}/audios?songId=${songId}`} type='audio/mpeg'></source>
                 Your browser does not support the audio element
             </audio>

@@ -6,6 +6,7 @@ import useLanguage from '../hooks/useLanguage';
 type Song = {
     songId: number;
     title: string;
+    language: string;
     verse: string[];
 };
 

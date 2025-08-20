@@ -32,7 +32,7 @@ public class UserController {
     JWTVerifier verifier =JWT.require(algo).withIssuer("panchapuranam.org").build();
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<String> login(@RequestBody LoginRequestDto loginRequest) {
 
         Users user = repo.findByEmail(loginRequest.getEmail());
         
@@ -85,8 +85,7 @@ public class UserController {
         try {
             DecodedJWT decodedJWT = verifier.verify(cookie);
             return decodedJWT.getClaim("role").asString();
-        } catch (JWTVerificationException e) {
-            System.out.println("error");
+        } catch (Exception e) {
             return e.getMessage();
         }
     }
