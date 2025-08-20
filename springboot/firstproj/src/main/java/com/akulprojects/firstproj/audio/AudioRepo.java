@@ -1,9 +1,8 @@
-package com.akulprojects.firstproj.repository;
+package com.akulprojects.firstproj.audio;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.akulprojects.firstproj.model.Audio;
 import java.util.List;
 
 

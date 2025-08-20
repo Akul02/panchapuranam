@@ -1,4 +1,4 @@
-package com.akulprojects.firstproj.controller;
+package com.akulprojects.firstproj.audio;
 
 import java.io.IOException;
 import java.util.List;
@@ -14,8 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.akulprojects.firstproj.exception.InvalidInputException;
-import com.akulprojects.firstproj.model.Audio;
-import com.akulprojects.firstproj.repository.AudioRepo;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 

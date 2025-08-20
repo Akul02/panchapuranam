@@ -1,6 +1,8 @@
-package com.akulprojects.firstproj.model;
+package com.akulprojects.firstproj.songs;
 
 import org.hibernate.annotations.Type;
+
+import com.akulprojects.firstproj.languages.Language;
 
 import io.hypersistence.utils.hibernate.type.array.StringArrayType;
 import jakarta.persistence.*;

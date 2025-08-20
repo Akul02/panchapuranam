@@ -1,4 +1,6 @@
-package com.akulprojects.firstproj.model;
+package com.akulprojects.firstproj.audio;
+
+import com.akulprojects.firstproj.songs.Song;
 
 import jakarta.persistence.*;
 import lombok.Data;

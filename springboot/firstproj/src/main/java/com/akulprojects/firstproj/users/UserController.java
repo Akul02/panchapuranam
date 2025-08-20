@@ -1,4 +1,4 @@
-package com.akulprojects.firstproj.controller;
+package com.akulprojects.firstproj.users;
 
 import java.time.Duration;
 import java.util.Date;
@@ -10,10 +10,7 @@ import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.akulprojects.firstproj.dto.LoginRequest;
 import com.akulprojects.firstproj.exception.LoginFailedException;
-import com.akulprojects.firstproj.model.Users;
-import com.akulprojects.firstproj.repository.UserRepo;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;

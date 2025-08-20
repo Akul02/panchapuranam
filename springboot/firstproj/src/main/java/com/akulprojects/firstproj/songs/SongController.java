@@ -1,15 +1,13 @@
-package com.akulprojects.firstproj.controller;
+package com.akulprojects.firstproj.songs;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.akulprojects.firstproj.model.Song;
-import com.akulprojects.firstproj.repository.SongRepo;
 import com.akulprojects.firstproj.exception.InvalidInputException;
 import com.akulprojects.firstproj.exception.ResourceNotFoundException;
-import com.akulprojects.firstproj.model.Language;
+import com.akulprojects.firstproj.languages.Language;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

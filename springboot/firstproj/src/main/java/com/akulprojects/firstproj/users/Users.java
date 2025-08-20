@@ -1,4 +1,4 @@
-package com.akulprojects.firstproj.model;
+package com.akulprojects.firstproj.users;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -31,4 +31,7 @@ public class Users {
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
     private Role role;
+
+    @Column(name = "is_first_login")
+    private boolean isFirstLogin;
 }

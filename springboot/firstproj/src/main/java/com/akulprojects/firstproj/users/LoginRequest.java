@@ -1,4 +1,4 @@
-package com.akulprojects.firstproj.dto;
+package com.akulprojects.firstproj.users;
 
 import lombok.Getter;
 import lombok.Setter;
