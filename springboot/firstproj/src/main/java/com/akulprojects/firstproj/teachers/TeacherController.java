@@ -30,16 +30,16 @@ public class TeacherController {
         }
 
         // Sign Up User
-        Users newTeacher = new Users(signUpInfo. getFirstName(), signUpInfo.getLastName(), 
+        Users newTeacher = new Users(signUpInfo.getFirstName(), signUpInfo.getLastName(), 
             signUpInfo.getEmail(), signUpInfo.getPassword(), Role.TEACHER, true);
         
         try {
             repo.save(newTeacher);
             // return success response
-            return "";
+            return "successfully added teacher";
         } catch (Exception e) {
             // throw exception
-            return "";
+            return "error";
         }        
     }
     

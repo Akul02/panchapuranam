@@ -1,9 +1,14 @@
 package com.akulprojects.firstproj.users;
 
+import org.hibernate.annotations.JdbcType;
+import org.hibernate.dialect.PostgreSQLEnumJdbcType;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -14,6 +19,7 @@ import lombok.Data;
 public class Users {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "u_id")
     private int uId;
 
@@ -31,6 +37,7 @@ public class Users {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
+    @JdbcType(value = PostgreSQLEnumJdbcType.class)
     private Role role;
 
     @Column(name = "is_first_login")

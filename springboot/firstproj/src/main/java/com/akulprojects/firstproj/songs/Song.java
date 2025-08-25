@@ -1,6 +1,8 @@
 package com.akulprojects.firstproj.songs;
 
+import org.hibernate.annotations.JdbcType;
 import org.hibernate.annotations.Type;
+import org.hibernate.dialect.PostgreSQLEnumJdbcType;
 
 import com.akulprojects.firstproj.languages.Language;
 
@@ -21,6 +23,7 @@ public class Song {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "language", nullable = false)
+    @JdbcType(value = PostgreSQLEnumJdbcType.class)
     private Language language;
     
     // choosing to use hypersistence tool as opposed to @elementcollection for a simpler faster solution
