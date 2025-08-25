@@ -18,37 +18,39 @@ export default function UserProvider({children}: Props) {
 
     useEffect(() => {
         fetch(`${apiUrl}/role`, {credentials: "include"})
-        .then(async (res) => {
-            console.log("is fetching user")
-            if (!res.ok) {
-                console.log("failed to fetch user")
-                setUserRole(UserRole.NO_USER);
-            } else {
-                console.log("1")
-                const role = await res.text();
-                console.log(role);
-                switch (role) {
-                    case UserRole.ADMIN:
-                        setUserRole(UserRole.ADMIN);
-                        console.log("test branch logic")
-                        break;
-        
-                    case UserRole.TEACHER:
-                        setUserRole(UserRole.TEACHER);
-                        break;
-        
-                    case UserRole.NO_USER:
-                        setUserRole(UserRole.NO_USER);
-                        // HANDLE THIS ERROR
-                        // INCORRECT LOGIN
-                        break;
-                    default:
-                        // HANDLE THIS ERRO
-                        // INCORRECT ROLE VALUE
-                        break;
+            .then(async (res) => {
+                console.log("is fetching user")
+                if (!res.ok) {
+                    console.log("failed to fetch user")
+                    setUserRole(UserRole.NO_USER);
+                } else {
+                    console.log("1")
+                    const role = await res.text();
+                    console.log(role);
+                    switch (role) {
+                        case UserRole.ADMIN:
+                            setUserRole(UserRole.ADMIN);
+                            console.log("test branch logic")
+                            break;
+            
+                        case UserRole.TEACHER:
+                            setUserRole(UserRole.TEACHER);
+                            break;
+            
+                        case UserRole.NO_USER:
+                            setUserRole(UserRole.NO_USER);
+                            // HANDLE THIS ERROR
+                            // INCORRECT LOGIN
+                            break;
+                        default:
+                            // HANDLE THIS ERRO
+                            // INCORRECT ROLE VALUE
+                            break;
+                    }
                 }
-            }
-        })
+            })
+            .catch((err) => console.log(err));
+
     }, []);
 
     return ( 
