@@ -1,11 +1,11 @@
 "use client"
 
 import { useEffect } from "react";
-import useUser from "../hooks/useUser";
-import Contact from "./ContactInfo";
-import Language from "./Language";
-import { UserRole } from "../constants/global";
-import Logout from "./Logout";
+import useUser from "../../hooks/useUser";
+import Contact from "../features/ContactInfo";
+import Language from "../features/Language";
+import { UserRole } from "../../constants/global";
+import Logout from "../features/Logout";
 
 export default function Navbar () {
     const [userRole] = useUser();
@@ -18,10 +18,8 @@ export default function Navbar () {
             <Language/>
             <a href="/events">Events</a>
             {userRole == UserRole.NO_USER ? <h1>Download Certificate</h1> : null}
-            {userRole == UserRole.ADMIN ? <button>Enrol Teachers</button> : null}
+            {userRole == UserRole.ADMIN ? <a href="/register">Enrol Teacher</a> : null}
             {userRole == UserRole.NO_USER ? <a href="/login">Login</a> : <Logout/>}
-            
-            
             <Contact/>
         </nav>
     );

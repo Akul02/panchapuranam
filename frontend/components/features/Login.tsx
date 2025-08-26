@@ -1,9 +1,10 @@
 "use client"
 
 import { useRouter } from 'next/navigation';
-import React, { FormEvent, useState } from 'react'
-import useUser from '../hooks/useUser';
-import { UserRole } from '../constants/global';
+import React, { FormEvent, useState } from 'react';
+import useUser from '../../hooks/useUser';
+import { UserRole } from '../../constants/global';
+import SimpleTextField from '../ui/simpleTextField';
 
 export default function Login () {
     const [emailString, setEmailString] = useState("");
@@ -19,9 +20,9 @@ export default function Login () {
     const handleSubmit = (e: FormEvent) => {
 
         e.preventDefault();
-4
+
         fetch(`${apiUrl}/login`, {
-            method: 'POST',
+            method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 "email" : emailString,
@@ -76,22 +77,15 @@ export default function Login () {
     }
 
     return (
-        <form className='login_form' onSubmit={handleSubmit}>
-            <h1 className='login_heading'>Teacher Login</h1>
+        <form className='form' onSubmit={handleSubmit}>
+            <h1 className='form_heading'>Teacher Login</h1>
             <div className={`login_error ${isError ? "" : "hide"}`}>
                 <p>{errorString}</p>
             </div>
-            <div className='email_input'>
-                <label htmlFor='email'></label>
-                <input className={`${isError ? "error" : ""}`} id='email' type='email' placeholder='enter email' required onChange={(e) => setEmailString(e.target.value)}></input>
-            </div>
-            <div className='password_input'>
-                <label htmlFor='password'></label>
-                <input className={`${isError ? "error" : ""}`} id='password' type='password' placeholder='enter password' required onChange={(e) => setPasswordString(e.target.value)}></input>
-            </div>
-            <div>
-                <button className='login_btn' type='submit'>Log In</button>
-            </div>
+            <SimpleTextField type="email" input="email" value={emailString} isError={isError} onChange={setEmailString}/>
+            <SimpleTextField type="password" input="password" value={passwordString} isError={isError} onChange={setPasswordString}/>
+            <button className="form_submit_btn" type='submit'>Log In</button>
+            
         </form>
     )
 }

@@ -3,7 +3,7 @@ import "../styles/globals.css";
 
 //  components
 import LanguageProvider from "../context/LanguageContext";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/layout/Navbar";
 import UserProvider from "../context/UserContext";
 
 export const metadata: Metadata = {

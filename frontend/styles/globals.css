@@ -187,7 +187,7 @@ nav {
 
 /* ------------------------------ Login Page ------------------------------ */
 
-.login_form{
+.form{
     width: 350px;
     height: 400px;
     background-color: #FFF8E1;
@@ -201,28 +201,26 @@ nav {
     flex-direction: column;
 }
 
-.login_heading {
+.form_heading {
     text-align: center;
     font-weight: bold;
     font-size:x-large;
     margin-top: 10%;
 }                                                      
 
-.email_input, .password_input {
+.form_input {
     margin-top: 3vh;
     margin-left: 20%;
-    background-color: #FFF8E1;
-
-}
-
-
-input[type=email], input[type=password] {
-    background-color: #FFF8E1;
     padding: 1%;
     display: block;
-    width: 80%;
+    width: 60%;
+}
+
+input {
+    background-color: #FFF8E1;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 30px 0 rgba(0, 0, 0, 0.1);
     border-radius: 3px;
+    padding-left: 2%;
 }
 
 .error {
@@ -236,10 +234,10 @@ input[type=email], input[type=password] {
 
 }
 
-.login_btn {
+.form_submit_btn {
     width: 50%;
     margin-left: 50%;
-    margin-top: 20%;
+    margin-top: 15%;
     transform: translate(-50%, -50%);
 
     background-color: #926e9e;
