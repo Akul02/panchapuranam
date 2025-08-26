@@ -1,3 +1,4 @@
+import { useRouter } from "next/navigation";
 import { UserRole } from "../../constants/global";
 import useUser from "../../hooks/useUser";
 
@@ -5,6 +6,8 @@ export default function Logout () {
 
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     const [userRole, setUserRole] = useUser();
+
+    const router = useRouter();
 
     const handleLogout = () => {
         fetch(`${apiUrl}/logout`, {
@@ -17,6 +20,7 @@ export default function Logout () {
                 throw new Error(errMsg);
             }
             setUserRole(UserRole.NO_USER);
+            router.push("/");
         })
     }
 

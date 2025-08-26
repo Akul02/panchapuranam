@@ -7,24 +7,27 @@ import useLanguage from '../../hooks/useLanguage';
 
 import { IoIosArrowDropdown } from "react-icons/io";
 import { IoIosArrowDropup } from "react-icons/io";
+import { useRouter } from 'next/navigation';
 
 
 export default function Language () {
 
     const [isOpen, setIsOpen] = useState(false);
     const [language, setLanguage] = useLanguage();
+    const router = useRouter();
 
     function toggleDropdown () {
         if (isOpen) {
-            setIsOpen(false)
+            setIsOpen(false);
         } else {
-            setIsOpen(true)
+            setIsOpen(true);
         }
     }
 
     function selectLanguage (item:string) {
-        setLanguage(item)
-        toggleDropdown()
+        setLanguage(item);
+        toggleDropdown();
+        router.push("/");
     }
 
     return (

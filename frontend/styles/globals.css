@@ -129,6 +129,7 @@ nav {
     opacity: 85%;
     width: 100%;
     display: block;
+    cursor: pointer;
 }
 
 .contact_info {

@@ -6,15 +6,16 @@ import Contact from "../features/ContactInfo";
 import Language from "../features/Language";
 import { UserRole } from "../../constants/global";
 import Logout from "../features/Logout";
+import { useRouter } from "next/navigation";
 
 export default function Navbar () {
     const [userRole] = useUser();
-
+    const router = useRouter();
 
 
     return (
         <nav className="navbar_background"> 
-            <img className="profile_pic" src="/logo_final.PNG"/>
+            <img className="profile_pic" src="/logo_final.PNG" onClick={() => router.push("/")}/>
             <Language/>
             <a href="/events">Events</a>
             {userRole == UserRole.NO_USER ? <h1>Download Certificate</h1> : null}
