@@ -3,9 +3,9 @@
 import { useEffect } from "react";
 import useUser from "../../hooks/useUser";
 import Contact from "../features/ContactInfo";
-import Language from "../features/Language";
+import Language from "../features/songs/Language";
 import { UserRole } from "../../constants/global";
-import Logout from "../features/Logout";
+import Logout from "../features/auth/Logout";
 import { useRouter } from "next/navigation";
 
 export default function Navbar () {

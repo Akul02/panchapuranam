@@ -1,6 +1,6 @@
 import { useRouter } from "next/navigation";
-import { UserRole } from "../../constants/global";
-import useUser from "../../hooks/useUser";
+import { UserRole } from "../../../constants/global";
+import useUser from "../../../hooks/useUser";
 
 export default function Logout () {
 

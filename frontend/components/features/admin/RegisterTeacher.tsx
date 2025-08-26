@@ -1,7 +1,7 @@
 "use client"
 
 import { FormEvent, useState } from "react";
-import SimpleTextField from "../ui/simpleTextField";
+import SimpleTextField from "../../ui/simpleTextField";
 
 export default function RegisterTeacher () {
 

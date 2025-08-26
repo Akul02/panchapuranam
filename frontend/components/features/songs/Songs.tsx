@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useState } from 'react';
-import useLanguage from '../../hooks/useLanguage';
+import useLanguage from '../../../hooks/useLanguage';
 
 type Song = {
     songId: number;

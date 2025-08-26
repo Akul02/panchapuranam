@@ -2,8 +2,8 @@
 
 import React, { useState } from 'react'
 
-import { languages } from '../../constants/global';
-import useLanguage from '../../hooks/useLanguage';
+import { languages } from '../../../constants/global';
+import useLanguage from '../../../hooks/useLanguage';
 
 import { IoIosArrowDropdown } from "react-icons/io";
 import { IoIosArrowDropup } from "react-icons/io";

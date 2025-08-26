@@ -2,9 +2,9 @@
 
 import { useRouter } from 'next/navigation';
 import React, { FormEvent, useState } from 'react';
-import useUser from '../../hooks/useUser';
-import { UserRole } from '../../constants/global';
-import SimpleTextField from '../ui/simpleTextField';
+import useUser from '../../../hooks/useUser';
+import { UserRole } from '../../../constants/global';
+import SimpleTextField from '../../ui/simpleTextField';
 
 export default function Login () {
     const [emailString, setEmailString] = useState("");
@@ -39,7 +39,6 @@ export default function Login () {
             // login successful
             router.push("/")
             // useRoleSetter();
-
             fetch(`${apiUrl}/role`,{credentials: "include"})
             .then(async (res) => {
                 if (!res.ok) {
