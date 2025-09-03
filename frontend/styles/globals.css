@@ -12,6 +12,10 @@ body {
   display: flex;
 }
 
+.hide {
+    display: none;
+}
+
 /* ------------------------------ PAGE LAYOUT ------------------------------ */
 
 .home {
@@ -166,13 +170,14 @@ nav {
     -ms-overflow-style: none;
 }
 
+.hide {
+    display: none;
+}
+
 .dropdown_options::-webkit-scrollbar {
     display: none;
 }
 
-.hide {
-    display: none;
-}
 
 .dropdown_item {
     display: flex;
@@ -186,9 +191,9 @@ nav {
 
 }
 
-/* ------------------------------ Login Page ------------------------------ */
+/* ------------------------------ Form Component Styling ------------------------------ */
 
-.form{
+.form {
     width: 350px;
     height: 400px;
     background-color: #FFF8E1;
@@ -228,7 +233,7 @@ input {
     border: 1px solid red;
 }
 
-.login_error {
+.form_error {
     color: red;
     margin-top: 2vh;
     margin-left: 20%;
@@ -245,3 +250,13 @@ input {
     border-radius: 3px;
     padding: 2% 0 2% 0;
 }
+
+/* ------------------------------ Overlay Styling ------------------------------ */
+
+.overlay {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: #926e9e;
+}
+

@@ -2,13 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import useLanguage from '../../../hooks/useLanguage';
-
-type Song = {
-    songId: number;
-    title: string;
-    language: string;
-    verse: string[];
-};
+import { Song } from '../../../types/song';
 
 export default function Songs() {
 

@@ -63,7 +63,7 @@ export default function RegisterTeacher () {
     return (
         <form className='form' onSubmit={handleSubmit}>
             <h1 className="form_heading">Teacher Enrolment</h1>
-            <div className={`login_error ${isError ? "" : "hide"}`}>
+            <div className={`form_error ${isError ? "" : "hide"}`}>
                 <p>{errorString}</p>
             </div>
             <SimpleTextField type="text" input="first name" value={formData.firstName} isError={false} onChange={(val : string) => handleChange("firstName", val)}/>

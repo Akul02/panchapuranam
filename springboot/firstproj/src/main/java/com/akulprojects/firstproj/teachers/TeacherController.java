@@ -21,6 +21,8 @@ public class TeacherController {
 
     @PostMapping("/register")
     public String postMethodName(@RequestBody TeacherSignUpDto signUpInfo) {
+
+        // ADD AUTHORISATION CHECK
         
         // Check to see if email exists in database already
         Users checkTeacher = repo.findByEmail(signUpInfo.getEmail());
@@ -33,14 +35,10 @@ public class TeacherController {
         Users newTeacher = new Users(signUpInfo.getFirstName(), signUpInfo.getLastName(), 
             signUpInfo.getEmail(), signUpInfo.getPassword(), Role.TEACHER, true);
         
-        try {
-            repo.save(newTeacher);
-            // return success response
-            return "successfully added teacher";
-        } catch (Exception e) {
-            // throw exception
-            return "error";
-        }        
+        
+        repo.save(newTeacher);
+        // return success response
+        return "successfully added teacher";   
     }
     
 }

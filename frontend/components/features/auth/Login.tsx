@@ -5,6 +5,8 @@ import React, { FormEvent, useState } from 'react';
 import useUser from '../../../hooks/useUser';
 import { UserRole } from '../../../constants/global';
 import SimpleTextField from '../../ui/simpleTextField';
+import { session } from '../../../types/session';
+import PasswordPrompt from './PasswordPrompt';
 
 export default function Login () {
     const [emailString, setEmailString] = useState("");
@@ -12,6 +14,8 @@ export default function Login () {
 
     const [isError, setIsError] = useState(false);
     const [errorString, setErrorString] = useState("");
+
+    const [isFirstLogin, setIsFirstLogin] = useState(false);
 
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     const router = useRouter();
@@ -35,19 +39,17 @@ export default function Login () {
                 const errMsg = await res.text();
                 throw new Error(errMsg);
             }
-            
-            // login successful
-            router.push("/")
+                        
             // useRoleSetter();
-            fetch(`${apiUrl}/role`,{credentials: "include"})
+            fetch(`${apiUrl}/session`,{credentials: "include"})
             .then(async (res) => {
                 if (!res.ok) {
                     throw new Error("failed to fetch user role")
                 }
         
-                const role = await res.text();
+                const sessionInfo: session = await res.json();
         
-                switch (role) {
+                switch (sessionInfo.role) {
                     case UserRole.ADMIN:
                         setUserRole(UserRole.ADMIN);
                         break;
@@ -66,6 +68,13 @@ export default function Login () {
                         // INCORRECT ROLE VALUE
                         break;
                 }
+
+                // if first login, display password prompt
+                if (sessionInfo.firstLogin) {
+                    setIsFirstLogin(true);
+                } else {
+                    router.push("/")
+                }
             })
         })
         . catch(err => {
@@ -76,15 +85,20 @@ export default function Login () {
     }
 
     return (
-        <form className='form' onSubmit={handleSubmit}>
-            <h1 className='form_heading'>Teacher Login</h1>
-            <div className={`login_error ${isError ? "" : "hide"}`}>
-                <p>{errorString}</p>
+        <div>
+            <form className='form' onSubmit={handleSubmit}>
+                <h1 className='form_heading'>Teacher Login</h1>
+                <div className={`form_error ${isError ? "" : "hide"}`}>
+                    <p>{errorString}</p>
+                </div>
+                <SimpleTextField type="email" input="email" value={emailString} isError={isError} onChange={setEmailString}/>
+                <SimpleTextField type="password" input="password" value={passwordString} isError={isError} onChange={setPasswordString}/>
+                <button className="form_submit_btn" type='submit'>Log In</button>
+                
+            </form>
+            <div className={`overlay ${isFirstLogin ? "" : "hide"}`}>
+                <PasswordPrompt/>
             </div>
-            <SimpleTextField type="email" input="email" value={emailString} isError={isError} onChange={setEmailString}/>
-            <SimpleTextField type="password" input="password" value={passwordString} isError={isError} onChange={setPasswordString}/>
-            <button className="form_submit_btn" type='submit'>Log In</button>
-            
-        </form>
+        </div>
     )
 }
