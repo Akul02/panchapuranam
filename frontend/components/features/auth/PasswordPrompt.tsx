@@ -57,8 +57,8 @@ export default function PasswordPrompt () {
             <div className={`form_error ${isError ? "" : "hide"}`}>
                 <p>{errorString}</p>
             </div>
-            <SimpleTextField type="password" input="password" value={password1String} isError={isError} onChange={setPassword1String}/>
-            <SimpleTextField type="password" input="password" value={password2String} isError={isError} onChange={setPassword2String}/>
+            <SimpleTextField type="password" input="password" value={password1String} id={"2"} isError={isError} onChange={setPassword1String}/>
+            <SimpleTextField type="password" input="password" value={password2String} id={"3"} isError={isError} onChange={setPassword2String}/>
             <button className="form_submit_btn" type='submit'>Submit</button>
         </form>
     )

@@ -75,10 +75,10 @@ export default function RegisterTeacher () {
             <div className={`form_msg ${isSuccess ? "" : "hide"}`}>
                 <p>Successfully added Teacher</p>
             </div>
-            <SimpleTextField type="text" input="first name" value={formData.firstName} isError={false} onChange={(val : string) => handleChange("firstName", val)}/>
-            <SimpleTextField type="text" input="last name" value={formData.lastName} isError={false} onChange={(val : string) => handleChange("lastName", val)}/>
-            <SimpleTextField type="email" input="email" value={formData.email} isError={isError} onChange={(val : string) => handleChange("email", val)}/>
-            <SimpleTextField type="password" input="password" value={formData.password} isError={false} onChange={(val : string) => handleChange("password", val)}/>
+            <SimpleTextField type="text" input="first name" value={formData.firstName} id={undefined} isError={false} onChange={(val : string) => handleChange("firstName", val)}/>
+            <SimpleTextField type="text" input="last name" value={formData.lastName} id={undefined} isError={false} onChange={(val : string) => handleChange("lastName", val)}/>
+            <SimpleTextField type="email" input="email" value={formData.email} id={undefined} isError={isError} onChange={(val : string) => handleChange("email", val)}/>
+            <SimpleTextField type="password" input="password" value={formData.password} id={undefined} isError={false} onChange={(val : string) => handleChange("password", val)}/>
             <button className="form_submit_btn" type="submit">Register Teacher</button>
         </form>
     )

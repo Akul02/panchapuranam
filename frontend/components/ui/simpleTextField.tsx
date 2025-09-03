@@ -6,13 +6,14 @@ type FunctionProps = {
     value: string;
     onChange: (value : string) => void;
     isError: boolean;
+    id: string | undefined;
 }
 
-export default function SimpleTextField ({ type, input, value, onChange, isError }: FunctionProps) {
+export default function SimpleTextField ({ type, input, value, onChange, isError, id = ""}: FunctionProps) {
     return (
         <div className="form_input">
             <label htmlFor={`${input}_input`}/>
-            <input className={`${isError ? "error" : ""}`} id={`${input}_input`} type={`${type}`} placeholder={`enter ${input}`} value={value ?? ""} required onChange={(e) => onChange(e.target.value)}/>
+            <input className={`${isError ? "error" : ""}`} id={`${input}_input${id}`} type={`${type}`} placeholder={`enter ${input}`} value={value ?? ""} required onChange={(e) => onChange(e.target.value)}/>
         </div>
     )
 }

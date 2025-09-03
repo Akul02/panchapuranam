@@ -91,8 +91,8 @@ export default function Login () {
                 <div className={`form_error ${isError ? "" : "hide"}`}>
                     <p>{errorString}</p>
                 </div>
-                <SimpleTextField type="email" input="email" value={emailString} isError={isError} onChange={setEmailString}/>
-                <SimpleTextField type="password" input="password" value={passwordString} isError={isError} onChange={setPasswordString}/>
+                <SimpleTextField type="email" input="email" value={emailString} id={undefined} isError={isError} onChange={setEmailString}/>
+                <SimpleTextField type="password" input="password" value={passwordString} id={"1"} isError={isError} onChange={setPasswordString}/>
                 <button className="form_submit_btn" type='submit'>Log In</button>
                 
             </form>
