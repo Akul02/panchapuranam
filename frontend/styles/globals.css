@@ -215,7 +215,7 @@ nav {
 }                                                      
 
 .form_input {
-    margin-top: 3vh;
+    margin-top: 2vh;
     margin-left: 20%;
     padding: 1%;
     display: block;
@@ -235,9 +235,16 @@ input {
 
 .form_error {
     color: red;
-    margin-top: 2vh;
+    margin-top: 1vh;
+    margin-bottom: -1vh;
     margin-left: 20%;
 
+}
+
+.form_msg {
+    margin-top: 1vh;
+    margin-bottom: -1vh;
+    margin-left: 20%;
 }
 
 .form_submit_btn {

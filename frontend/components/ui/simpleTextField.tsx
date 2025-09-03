@@ -12,7 +12,7 @@ export default function SimpleTextField ({ type, input, value, onChange, isError
     return (
         <div className="form_input">
             <label htmlFor={`${input}_input`}/>
-            <input className={`${isError ? "error" : ""}`} id={`${input}_input`} type={`${type}`} placeholder={`enter ${input}`} required onChange={(e) => onChange(e.target.value)}/>
+            <input className={`${isError ? "error" : ""}`} id={`${input}_input`} type={`${type}`} placeholder={`enter ${input}`} value={value ?? ""} required onChange={(e) => onChange(e.target.value)}/>
         </div>
     )
 }

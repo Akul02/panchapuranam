@@ -15,6 +15,8 @@ export default function RegisterTeacher () {
     const [isError, setIsError] = useState(false);
     const [errorString, setErrorString] = useState("");
 
+    const [isSuccess, setIsSuccess] = useState(false);
+
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
     // generic handler for changing state
@@ -30,7 +32,9 @@ export default function RegisterTeacher () {
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
-        
+        setIsSuccess(false);
+        setIsError(false);
+
         fetch(`${apiUrl}/teacher/register`, {
             method: "POST",
             headers: {"Content-Type" : "application/json"},
@@ -50,6 +54,8 @@ export default function RegisterTeacher () {
 
             const resText = await res.text();
             console.log(resText);
+            setFormData({"firstName": "", "lastName" : "", "email" : "", "password" : ""});
+            setIsSuccess(true);
 
         })
         .catch(err => {
@@ -65,6 +71,9 @@ export default function RegisterTeacher () {
             <h1 className="form_heading">Teacher Enrolment</h1>
             <div className={`form_error ${isError ? "" : "hide"}`}>
                 <p>{errorString}</p>
+            </div>
+            <div className={`form_msg ${isSuccess ? "" : "hide"}`}>
+                <p>Successfully added Teacher</p>
             </div>
             <SimpleTextField type="text" input="first name" value={formData.firstName} isError={false} onChange={(val : string) => handleChange("firstName", val)}/>
             <SimpleTextField type="text" input="last name" value={formData.lastName} isError={false} onChange={(val : string) => handleChange("lastName", val)}/>

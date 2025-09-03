@@ -22,6 +22,8 @@ export default function UserProvider({children}: Props) {
             .then(async (res) => {
                 if (!res.ok) {
                     setUserRole(UserRole.NO_USER);
+                    const errMsg = await res.text();
+                    console.log(errMsg);
                 } else {
 
                     const sessionInfo: session = await res.json();
@@ -47,7 +49,7 @@ export default function UserProvider({children}: Props) {
                     }
                 }
             })
-            .catch((err) => console.log(err));
+            .catch((err) => console.log(err.message));
 
     }, []);
 
