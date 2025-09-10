@@ -12,15 +12,13 @@ import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.akulprojects.firstproj.auth.JwtUtil;
 import com.akulprojects.firstproj.exception.InvalidInputException;
 import com.akulprojects.firstproj.exception.ResourceNotFoundException;
 import com.akulprojects.firstproj.exception.UnauthorizedException;
 import com.akulprojects.firstproj.users.dtos.LoginRequestDto;
 import com.akulprojects.firstproj.users.dtos.PasswordDto;
 import com.akulprojects.firstproj.users.dtos.SessionDto;
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.JWTVerifier;
-import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,9 +31,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class UserController {
     @Autowired
     UserRepo repo;
-
-    Algorithm algo = Algorithm.HMAC256("pancha");
-    JWTVerifier verifier = JWT.require(algo).withIssuer("panchapuranam.org").build();
+    @Autowired
+    JwtUtil jwt;
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody LoginRequestDto loginRequest) {
@@ -47,14 +44,7 @@ public class UserController {
         }
 
         if (user.getPassword().equals(loginRequest.getPassword())) {
-            String jwtToken = JWT.create()
-                .withIssuer("panchapuranam.org")
-                .withSubject(String.valueOf(user.getId()))
-                .withIssuedAt(new Date())
-                .withExpiresAt(new Date(System.currentTimeMillis() + 60*60*1000L))
-                .withJWTId(UUID.randomUUID().toString())
-                .withClaim("role", user.getRole().toString())
-                .sign(algo);
+            String jwtToken = jwt.createJwt(user);
             
             ResponseCookie cookie = ResponseCookie.from("AUTH_TOKEN", jwtToken)
                 .httpOnly(true)
@@ -89,13 +79,8 @@ public class UserController {
     @GetMapping("/session")
     public SessionDto getSessionInfo(@CookieValue(name = "AUTH_TOKEN", required = false) String cookie) {
 
-        if (cookie == null) {
-            throw new UnauthorizedException("JWT Not Present");
-        }
-
-        SessionDto info = new SessionDto();
-
-        DecodedJWT decodedJWT = verifier.verify(cookie);
+        DecodedJWT decodedJWT = jwt.extractJwtFromCookie(cookie);
+        SessionDto info = new SessionDto(); 
 
         info.setRole(decodedJWT.getClaim("role").asString());
 
@@ -108,10 +93,9 @@ public class UserController {
     }
 
     @PostMapping("/password")
-    public String postMethodName(@CookieValue(name = "AUTH_TOKEN") String cookie, @RequestBody PasswordDto passwordRequest) {
+    public String postMethodName(@CookieValue(name = "AUTH_TOKEN", required = false) String cookie, @RequestBody PasswordDto passwordRequest) {
         
-        // Find User
-        DecodedJWT decodedJWT = verifier.verify(cookie);
+        DecodedJWT decodedJWT = jwt.extractJwtFromCookie(cookie);
 
         Users current_user = repo.findById(Integer.valueOf(decodedJWT.getSubject()))
                             .orElseThrow(() -> new ResourceNotFoundException("jwt token does not contain a valid user id"));
