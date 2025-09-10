@@ -76,6 +76,11 @@ export default function Login () {
                     router.push("/")
                 }
             })
+            . catch(err => {
+            setIsError(true);
+            setErrorString(err.message);
+            console.log(err.message);
+            })
         })
         . catch(err => {
             setIsError(true);

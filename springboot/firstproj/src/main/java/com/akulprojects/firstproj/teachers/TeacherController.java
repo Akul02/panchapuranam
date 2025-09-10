@@ -38,7 +38,7 @@ public class TeacherController {
         
         repo.save(newTeacher);
         // return success response
-        return "successfully added teacher";   
+        return "Successfully added teacher";   
     }
     
 }

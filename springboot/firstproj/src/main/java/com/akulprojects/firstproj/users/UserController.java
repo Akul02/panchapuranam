@@ -13,8 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.akulprojects.firstproj.exception.InvalidInputException;
-import com.akulprojects.firstproj.exception.LoginFailedException;
 import com.akulprojects.firstproj.exception.ResourceNotFoundException;
+import com.akulprojects.firstproj.exception.UnauthorizedException;
 import com.akulprojects.firstproj.users.dtos.LoginRequestDto;
 import com.akulprojects.firstproj.users.dtos.PasswordDto;
 import com.akulprojects.firstproj.users.dtos.SessionDto;
@@ -35,7 +35,7 @@ public class UserController {
     UserRepo repo;
 
     Algorithm algo = Algorithm.HMAC256("pancha");
-    JWTVerifier verifier =JWT.require(algo).withIssuer("panchapuranam.org").build();
+    JWTVerifier verifier = JWT.require(algo).withIssuer("panchapuranam.org").build();
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody LoginRequestDto loginRequest) {
@@ -43,7 +43,7 @@ public class UserController {
         Users user = repo.findByEmail(loginRequest.getEmail());
         
         if (user == null) {
-            throw new LoginFailedException("the email is incorrect");
+            throw new UnauthorizedException("the email is incorrect");
         }
 
         if (user.getPassword().equals(loginRequest.getPassword())) {
@@ -67,7 +67,7 @@ public class UserController {
         
             return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString()).body("login success");
         } else {
-            throw new LoginFailedException("the email or password is incorrect");
+            throw new UnauthorizedException("the email or password is incorrect");
         }
     }
 
@@ -87,7 +87,11 @@ public class UserController {
     
 
     @GetMapping("/session")
-    public SessionDto getSessionInfo(@CookieValue(name = "AUTH_TOKEN") String cookie) {
+    public SessionDto getSessionInfo(@CookieValue(name = "AUTH_TOKEN", required = false) String cookie) {
+
+        if (cookie == null) {
+            throw new UnauthorizedException("JWT Not Present");
+        }
 
         SessionDto info = new SessionDto();
 
@@ -114,7 +118,6 @@ public class UserController {
                             
         // Update Password & FirstLogin Value
         if (current_user.getPassword().equals(passwordRequest.getPassword())) {
-            System.out.println("test");
             throw new InvalidInputException("password must be different to current password");
         }
 
