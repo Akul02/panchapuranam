@@ -48,4 +48,8 @@ public class JwtUtil {
             return false;
         }
     }
+
+    public int getId(DecodedJWT jwt) {
+        return Integer.valueOf(jwt.getSubject());
+    }
 }

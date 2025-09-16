@@ -84,7 +84,7 @@ public class UserController {
 
         info.setRole(decodedJWT.getClaim("role").asString());
 
-        Users current_user = repo.findById(Integer.valueOf(decodedJWT.getSubject()))
+        Users current_user = repo.findById(jwt.getId(decodedJWT))
                             .orElseThrow(() -> new ResourceNotFoundException("jwt token does not contain a valid user id"));     
 
         info.setFirstLogin(current_user.isFirstLogin());
@@ -97,7 +97,7 @@ public class UserController {
         
         DecodedJWT decodedJWT = jwt.extractJwtFromCookie(cookie);
 
-        Users current_user = repo.findById(Integer.valueOf(decodedJWT.getSubject()))
+        Users current_user = repo.findById(jwt.getId(decodedJWT))
                             .orElseThrow(() -> new ResourceNotFoundException("jwt token does not contain a valid user id"));
                             
         // Update Password & FirstLogin Value
