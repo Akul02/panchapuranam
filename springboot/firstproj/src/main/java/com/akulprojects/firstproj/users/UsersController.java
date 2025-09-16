@@ -1,10 +1,6 @@
 package com.akulprojects.firstproj.users;
 
 import java.time.Duration;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -28,20 +24,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 
 @RestController
-public class UserController {
+public class UsersController {
     @Autowired
-    UserRepo repo;
+    UsersRepo repo;
     @Autowired
     JwtUtil jwt;
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody LoginRequestDto loginRequest) {
 
-        Users user = repo.findByEmail(loginRequest.getEmail());
-        
-        if (user == null) {
-            throw new UnauthorizedException("the email is incorrect");
-        }
+        Users user = repo.findByEmail(loginRequest.getEmail())
+                        .orElseThrow(() -> new UnauthorizedException("the email is incorrect"));
 
         if (user.getPassword().equals(loginRequest.getPassword())) {
             String jwtToken = jwt.createJwt(user);

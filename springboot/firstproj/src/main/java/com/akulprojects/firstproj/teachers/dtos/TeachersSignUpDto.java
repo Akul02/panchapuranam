@@ -1,11 +1,9 @@
-package com.akulprojects.firstproj.teachers;
+package com.akulprojects.firstproj.teachers.dtos;
 
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
-@Setter
-public class TeacherSignUpDto {
+public class TeachersSignUpDto {
     private String firstName;
     private String lastName;
     private String email;
