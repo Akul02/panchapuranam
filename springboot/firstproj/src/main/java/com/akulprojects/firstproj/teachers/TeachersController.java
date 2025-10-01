@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @RestController
-@RequestMapping("/teachers")
+@RequestMapping("/teacher")
 public class TeachersController {
     @Autowired
     UsersRepo repo;
@@ -36,8 +36,9 @@ public class TeachersController {
         }
         
         // Check to see if email exists in database already
-        repo.findByEmail(signUpInfo.getEmail())
-            .orElseThrow(() -> new ConflictException("the email is already used"));
+        if (repo.findByEmail(signUpInfo.getEmail()).isPresent()) {
+            throw new ConflictException("the email is already used");
+        }
 
         // Sign Up User
         Users newTeacher = new Users(signUpInfo.getFirstName(), signUpInfo.getLastName(), 

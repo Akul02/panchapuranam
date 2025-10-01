@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @RestController
-@RequestMapping("students")
+@RequestMapping("student")
 public class StudentsController {
     @Autowired
     StudentsRepo repo;
@@ -33,8 +33,10 @@ public class StudentsController {
             throw new ForbiddenException("do not have permission to register a student");
         }
 
-        repo.findByEmail(signUpInfo.getEmail())
-            .orElseThrow(() -> new ConflictException("the email is already used"));
+        if (repo.findByEmail(signUpInfo.getEmail()).isPresent()) {
+            System.out.println("test");
+            throw new ConflictException("the email is already used");
+        }
 
         Students newStudent = new Students(signUpInfo.getFirstName(), signUpInfo.getLastName(), signUpInfo.getEmail());
         

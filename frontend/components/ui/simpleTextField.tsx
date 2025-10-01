@@ -6,7 +6,7 @@ type FunctionProps = {
     value: string;
     onChange: (value : string) => void;
     isError: boolean;
-    id: string | undefined;
+    id: string | undefined; // required for passwordprompt component, contains 2 password text fields needng unique ids
 }
 
 export default function SimpleTextField ({ type, input, value, onChange, isError, id = ""}: FunctionProps) {

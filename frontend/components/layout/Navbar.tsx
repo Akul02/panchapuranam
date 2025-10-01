@@ -19,7 +19,8 @@ export default function Navbar () {
             <Language/>
             <a href="/events">Events</a>
             {userRole == UserRole.NO_USER ? <h1>Download Certificate</h1> : null}
-            {userRole == UserRole.ADMIN ? <a href="/register">Enrol Teacher</a> : null}
+            {userRole == UserRole.ADMIN ? <a href="/register/teacher">Enrol Teacher</a> : null}
+            {userRole == UserRole.TEACHER ? <a href="/register/student">Enrol Student</a> : null}
             {userRole == UserRole.NO_USER ? <a href="/login">Login</a> : <Logout/>}
             <Contact/>
         </nav>

@@ -1,5 +1,5 @@
 import React from 'react'
-import RegisterTeacher from '../../components/features/admin/RegisterTeacher'
+import RegisterTeacher from '../../../components/features/admin/RegisterTeacher'
 
 const register = () => {
   return (
