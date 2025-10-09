@@ -21,6 +21,7 @@ export default function Navbar () {
             {userRole == UserRole.NO_USER ? <h1>Download Certificate</h1> : null}
             {userRole == UserRole.ADMIN ? <a href="/register/teacher">Enrol Teacher</a> : null}
             {userRole == UserRole.TEACHER ? <a href="/register/student">Enrol Student</a> : null}
+            {userRole == UserRole.TEACHER ? <a href="/register/bulk">Bulk Enrol Student</a> : null}
             {userRole == UserRole.NO_USER ? <a href="/login">Login</a> : <Logout/>}
             <Contact/>
         </nav>
