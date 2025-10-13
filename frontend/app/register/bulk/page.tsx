@@ -1,8 +1,8 @@
 "use client"
 import { responseCookiesToRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies';
-import React, { FormEvent, useState } from 'react'
+import React, { FormEvent, useRef, useState } from 'react'
 
-export default function () {
+export default function bulk () {
 
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [message, setMessage] = useState<string>("");
@@ -16,7 +16,12 @@ export default function () {
         }
     };
 
+    const fileInputRef = useRef<HTMLInputElement | null>(null); 
+
     const handleSubmit = (e: FormEvent) => {
+
+        e.preventDefault();
+
 
         if (!selectedFile) {
             console.log("Please select a file first");
@@ -43,11 +48,16 @@ export default function () {
         .catch(err => {
             console.log(err.message);
         })
+        .finally(() => {
+            if (fileInputRef.current) {
+                fileInputRef.current.value = "";
+            }
+        })
     }
 
     return (
         <form className='form' onSubmit={handleSubmit}>
-            <input type='file' accept='.csv' onChange={handleFileChange} />
+            <input type='file' accept='.csv' ref={fileInputRef} onChange={handleFileChange} />
             <button className='form_submit_btn' type="submit">Register Students</button>
         </form>
     )
