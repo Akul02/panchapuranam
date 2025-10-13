@@ -67,7 +67,7 @@ public class StudentsController {
     @PostMapping("/bulk/register")
     public String bulkRegisterStudent(@RequestParam(value = "file", required = true) MultipartFile file) {
 
-        // read csv file
+        // read csv file, skipping col titles
         try (CSVReader reader = new CSVReaderBuilder(new InputStreamReader(file.getInputStream())).withSkipLines(1).build()) {
 
             List<String[]> enrolmentData = reader.readAll();
