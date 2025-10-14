@@ -65,7 +65,13 @@ public class StudentsController {
     // uploads to a csv file to the server
     // goes through the csv file and then 
     @PostMapping("/bulk/register")
-    public String bulkRegisterStudent(@RequestParam(value = "file", required = true) MultipartFile file) {
+    public String bulkRegisterStudent(@RequestParam(value = "file", required = true) MultipartFile file, @CookieValue(name = "AUTH_TOKEN", required = false) String cookie) {
+
+        // AUTHORISATION CHECK
+        DecodedJWT decodedJWT = jwt.extractJwtFromCookie(cookie);
+        if (!jwt.checkPermissions(decodedJWT, Role.TEACHER)) {
+            throw new ForbiddenException("do not have permission to register a student");
+        }
 
         // read csv file, skipping col titles
         try (CSVReader reader = new CSVReaderBuilder(new InputStreamReader(file.getInputStream())).withSkipLines(1).build()) {

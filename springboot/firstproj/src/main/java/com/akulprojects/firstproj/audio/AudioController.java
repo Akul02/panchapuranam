@@ -16,15 +16,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.akulprojects.firstproj.exception.InvalidInputException;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 public class AudioController {
         @Autowired
         AudioRepo repo;
 
-        @GetMapping("/audios/{songId}")
-        public ResponseEntity<Resource> getAudioList(@PathVariable Integer songId) throws IOException {
+        @GetMapping("/audios")
+        public ResponseEntity<Resource> getAudioList(@RequestParam Integer songId) throws IOException {
             List<Audio> audiosList = repo.findBySong_SongId(songId);
 
             if (audiosList.isEmpty()) {

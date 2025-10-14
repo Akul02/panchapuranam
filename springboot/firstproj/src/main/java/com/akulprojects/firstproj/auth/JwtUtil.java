@@ -34,7 +34,7 @@ public class JwtUtil {
 
     public DecodedJWT extractJwtFromCookie(String cookie) {
         if (cookie == null) {
-            throw new UnauthorizedException("JWT Not Present"); 
+            throw new UnauthorizedException("Invalid user session, please login again"); 
         }
         return verifier.verify(cookie);
     }
