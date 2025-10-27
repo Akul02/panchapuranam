@@ -1,4 +1,4 @@
-const languages = ['Tamil', 'English']
+const languages = ['Tamil', 'English', 'Telegu']
 
 const TEACHER = "TEACHER"
 const ADMIN = "ADMIN"
