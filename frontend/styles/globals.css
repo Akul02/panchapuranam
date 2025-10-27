@@ -267,3 +267,25 @@ input {
     background-color: #926e9e;
 }
 
+/* ------------------------------ Certificates Display Styling ------------------------------ */
+
+.certificates {
+    text-align: center;
+    margin-top: 5%;
+}
+
+.cert_url {
+    margin-top: 5%;
+    text-decoration: underline;
+}
+
+.scroll_box {
+    max-height: 60%;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.scroll_box::-webkit-scrollbar {
+    display: none;
+}

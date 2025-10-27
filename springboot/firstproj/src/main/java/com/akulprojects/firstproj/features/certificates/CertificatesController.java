@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.akulprojects.firstproj.exception.ResourceNotFoundException;
+import com.akulprojects.firstproj.features.students.StudentsRepo;
 import com.akulprojects.firstproj.infrastructure.s3.S3Service;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,21 +21,33 @@ public class CertificatesController {
     CertificatesRepo repo;
 
     @Autowired
+    StudentsRepo studentsRepo;
+
+    @Autowired
     S3Service s3Service;
 
     @GetMapping("/certificate")
     public List<String> getCertificate(@RequestParam String email) {
 
+        studentsRepo.findByEmail(email)
+            .orElseThrow(() -> new ResourceNotFoundException("email provided does not match any student record"));
+
+
         // find all certificates in db that belong to the student with the email given
         List<Certficates> certicates = repo.findByStudent_Email(email);
-        List<String> urlList = new ArrayList<>();
+        List<String> resList = new ArrayList<>();
+
+        if (certicates.size() == 0) {
+            System.out.println("debug");
+            return resList;
+        } 
 
         // for each certificate, generate presigned url
         for (Certficates cert : certicates) {
-            urlList.add(s3Service.generatePresignedUrl("certficates/" + cert.getFilePath()));
+            resList.add(s3Service.generatePresignedUrl("certficates/" + cert.getFilePath()));
         }
         
-        return urlList;
+        return resList;
     }
     
 }

@@ -18,7 +18,7 @@ export default function Navbar () {
             <img className="profile_pic" src="/logo_final.PNG" onClick={() => router.push("/")}/>
             <Language/>
             <a href="/events">Events</a>
-            {userRole == UserRole.NO_USER ? <h1>Download Certificate</h1> : null}
+            {userRole == UserRole.NO_USER ? <a href="/download">Download Certificate</a> : null}
             {userRole == UserRole.ADMIN ? <a href="/register/teacher">Enrol Teacher</a> : null}
             {userRole == UserRole.TEACHER ? <a href="/register/student">Enrol Student</a> : null}
             {userRole == UserRole.TEACHER ? <a href="/register/bulk">Bulk Enrol Student</a> : null}
