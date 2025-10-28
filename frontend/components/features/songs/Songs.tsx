@@ -30,7 +30,7 @@ export default function Songs() {
                     ))}
                     <p>{song.verse[0]}</p>
                     <audio className='audio_controls' controls>
-                        <source src={`${apiUrl}/audios?songId=${song.songId}`} type='audio/mpeg'></source>
+                        <source src={`${apiUrl}/audios?audioId=${song.audios[0].audioId}`} type='audio/mpeg'></source>
                         Your browser does not support the audio element
                     </audio>
                     {/* <Audio songId={song.songId}></Audio> */}

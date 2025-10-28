@@ -1,9 +1,12 @@
 package com.akulprojects.firstproj.features.songs;
 
+import java.util.Set;
+
 import org.hibernate.annotations.JdbcType;
 import org.hibernate.annotations.Type;
 import org.hibernate.dialect.PostgreSQLEnumJdbcType;
 
+import com.akulprojects.firstproj.features.audio.Audio;
 import com.akulprojects.firstproj.features.languages.Language;
 
 import io.hypersistence.utils.hibernate.type.array.StringArrayType;
@@ -30,4 +33,12 @@ public class Song {
     @Type(StringArrayType.class)
     @Column(name = "verse", columnDefinition = "text[]")
     private String[] verse;
+
+    @ManyToMany
+    @JoinTable(
+        name = "songs_audios",
+        joinColumns = @JoinColumn(name = "song_song_id"),
+        inverseJoinColumns = @JoinColumn(name = "audio_audio_id")
+    )
+    private Set<Audio> audios;
 }

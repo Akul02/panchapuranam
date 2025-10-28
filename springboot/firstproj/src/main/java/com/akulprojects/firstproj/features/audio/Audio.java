@@ -20,8 +20,8 @@ public class Audio {
     @Column(name = "filepath")
     private String filePath;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "song_id")
-    private Song song;
+    // @ManyToOne(fetch = FetchType.EAGER)
+    // @JoinColumn(name = "song_id")
+    // private Song song;
 
 }
