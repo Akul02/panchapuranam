@@ -62,7 +62,7 @@ export default function Download() {
                     <p>{errorString}</p>
                 </div>
                 <p className="form_msg">Enter your email to retrieve your certificates</p>
-                <SimpleTextField type="text" input="email" value={emailString} id={undefined} isError={isError} onChange={setEmailString}/>
+                <SimpleTextField type="email" input="email" value={emailString} id={undefined} isError={isError} onChange={setEmailString}/>
                 <button className="form_submit_btn" type='submit'>Submit</button>
             </div>
             <div className={`certificates ${showUrls ? "" : "hide"}`}>
