@@ -11,6 +11,7 @@ import com.akulprojects.firstproj.features.users.Role;
 import com.akulprojects.firstproj.features.users.Users;
 import com.akulprojects.firstproj.features.users.UsersRepo;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.password4j.Password;
 
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,9 +41,11 @@ public class TeachersController {
             throw new ConflictException("the email is already used");
         }
 
+        String hashString = Password.hash(signUpInfo.getPassword()).addRandomSalt().withArgon2().getResult();
+
         // Sign Up User
         Users newTeacher = new Users(signUpInfo.getFirstName(), signUpInfo.getLastName(), 
-            signUpInfo.getEmail(), signUpInfo.getPassword(), Role.TEACHER, true);
+            signUpInfo.getEmail(), hashString, Role.TEACHER, true);
         
         
         repo.save(newTeacher);

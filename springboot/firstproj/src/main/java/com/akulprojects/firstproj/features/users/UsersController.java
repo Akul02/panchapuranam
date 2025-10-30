@@ -16,6 +16,7 @@ import com.akulprojects.firstproj.features.users.dtos.LoginRequestDto;
 import com.akulprojects.firstproj.features.users.dtos.PasswordDto;
 import com.akulprojects.firstproj.features.users.dtos.SessionDto;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.password4j.Password;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,7 +37,7 @@ public class UsersController {
         Users user = repo.findByEmail(loginRequest.getEmail())
                         .orElseThrow(() -> new UnauthorizedException("the email is incorrect"));
 
-        if (user.getPassword().equals(loginRequest.getPassword())) {
+        if (Password.check(loginRequest.getPassword(), user.getPassword()).withArgon2()) {
             String jwtToken = jwt.createJwt(user);
             
             ResponseCookie cookie = ResponseCookie.from("AUTH_TOKEN", jwtToken)
@@ -72,8 +73,17 @@ public class UsersController {
     @GetMapping("/session")
     public SessionDto getSessionInfo(@CookieValue(name = "AUTH_TOKEN", required = false) String cookie) {
 
+        SessionDto info = new SessionDto();
+
+        // if cookie is null return empty info dto
+        if (cookie == null) {
+            System.out.print("test");
+            info.setRole(Role.NO_USER.toString());
+            info.setFirstLogin(false);
+            return info;
+        }
+
         DecodedJWT decodedJWT = jwt.extractJwtFromCookie(cookie);
-        SessionDto info = new SessionDto(); 
 
         info.setRole(decodedJWT.getClaim("role").asString());
 
@@ -94,11 +104,11 @@ public class UsersController {
                             .orElseThrow(() -> new ResourceNotFoundException("jwt token does not contain a valid user id"));
                             
         // Update Password & FirstLogin Value
-        if (current_user.getPassword().equals(passwordRequest.getPassword())) {
+        if (Password.check(passwordRequest.getPassword(), current_user.getPassword()).withArgon2()) {
             throw new InvalidInputException("password must be different to current password");
         }
 
-        current_user.setPassword(passwordRequest.getPassword());
+        current_user.setPassword(Password.hash(passwordRequest.getPassword()).addRandomSalt().withArgon2().getResult());
         current_user.setFirstLogin(false);
 
         repo.save(current_user);

@@ -60,12 +60,10 @@ export default function Login () {
         
                     case UserRole.NO_USER:
                         setUserRole(UserRole.NO_USER);
-                        // HANDLE THIS ERROR
-                        // INCORRECT LOGIN
                         break;
+
                     default:
-                        // HANDLE THIS ERRO
-                        // INCORRECT ROLE VALUE
+                        throw new Error("unknown role value");
                         break;
                 }
 

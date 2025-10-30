@@ -7,7 +7,7 @@ const NO_USER = ""
 enum UserRole {
     TEACHER = "TEACHER",
     ADMIN = "ADMIN",
-    NO_USER = ""
+    NO_USER = "NO_USER"
 }
 
 export {languages, UserRole}

@@ -1,5 +1,5 @@
 package com.akulprojects.firstproj.features.users;
 
 public enum Role {
-    ADMIN, TEACHER
+    ADMIN, TEACHER, NO_USER
 }

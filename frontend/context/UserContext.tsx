@@ -20,34 +20,31 @@ export default function UserProvider({children}: Props) {
     useEffect(() => {
         fetch(`${apiUrl}/session`, {credentials: "include"})
             .then(async (res) => {
+
                 if (!res.ok) {
-                    setUserRole(UserRole.NO_USER);
                     const errMsg = await res.text();
-                    console.log(errMsg);
-                } else {
-
-                    const sessionInfo: session = await res.json();
-
-                    switch (sessionInfo.role) {
-                        case UserRole.ADMIN:
-                            setUserRole(UserRole.ADMIN);
-                            break;
-            
-                        case UserRole.TEACHER:
-                            setUserRole(UserRole.TEACHER);
-                            break;
-            
-                        case UserRole.NO_USER:
-                            setUserRole(UserRole.NO_USER);
-                            // HANDLE THIS ERROR
-                            // INCORRECT LOGIN
-                            break;
-                        default:
-                            // HANDLE THIS ERRO
-                            // INCORRECT ROLE VALUE
-                            break;
-                    }
+                    throw new Error(errMsg);
                 }
+
+                const sessionInfo: session = await res.json();
+
+                switch (sessionInfo.role) {
+                    case UserRole.ADMIN:
+                        setUserRole(UserRole.ADMIN);
+                        break;
+        
+                    case UserRole.TEACHER:
+                        setUserRole(UserRole.TEACHER);
+                        break;
+        
+                    case UserRole.NO_USER:
+                        setUserRole(UserRole.NO_USER);
+                        break;
+
+                    default:
+                        throw new Error("unknown role value");
+                }
+                
             })
             .catch((err) => console.log(err.message));
 
