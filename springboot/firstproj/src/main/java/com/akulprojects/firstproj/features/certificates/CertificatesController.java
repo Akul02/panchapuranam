@@ -34,7 +34,7 @@ public class CertificatesController {
 
 
         // find all certificates in db that belong to the student with the email given
-        List<Certficates> certicates = repo.findByStudent_Email(email);
+        List<Certificates> certicates = repo.findByStudent_Email(email);
         List<String> resList = new ArrayList<>();
 
         if (certicates.size() == 0) {
@@ -43,11 +43,16 @@ public class CertificatesController {
         } 
 
         // for each certificate, generate presigned url
-        for (Certficates cert : certicates) {
+        for (Certificates cert : certicates) {
             resList.add(s3Service.generatePresignedUrl("certficates/" + cert.getFilePath()));
         }
         
         return resList;
+    }
+
+    @GetMapping("/certificates/count")
+    public long getStudentsWithCertificates() {
+        return repo.countStudentsWithCertificates();
     }
     
 }

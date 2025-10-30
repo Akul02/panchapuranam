@@ -18,7 +18,7 @@ import lombok.Data;
 @Entity
 @Data
 @Table(name="certificates")
-public class Certficates {
+public class Certificates {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
