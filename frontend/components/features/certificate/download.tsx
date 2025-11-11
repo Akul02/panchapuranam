@@ -1,5 +1,5 @@
 "use client"
-import React, { FormEvent, useState } from 'react'
+import React, { FormEvent, useEffect, useState } from 'react'
 import SimpleTextField from '../../ui/simpleTextField';
 
 export default function Download() {
@@ -52,7 +52,6 @@ export default function Download() {
             setErrorString(err.message)
         })
     }
-
 
     return (
         <form className="form" onSubmit={handleSubmit}>

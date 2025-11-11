@@ -5,6 +5,7 @@ import "../styles/globals.css";
 import LanguageProvider from "../context/LanguageContext";
 import Navbar from "../components/layout/Navbar";
 import UserProvider from "../context/UserContext";
+import StudentCounter from "../components/features/counter/studentCounter";
 
 export const metadata: Metadata = {
   title: "Panchapuranam Home",
@@ -22,7 +23,9 @@ export default function RootLayout({
         <LanguageProvider>
             <UserProvider>
                 <Navbar/>
+                <StudentCounter/>
                 {children}
+
             </UserProvider>
         </LanguageProvider>
       </body>

@@ -1,6 +1,5 @@
 "use client"
 
-import Navbar from "../components/layout/Navbar";
 import Songs from "../components/features/songs/Songs";
 
 export default function Home() {
