@@ -18,12 +18,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="background">
+    <html lang="en" className="scroll-smooth">
+      <body className="bg-[#F4F4E8]">
         <LanguageProvider>
             <UserProvider>
-                <Navbar/>
-                <StudentCounter/>
+                {/* <StudentCounter/> */}
                 {children}
 
             </UserProvider>
@@ -32,3 +31,13 @@ export default function RootLayout({
     </html>
   );
 }
+
+{/* <div className="flex flex-col justify-center text-center">            
+            <div className="italic text-gray-700"><p>If you have memorised and sung the below 5  songs, we will honor you by issuing a certificate. Contact us when you are ready. No age limit.</p></div>
+            <div className="flex justify-center items-center gap-10">
+                <Language/>
+                <div>
+                    {userRole == UserRole.NO_USER ? <a href="/download">Download Certificate</a> : null}
+                </div>
+            </div>
+        </div> */}
