@@ -35,7 +35,7 @@ export default function Home() {
     }
 
   return (
-    <div className="text-[#333333] w-screen">
+    <div className="text-[#333333] w-full">
 
         <div className="flex flex-col items-center h-screen">
             <Navbar/> 
@@ -47,7 +47,7 @@ export default function Home() {
             </div>
         </div>
 
-        <div ref={songsRef} className="flex flex-col items-center w-screen">
+        <div ref={songsRef} className="flex flex-col items-center w-full">
             <div className="text-[#6E3326] italic text-lg mt-8">
                 If you have memorised and sung the below 5 songs, we will honor you by issuing a certificate. Contact us when you are ready. No age limit.
             </div>
