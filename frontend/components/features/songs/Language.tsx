@@ -30,7 +30,7 @@ export default function Language () {
     }
 
     return (
-        <div>
+        <div className="">
             <div className={`flex items-center cursor-pointer gap-x-1 border-2 border-[#6E3326] p-3 rounded-xl text-[#6E3326] mt-8 ${isOpen ? "bg-[#6E3326] text-[#CC9966]" : ""}`} onClick={toggleDropdown}>
                 <p>Select Language</p>
                 {isOpen ? <IoIosArrowDropup size={21}/> : <IoIosArrowDropdown size={21}/>}

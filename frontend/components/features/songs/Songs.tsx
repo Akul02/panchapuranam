@@ -19,16 +19,15 @@ export default function Songs() {
     }, [language]);
 
     return (
-        <div className="flex flex-col items-center gap-y-8 mt-20 w-full">
+        <div className="flex flex-col items-center gap-y-8 mt-8 mb-20 w-full">
             {songs.map((song) => (
-                <div className="w-2/5 rounded-xl p-4 shadow-[0_4px_8px_0_rgba(0,0,0,0.2),_0_6px_20px_0_rgba(0,0,0,0.19)]" key={song.songId}>
-                    <p className='text-2xl font-semibold'>{song.title} </p>
+                <div className="w-1/2 rounded-xl p-4 shadow-[0_4px_8px_0_rgba(0,0,0,0.2),_0_6px_20px_0_rgba(0,0,0,0.19)]" key={song.songId}>
+                    <p className='text-3xl font-semibold'>{song.title} </p>
                     {song.verse.map((line, index) => (
                         <div key={index}>
-                            <p>{line}</p>
+                            <p className="text-lg">{line}</p>
                         </div>
                     ))}
-                    <p>{song.verse[0]}</p>
                     <audio className='mt-4' controls>
                         <source src={`${apiUrl}/audios?audioId=${song.audios[0].audioId}`} type='audio/mpeg'></source>
                         Your browser does not support the audio element
