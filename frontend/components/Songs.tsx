@@ -33,7 +33,6 @@ export default function Songs () {
                                 <p>{line}</p>
                             </div>    
                         ))}
-                        <p>{song.verse[0]}</p>
                         <audio className='audio_controls' controls>
                             <source src={`${apiUrl}/audios/${song.songId}`} type='audio/mpeg'></source>
                             Your browser does not support the audio element
