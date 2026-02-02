@@ -42,9 +42,9 @@ export default function Home() {
             <Navbar/> 
             <Hero/>
             <div className="flex items-center cursor-pointer" onClick={goToSongs}>
-                <IoMusicalNote size={40} color="#6E3326"/>
-                <PiArrowFatLinesDownDuotone size={40} color="#6E3326"/>
-                <IoMusicalNote size={40} color="#6E3326"/>
+                <IoMusicalNote size={40} color="#6E3227"/>
+                <PiArrowFatLinesDownDuotone size={40} color="#6E3227"/>
+                <IoMusicalNote size={40} color="#6E3227"/>
             </div>
             {/* sticky footer placeholder h-28 is the height of the footer*/}
             <div className="invisible h-28"></div>
