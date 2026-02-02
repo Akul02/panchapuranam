@@ -13,10 +13,12 @@ export default function Footer() {
         </div>
         <PiLineVerticalBold size={70} color="#CC9966"/>
         <div>
-            <div className="text-center font-semibold p-2 rounded-xl cursor-pointer bg-[#CC9966] text-[#6E3326]">
-                <a href="/download">Download Certificate</a>
-            </div>
-            <p>For those that have memorised the songs</p>
+            <a href="/download">
+                <div className="text-center font-semibold p-2 rounded-xl cursor-pointer bg-[#CC9966] text-[#6E3326]">
+                    Download Certificate
+                </div>
+            </a>
+            <p className="font-semibold">For those that have memorised the songs</p>
         </div>
     </div>
   )

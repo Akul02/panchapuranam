@@ -68,7 +68,7 @@ export default function RegisterStudent() {
             <SimpleTextField type="text" input="first name" value={formData.firstName} id={undefined} isError={false} onChange={(val : string) => handleChange("firstName", val)} />
             <SimpleTextField type="text" input="last name" value={formData.lastName} id={undefined} isError={false} onChange={(val : string) => handleChange("lastName", val)} />
             <SimpleTextField type="text" input="email" value={formData.email} id={undefined} isError={isError} onChange={(val : string) => handleChange("email", val)} />
-            <button className="form_submit_btn" type="submit">Register Student</button>
+            <button className="font-semibold form_submit_btn" type="submit">Register Student</button>
         </form>
     )
 }

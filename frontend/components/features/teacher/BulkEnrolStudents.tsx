@@ -77,7 +77,7 @@ export default function BulkEnrolStudents() {
             </div>
 
             <input className="form_input" type='file' accept='.csv' ref={fileInputRef} onChange={handleFileChange} />
-            <button className='form_submit_btn' type="submit">Register Students</button>
+            <button className='font-semibold form_submit_btn' type="submit">Register Students</button>
         </form>
     )
 }
