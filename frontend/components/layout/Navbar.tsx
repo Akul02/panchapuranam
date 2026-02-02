@@ -29,7 +29,7 @@ export default function Navbar () {
                 <div className="flex gap-x-1 border-2 p-2 rounded-xl border-[#CC9966] cursor-pointer hover:bg-[#CC9966] hover:text-[#6E3326] group">
                     {userRole == UserRole.NO_USER ? <a href="/login">Login</a> : <Logout/>}
                     <LiaUserLockSolid size={22}/>
-                    <div className="absolute top-28 right-6 p-2 rounded-xl bg-[#CC9966] text-[#6E3326] text-sm hidden group-hover:block">
+                    <div className="absolute top-16 right-6 p-2 rounded-xl bg-[#CC9966] text-[#6E3326] text-sm hidden group-hover:block">
                         <p>Only for Teachers</p>
                     </div>
                 </div>

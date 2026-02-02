@@ -46,7 +46,7 @@ export default function Home() {
                 <PiArrowFatLinesDownDuotone size={40} color="#6E3326"/>
                 <IoMusicalNote size={40} color="#6E3326"/>
             </div>
-            {/* sticky footer placeholder */}
+            {/* sticky footer placeholder h-28 is the height of the footer*/}
             <div className="invisible h-28"></div>
         </div>
 
