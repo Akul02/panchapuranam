@@ -57,11 +57,11 @@ export default function RegisterStudent() {
         <form className='form' onSubmit={handleSubmit}>
             <h1 className='form_heading'>Student Enrolment</h1>
 
-            <div className={`form_error ${isError ? "" : "hide"}`}>
+            <div className={`form_error ${isError ? "" : "hidden"}`}>
                 <p>{errorString}</p>
             </div>
 
-            <div className={`form_msg ${isSuccess ? "" : "hide"}`}>
+            <div className={`form_msg ${isSuccess ? "" : "hidden"}`}>
                 <p>Successfully enrolled Student</p>
             </div>
 

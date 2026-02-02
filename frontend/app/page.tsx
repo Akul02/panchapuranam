@@ -1,6 +1,6 @@
 "use client"
 
-import { ReactElement, useRef } from "react";
+import { ReactElement, useRef, useState } from "react";
 import {Merriweather} from "next/font/google";
 
 import { RxDoubleArrowDown } from "react-icons/rx";
@@ -19,6 +19,7 @@ import { UserRole } from "../constants/global";
 import useUser from "../hooks/useUser";
 import Hero from "../components/sections/Hero";
 import Footer from "../components/layout/Footer";
+import Login from "../components/features/auth/Login";
 
 
 const merriweather = Merriweather({
@@ -28,6 +29,7 @@ const merriweather = Merriweather({
 
 export default function Home() {
     const [userRole] = useUser();
+    const [showLogin, setShowLogin] = useState(false);
 
     const songsRef = useRef<HTMLDivElement | null>(null);
 

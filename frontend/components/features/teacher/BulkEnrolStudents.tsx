@@ -68,11 +68,11 @@ export default function BulkEnrolStudents() {
         <form className='form' onSubmit={handleSubmit}>
             <h1 className='form_heading'>Bulk Student Enrolment</h1>
 
-            <div className={`form_error ${isError ? "" : "hide"}`}>
+            <div className={`form_error ${isError ? "" : "hidden"}`}>
                 <p>{errorString}</p>
             </div>
 
-            <div className={`form_msg ${isSuccess ? "" : "hide"}`}>
+            <div className={`form_msg ${isSuccess ? "" : "hidden"}`}>
                 <p>Successfully enrolled all students</p>
             </div>
 

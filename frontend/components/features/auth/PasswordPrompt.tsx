@@ -54,7 +54,7 @@ export default function PasswordPrompt () {
     return (
         <form className="form" onSubmit={handleSubmit}>
             <h1 className='form_heading'>Please Set Password</h1>
-            <div className={`form_error ${isError ? "" : "hide"}`}>
+            <div className={`form_error ${isError ? "" : "hidden"}`}>
                 <p>{errorString}</p>
             </div>
             <SimpleTextField type="password" input="password" value={password1String} id={"2"} isError={isError} onChange={setPassword1String}/>

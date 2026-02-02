@@ -55,16 +55,16 @@ export default function Download() {
 
     return (
         <form className="form" onSubmit={handleSubmit}>
-            <div className={showUrls ? "hide" : ""}>
+            <div className={showUrls ? "hidden" : ""}>
                 <h1 className="form_heading">Certificate Download</h1>
-                <div className={`form_error ${isError ? "" : "hide"}`}>
+                <div className={`form_error ${isError ? "" : "hidden"}`}>
                     <p>{errorString}</p>
                 </div>
                 <p className="form_msg">Enter your email to retrieve your certificates</p>
                 <SimpleTextField type="email" input="email" value={emailString} id={undefined} isError={isError} onChange={setEmailString}/>
                 <button className="form_submit_btn" type='submit'>Submit</button>
             </div>
-            <div className={`certificates ${showUrls ? "" : "hide"}`}>
+            <div className={`certificates ${showUrls ? "" : "hidden"}`}>
                 <p className="form_heading">{successString}</p>
                 <div className='scroll_box'>
                     {urls.map((url, index) => (

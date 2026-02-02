@@ -64,7 +64,6 @@ export default function Login () {
 
                     default:
                         throw new Error("unknown role value");
-                        break;
                 }
 
                 // if first login, display password prompt
@@ -91,7 +90,7 @@ export default function Login () {
         <div>
             <form className='form' onSubmit={handleSubmit}>
                 <h1 className='form_heading'>Teacher Login</h1>
-                <div className={`form_error ${isError ? "" : "hide"}`}>
+                <div className={`form_error ${isError ? "" : "hidden"}`}>
                     <p>{errorString}</p>
                 </div>
                 <SimpleTextField type="email" input="email" value={emailString} id={undefined} isError={isError} onChange={setEmailString}/>
@@ -99,7 +98,8 @@ export default function Login () {
                 <button className="form_submit_btn" type='submit'>Log In</button>
                 
             </form>
-            <div className={`overlay ${isFirstLogin ? "" : "hide"}`}>
+
+            <div className={`fixed h-full w-full bg-inherit ${isFirstLogin ? "" : "hidden"}`}>
                 <PasswordPrompt/>
             </div>
         </div>

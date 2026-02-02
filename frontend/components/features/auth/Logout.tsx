@@ -25,8 +25,8 @@ export default function Logout () {
     }
 
     return (
-        <button onClick={handleLogout}>
+        <div className="border-2 p-2 rounded-xl border-[#CC9966] cursor-pointer hover:bg-[#CC9966] hover:text-[#6E3326]" onClick={handleLogout}>
             Logout
-        </button>
+        </div>
     )
 }
