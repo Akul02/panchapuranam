@@ -1,5 +1,7 @@
 "use client"
+import { useRouter } from 'next/navigation';
 import React, { FormEvent, useRef, useState } from 'react'
+import { IoCloseCircleOutline } from 'react-icons/io5';
 
 export default function BulkEnrolStudents() {
 
@@ -10,7 +12,11 @@ export default function BulkEnrolStudents() {
     const [isSuccess, setIsSuccess] = useState(false);
 
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+    const router = useRouter();
 
+    const handleOnClick = () => {
+        router.push("/");
+    }
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files && event.target.files.length > 0) {
@@ -66,6 +72,11 @@ export default function BulkEnrolStudents() {
 
     return (
         <form className='form' onSubmit={handleSubmit}>
+
+            <div className="absolute right-2 top-2 cursor-pointer" onClick={handleOnClick}>
+                <IoCloseCircleOutline color="#CC9966"size={28}/>
+            </div>
+            
             <h1 className='form_heading'>Bulk Student Enrolment</h1>
 
             <div className={`form_error ${isError ? "" : "hidden"}`}>

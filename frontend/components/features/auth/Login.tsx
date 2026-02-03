@@ -2,11 +2,17 @@
 
 import { useRouter } from 'next/navigation';
 import React, { FormEvent, useState } from 'react';
+
+import { IoCloseCircleOutline } from "react-icons/io5";
+
+
 import useUser from '../../../hooks/useUser';
 import { UserRole } from '../../../constants/global';
 import SimpleTextField from '../../ui/simpleTextField';
 import { session } from '../../../types/session';
 import PasswordPrompt from './PasswordPrompt';
+
+
 
 export default function Login () {
     const [emailString, setEmailString] = useState("");
@@ -20,6 +26,10 @@ export default function Login () {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     const router = useRouter();
     const [userRole, setUserRole] = useUser();
+
+    const handleOnClick = () => {
+        router.push("/");
+    }
 
     const handleSubmit = (e: FormEvent) => {
 
@@ -89,6 +99,9 @@ export default function Login () {
     return (
         <div>
             <form className='form' onSubmit={handleSubmit}>
+                <div className="absolute right-2 top-2 cursor-pointer" onClick={handleOnClick}>
+                    <IoCloseCircleOutline color="#CC9966"size={28}/>
+                </div>
                 <h1 className='form_heading'>Teacher Login</h1>
                 <div className={`form_error ${isError ? "" : "hidden"}`}>
                     <p>{errorString}</p>

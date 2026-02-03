@@ -2,6 +2,8 @@
 
 import React, { FormEvent, useState } from 'react'
 import SimpleTextField from '../../ui/simpleTextField'
+import { useRouter } from 'next/navigation';
+import { IoCloseCircleOutline } from 'react-icons/io5';
 
 export default function RegisterStudent() {
 
@@ -16,6 +18,8 @@ export default function RegisterStudent() {
     const [isSuccess, setIsSuccess] = useState(false);
 
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+    const router = useRouter();
+    
 
     const handleChange = (field: string, value: string) => {
         setFormData((prev) => ({
@@ -23,6 +27,11 @@ export default function RegisterStudent() {
             [field]:value
         }))
     }
+
+    const handleOnClick = () => {
+        router.push("/");
+    }
+
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
@@ -55,6 +64,11 @@ export default function RegisterStudent() {
 
     return (
         <form className='form' onSubmit={handleSubmit}>
+
+            <div className="absolute right-2 top-2 cursor-pointer" onClick={handleOnClick}>
+                <IoCloseCircleOutline color="#CC9966"size={28}/>
+            </div>
+
             <h1 className='form_heading'>Student Enrolment</h1>
 
             <div className={`form_error ${isError ? "" : "hidden"}`}>
