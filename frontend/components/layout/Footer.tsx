@@ -3,6 +3,7 @@ import React, { use, useState } from 'react'
 import { PiLineVerticalBold } from "react-icons/pi";
 import { IoIosArrowDropdown } from "react-icons/io";
 import { IoIosArrowDropup } from "react-icons/io";
+import StudentCounter from '../features/counter/studentCounter';
 
 export default function Footer() {
 
@@ -20,6 +21,9 @@ export default function Footer() {
             </a>
             <p className="font-semibold">For those that have memorised the songs</p>
         </div>
+
+        <StudentCounter/>
+
     </div>
   )
 }

@@ -2,6 +2,9 @@
 
 import React, { useEffect, useState } from 'react'
 
+import { PiStudentBold } from "react-icons/pi";
+
+
 export default function StudentCounter() {
 
     const [counter, setCounter] = useState(0);
@@ -25,6 +28,12 @@ export default function StudentCounter() {
     }, []);
 
     return (
-        <div className="student_counter">Student with Certificates {counter}</div>
+        <div className="absolute right-24">
+            <div className="font-bold text-4xl flex gap-x-5">
+                {counter}
+                <PiStudentBold color='#CC9966' size={40}/>
+            </div>
+            <p className="font-bold">Students Enlightened</p>
+        </div>
     )
 }
