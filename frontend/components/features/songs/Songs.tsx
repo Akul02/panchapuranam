@@ -1,13 +1,16 @@
 "use client"
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import useLanguage from '../../../hooks/useLanguage';
 import { Song } from '../../../types/song';
+import Audio from './Audio';
 
 export default function Songs() {
 
     const [songs, setSongs] = useState<Song[]>([]);
     const [language] = useLanguage();
+
+    const currentAudioRef = useRef(null);
 
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
@@ -28,12 +31,7 @@ export default function Songs() {
                             <p className="text-lg font-semibold">{line}</p>
                         </div>
                     ))}
-                    <audio className='mt-4' controls>
-                        <source src={`${apiUrl}/audios?audioId=${song.audios[0].audioId}`} type='audio/mpeg'></source>
-                        Your browser does not support the audio element
-                    </audio>
-                    {/* <Audio songId={song.songId}></Audio> */}
-
+                    <Audio sourceString={`${apiUrl}/audios?audioId=${song.audios[0].audioId}`} currentAudio={currentAudioRef}/>
                 </div>
             ))}
         </div>
