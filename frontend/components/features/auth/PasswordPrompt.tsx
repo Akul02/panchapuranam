@@ -1,6 +1,8 @@
 import { FormEvent, useState } from "react";
-import SimpleTextField from "../../ui/simpleTextField";
+import SimpleTextField from "../../ui/SimpleTextField";
 import { useRouter } from "next/navigation";
+import Form from "../../ui/Form";
+import SubmitButton from "../../ui/SubmitButton";
 
 export default function PasswordPrompt () {
 
@@ -52,14 +54,22 @@ export default function PasswordPrompt () {
     }
 
     return (
-        <form className="form" onSubmit={handleSubmit}>
-            <h1 className='form_heading'>Please Set Password</h1>
-            <div className={`form_error ${isError ? "" : "hidden"}`}>
-                <p>{errorString}</p>
-            </div>
+        // <form className="form" onSubmit={handleSubmit}>
+        //     <h1 className='form_heading'>Please Set Password</h1>
+        //     <div className={`form_error ${isError ? "" : "hidden"}`}>
+        //         <p>{errorString}</p>
+        //     </div>
+        //     {/* hardcoded id also present in login */}
+        //     <SimpleTextField type="password" input="password" value={password1String} id={"2"} isError={isError} onChange={setPassword1String}/>
+        //     <SimpleTextField type="password" input="password" value={password2String} id={"3"} isError={isError} onChange={setPassword2String}/>
+        //     <button className="font-semibold form_submit_btn" type='submit'>Submit</button>
+        // </form>
+
+        <Form handleSubmit={handleSubmit} formHeading="First Time Login, Please Set Password" isError={isError} errorString={errorString}>
+            {/* hardcoded id also present in login */}
             <SimpleTextField type="password" input="password" value={password1String} id={"2"} isError={isError} onChange={setPassword1String}/>
             <SimpleTextField type="password" input="password" value={password2String} id={"3"} isError={isError} onChange={setPassword2String}/>
-            <button className="font-semibold form_submit_btn" type='submit'>Submit</button>
-        </form>
+            <SubmitButton>Submit</SubmitButton>
+        </Form>
     )
 }   

@@ -2,6 +2,8 @@
 import { useRouter } from 'next/navigation';
 import React, { FormEvent, useRef, useState } from 'react'
 import { IoCloseCircleOutline } from 'react-icons/io5';
+import Form from '../../ui/Form';
+import SubmitButton from '../../ui/SubmitButton';
 
 export default function BulkEnrolStudents() {
 
@@ -10,6 +12,7 @@ export default function BulkEnrolStudents() {
     const [isError, setIsError] = useState(false);
     const [errorString, setErrorString] = useState("");
     const [isSuccess, setIsSuccess] = useState(false);
+    const [successString, setSuccessString] = useState("");
 
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     const router = useRouter();
@@ -55,6 +58,7 @@ export default function BulkEnrolStudents() {
                 const resText = await res.text();
                 console.log(resText);
                 setIsSuccess(true);
+                setSuccessString("Successfully enrolled all students");
 
             })
             .catch(err => {
@@ -71,24 +75,9 @@ export default function BulkEnrolStudents() {
     }
 
     return (
-        <form className='form' onSubmit={handleSubmit}>
-
-            <div className="absolute right-2 top-2 cursor-pointer" onClick={handleOnClick}>
-                <IoCloseCircleOutline color="#CC9966"size={28}/>
-            </div>
-            
-            <h1 className='form_heading'>Bulk Student Enrolment</h1>
-
-            <div className={`form_error ${isError ? "" : "hidden"}`}>
-                <p>{errorString}</p>
-            </div>
-
-            <div className={`form_msg ${isSuccess ? "" : "hidden"}`}>
-                <p>Successfully enrolled all students</p>
-            </div>
-
-            <input className="form_input" type='file' accept='.csv' ref={fileInputRef} onChange={handleFileChange} />
-            <button className='font-semibold form_submit_btn' type="submit">Register Students</button>
-        </form>
+        <Form handleSubmit={handleSubmit} formHeading="Bulk Student Enrolment" isError={isError} errorString={errorString} isSuccess={isSuccess} successString={successString}>
+            <input className="bg-[#CC9966] text-[#6E3326] rounded-md w-3/4 mb-10" type='file' accept='.csv' ref={fileInputRef} onChange={handleFileChange} />
+            <SubmitButton>Registers Students</SubmitButton>
+        </Form>
     )
 }

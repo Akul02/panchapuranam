@@ -8,9 +8,11 @@ import { IoCloseCircleOutline } from "react-icons/io5";
 
 import useUser from '../../../hooks/useUser';
 import { UserRole } from '../../../constants/global';
-import SimpleTextField from '../../ui/simpleTextField';
+import SimpleTextField from '../../ui/SimpleTextField';
 import { session } from '../../../types/session';
 import PasswordPrompt from './PasswordPrompt';
+import Form from '../../ui/Form';
+import SubmitButton from '../../ui/SubmitButton';
 
 
 
@@ -98,19 +100,12 @@ export default function Login () {
 
     return (
         <div>
-            <form className='form' onSubmit={handleSubmit}>
-                <div className="absolute right-2 top-2 cursor-pointer" onClick={handleOnClick}>
-                    <IoCloseCircleOutline color="#CC9966"size={28}/>
-                </div>
-                <h1 className='form_heading'>Teacher Login</h1>
-                <div className={`form_error ${isError ? "" : "hidden"}`}>
-                    <p>{errorString}</p>
-                </div>
-                <SimpleTextField type="email" input="email" value={emailString} id={undefined} isError={isError} onChange={setEmailString}/>
+            <Form handleSubmit={handleSubmit} formHeading="Teacher Login" isError={isError} errorString={errorString}>
+                <SimpleTextField type="email" input="email" value={emailString} isError={isError} onChange={setEmailString}/>
+                {/* hardcoded id also present in passwordprompt file */}
                 <SimpleTextField type="password" input="password" value={passwordString} id={"1"} isError={isError} onChange={setPasswordString}/>
-                <button className="font-semibold form_submit_btn" type='submit'>Log In</button>
-                
-            </form>
+                <SubmitButton>Log In</SubmitButton>
+            </Form>
 
             <div className={`fixed h-full w-full bg-inherit ${isFirstLogin ? "" : "hidden"}`}>
                 <PasswordPrompt/>

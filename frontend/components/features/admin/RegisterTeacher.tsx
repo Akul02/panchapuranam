@@ -1,9 +1,11 @@
 "use client"
 
 import { FormEvent, useState } from "react";
-import SimpleTextField from "../../ui/simpleTextField";
+import SimpleTextField from "../../ui/SimpleTextField";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { useRouter } from "next/navigation";
+import Form from "../../ui/Form";
+import SubmitButton from "../../ui/SubmitButton";
 
 export default function RegisterTeacher () {
 
@@ -18,6 +20,7 @@ export default function RegisterTeacher () {
     const [errorString, setErrorString] = useState("");
 
     const [isSuccess, setIsSuccess] = useState(false);
+    const [successString, setSuccessString] = useState("");
 
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     const router = useRouter();
@@ -59,6 +62,7 @@ export default function RegisterTeacher () {
             console.log(resText);
             setFormData({"firstName": "", "lastName" : "", "email" : "", "password" : ""});
             setIsSuccess(true);
+            setSuccessString("Successfully added Teacher");
 
         })
         .catch(err => {
@@ -70,22 +74,12 @@ export default function RegisterTeacher () {
     }
 
     return (
-        <form className='form' onSubmit={handleSubmit}>
-            <div className="absolute right-2 top-2 cursor-pointer" onClick={handleOnClick}>
-                <IoCloseCircleOutline color="#CC9966"size={28}/>
-            </div>
-            <h1 className="form_heading">Teacher Enrolment</h1>
-            <div className={`form_error ${isError ? "" : "hidden"}`}>
-                <p>{errorString}</p>
-            </div>
-            <div className={`form_msg ${isSuccess ? "" : "hidden"}`}>
-                <p>Successfully added Teacher</p>
-            </div>
-            <SimpleTextField type="text" input="first name" value={formData.firstName} id={undefined} isError={false} onChange={(val : string) => handleChange("firstName", val)}/>
-            <SimpleTextField type="text" input="last name" value={formData.lastName} id={undefined} isError={false} onChange={(val : string) => handleChange("lastName", val)}/>
-            <SimpleTextField type="email" input="email" value={formData.email} id={undefined} isError={isError} onChange={(val : string) => handleChange("email", val)}/>
-            <SimpleTextField type="password" input="password" value={formData.password} id={undefined} isError={false} onChange={(val : string) => handleChange("password", val)}/>
-            <button className="font-semibold form_submit_btn" type="submit">Register Teacher</button>
-        </form>
+        <Form handleSubmit={handleSubmit} formHeading="Teacher Enrolment" isError={isError} errorString={errorString} isSuccess={isSuccess} successString={successString}>
+            <SimpleTextField type="text" input="first name" value={formData.firstName} isError={false} onChange={(val : string) => handleChange("firstName", val)}/>
+            <SimpleTextField type="text" input="last name" value={formData.lastName} isError={false} onChange={(val : string) => handleChange("lastName", val)}/>
+            <SimpleTextField type="email" input="email" value={formData.email} isError={isError} onChange={(val : string) => handleChange("email", val)}/>
+            <SimpleTextField type="password" input="password" value={formData.password} isError={false} onChange={(val : string) => handleChange("password", val)}/>
+            <SubmitButton>Enrol Teacher</SubmitButton>
+        </Form>
     )
 }

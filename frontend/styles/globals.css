@@ -3,23 +3,23 @@
 @tailwind utilities;
 
 
-html, body {
+/* html, body {
     min-height: 100%;
-}
+} */
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  display: flex;
 }
 
-.no_scrollbar {
+
+/* .no_scrollbar {
     scrollbar-width: none;
     -ms-overflow-style: none;
-}
+} */
 
-.no_scrollbar::-webkit-scrollbar {
+/* .no_scrollbar::-webkit-scrollbar {
     display: none;
-}
+} */
 /* ------------------------------ PAGE LAYOUT ------------------------------ */
 
 
@@ -35,7 +35,7 @@ body {
 
 /* ------------------------------ Student Counter Styling ------------------------------ */
 
-.student_counter {
+/* .student_counter {
     background-color: #FFBA4C;
     border: #333333;
     position: fixed;
@@ -49,12 +49,12 @@ body {
 
     padding: 1vh 1vw 1vh 1vw;
 
-}
+} */
 
 
 /* ------------------------------ Form Component Styling ------------------------------ */
 
-.form {
+/* .form {
     width: 350px;
     height: 400px;
     background-color: rgb(110, 50, 39, 0.95);
@@ -67,54 +67,53 @@ body {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     display: flex;
     flex-direction: column;
-}
+} */
 
-.form_heading {
+/* .form_heading {
     text-align: center;
     font-weight: bold;
     font-size:x-large;
     margin-top: 10%;
-}                                                      
+}                                                       */
 
-.form_input {
+/* .form_input {
     margin-top: 2vh;
     margin-left: 20%;
-    padding: 1%;
     display: block;
     width: 60%;
-}
+} */
 
-input {
+/* input {
     background-color: #CC9966;
     color: #6E3326;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 30px 0 rgba(0, 0, 0, 0.1);
     border-radius: 3px;
     padding-left: 2%;
-}
+} */
 
-input::placeholder {
+/* input::placeholder {
     color: #6E3326;
-}
+} */
 
-.error {
+/* .error {
     border: 1px solid red;
-}
+} */
 
-.form_error {
+/* .form_error {
     color: red;
     margin-top: 1vh;
     margin-bottom: -1vh;
     margin-left: 20%;
 
-}
+} */
 
-.form_msg {
+/* .form_msg {
     margin-top: 1vh;
     margin-bottom: -1vh;
     margin-left: 20%;
-}
+} */
 
-.form_submit_btn {
+/* .form_submit_btn {
     width: 50%;
     margin-left: 50%;
     margin-top: 15%;
@@ -124,12 +123,12 @@ input::placeholder {
     color: #6E3326;
     border-radius: 3px;
     padding: 2% 0 2% 0;
-}
+} */
 
 
 /* ------------------------------ Certificates Display Styling ------------------------------ */
 
-.certificates {
+/* .certificates {
     text-align: center;
     margin-top: 5%;
 }
@@ -148,4 +147,4 @@ input::placeholder {
 
 .scroll_box::-webkit-scrollbar {
     display: none;
-}
+} */
