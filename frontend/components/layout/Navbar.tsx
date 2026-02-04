@@ -6,6 +6,7 @@ import useUser from "../../hooks/useUser";
 import Contact from "../sections/ContactInfo";
 import { UserRole } from "../../constants/global";
 import Logout from "../features/auth/Logout";
+import Button from "../ui/Button";
 
 export default function Navbar () {
     const [userRole] = useUser();
@@ -19,44 +20,43 @@ export default function Navbar () {
 
                 {userRole == UserRole.TEACHER ?
                     <a href="/register/student" className="col-start-1 place-self-center">
-                        <div className="font-semibold border-2 p-2 rounded-xl border-[#CC9966] cursor-pointer hover:bg-[#CC9966] hover:text-[#6E3326]">
-                            Enrol Student
-                        </div>
+                        <Button>Enrol Student</Button>
                     </a> : null}
                 
                 {userRole == UserRole.TEACHER ?
                     <a href="/register/bulk" className="col-start-2 justify-self-start self-center">
-                        <div className="font-semibold border-2 p-2 rounded-xl border-[#CC9966] cursor-pointer hover:bg-[#CC9966] hover:text-[#6E3326]">
-                            Bulk Enrol Student
-                        </div>
+                        <Button>Bulk Enrol Student</Button>
                     </a> : null}
 
                 {userRole == UserRole.ADMIN ?
                     <a href="/register/teacher" className="col-start-1 place-self-center"> 
-                        <div className="font-semibold border-2 p-2 rounded-xl border-[#CC9966] cursor-pointer hover:bg-[#CC9966] hover:text-[#6E3326]">
-                            Enrol Teacher 
-                        </div> 
+                        <Button>Enrol Teacher</Button>
                     </a> : null}
 
                 <div className="col-start-4 justify-self-end self-center">
-                    <Contact/>
+                    <Button>
+                        <Contact/>
+                    </Button>
                 </div>
 
                 <div className="col-start-5 place-self-center">
                     {userRole == UserRole.NO_USER ?
                         <a href="/login">
-                            <div className="flex gap-x-1 font-semibold border-2 p-2 rounded-xl border-[#CC9966] cursor-pointer hover:bg-[#CC9966] hover:text-[#6E3326] group">
-                                Login
-                                <LiaUserLockSolid size={22}/>
-                                <div className="rounded-xl bg-[#CC9966] text-[#6E3326] text-sm hidden group-hover:block">
-                                    <p>Only for Teachers</p>
+                            {/* named group used to achieve hover effect on entire button as parent element is just the button content */}
+                            <Button className="group/button">
+                                <div className="flex gap-x-1">
+                                    Login
+                                    <LiaUserLockSolid size={22}/>
+                                    <p className="text-sm hidden group-hover/button:block">Only for Teachers</p>
                                 </div>
-                            </div>
+                            </Button>
                         </a>
-                    : <Logout/> }
+                    : 
+                    <Button>
+                        <Logout/>
+                    </Button> 
+                    }
                 </div>
-                
-
             </div>
     );
 }

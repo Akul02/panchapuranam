@@ -9,7 +9,7 @@ export default function Contact () {
     const [isOpen, setIsOpen] = useState(false)
 
     return (
-        <div className="flex gap-x-1 border-2 rounded-xl border-[#CC9966] p-2 cursor-pointer hover:bg-[#CC9966] hover:text-[#6E3326]" onClick={() => setIsOpen(!isOpen)}>
+        <div className="flex gap-x-1" onClick={() => setIsOpen(!isOpen)}>
 
             <h1 className={`flex gap-x-1 font-semibold ${isOpen ? "hidden" : "null"}`}>Contact Info</h1>
 

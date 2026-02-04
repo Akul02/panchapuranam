@@ -25,7 +25,7 @@ export default function Logout () {
     }
 
     return (
-        <div className="font-semibold border-2 p-2 rounded-xl border-[#CC9966] cursor-pointer hover:bg-[#CC9966] hover:text-[#6E3326]" onClick={handleLogout}>
+        <div onClick={handleLogout}>
             Logout
         </div>
     )
