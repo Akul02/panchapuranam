@@ -21,11 +21,11 @@ const arima = Arima({
 
 export default function Hero() {
   return (
-    <div className="relative mt-12 w-[60%] aspect-[1920/1012] bg-[url('/hero_image.png')] bg-cover bg-center rounded-xl">
+    <div className="relative mt-12 w-[50%] aspect-[1920/1012] bg-[url('/hero_image.png')] bg-cover bg-center rounded-xl">
 
         <div className="absolute inset-0 bg-white/25"/>
 
-        <div className="absolute inset-0 text-5xl font-semibold text-orange-800 pt-[10%] pl-[20%]">
+        <div className="absolute inset-0 text-5xl font-semibold text-orange-800 pt-[10%] pl-[15%]">
             <p className={`${noto_serif.className}`}>பஞ்சபுராணம்</p>
             <p className={`${merriweather.className} mt-6`}>PANCHAPURANAM</p>
         </div>
