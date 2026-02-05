@@ -13,7 +13,7 @@ export default function SimpleTextField ({ type, input, value, onChange, isError
     return (
         <div className="mb-8">
             <label htmlFor={`${input}_input`}/>
-            <input className={`bg-[#CC9966] text-[#6E3326] font-medium rounded-md pl-2 placeholder-[#6E3326] ${isError ? "border border-solid border-red-600" : ""}`} 
+            <input className={`bg-secondary text-primary font-medium rounded-md pl-2 placeholder-primary ${isError ? "border border-solid border-red-600" : ""}`} 
                 id={`${input}_input${id}`} 
                 type={`${type}`} 
                 placeholder={`enter ${input}`} 

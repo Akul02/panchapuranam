@@ -9,14 +9,14 @@ import SubmitButton from '../ui/FormSubmitButton';
 export default function Footer() {
 
   return (
-    <div className="bg-[#6E3326] text-[#CC9966] w-full h-28 sticky bottom-0 flex justify-center items-center">
+    <div className="bg-primary text-secondary w-full h-28 sticky bottom-0 flex justify-center items-center">
         <div className="font-semibold text-2xl">
             Student Zone
         </div>
-        <PiLineVerticalBold size={70} color="#CC9966"/>
+        <PiLineVerticalBold size={70} color="secondary"/>
         <div>
             <a href="/download">
-                <div className="text-center font-semibold p-2 rounded-xl cursor-pointer bg-[#CC9966] text-[#6E3326]">
+                <div className="text-center font-semibold p-2 rounded-xl cursor-pointer bg-secondary text-primary">
                     Download Certificate
                 </div>
             </a>

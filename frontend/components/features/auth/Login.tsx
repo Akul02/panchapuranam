@@ -106,7 +106,7 @@ export default function Login () {
                 <SimpleTextField type="password" input="password" value={passwordString} id={"1"} isError={isError} onChange={setPasswordString}/>
                 <SubmitButton>Log In</SubmitButton>
             </Form>
-
+            {/* might need to comeback to the bg inherit  */}
             <div className={`fixed h-full w-full bg-inherit ${isFirstLogin ? "" : "hidden"}`}>
                 <PasswordPrompt/>
             </div>

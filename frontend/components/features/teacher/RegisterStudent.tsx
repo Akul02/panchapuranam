@@ -67,28 +67,6 @@ export default function RegisterStudent() {
     }
 
     return (
-        // <form className='form' onSubmit={handleSubmit}>
-
-        //     <div className="absolute right-2 top-2 cursor-pointer" onClick={handleOnClick}>
-        //         <IoCloseCircleOutline color="#CC9966"size={28}/>
-        //     </div>
-
-        //     <h1 className='form_heading'>Student Enrolment</h1>
-
-        //     <div className={`form_error ${isError ? "" : "hidden"}`}>
-        //         <p>{errorString}</p>
-        //     </div>
-
-        //     <div className={`form_msg ${isSuccess ? "" : "hidden"}`}>
-        //         <p>Successfully enrolled Student</p>
-        //     </div>
-
-        //     <SimpleTextField type="text" input="first name" value={formData.firstName} id={undefined} isError={false} onChange={(val : string) => handleChange("firstName", val)} />
-        //     <SimpleTextField type="text" input="last name" value={formData.lastName} id={undefined} isError={false} onChange={(val : string) => handleChange("lastName", val)} />
-        //     <SimpleTextField type="text" input="email" value={formData.email} id={undefined} isError={isError} onChange={(val : string) => handleChange("email", val)} />
-        //     <button className="font-semibold form_submit_btn" type="submit">Register Student</button>
-        // </form>
-
         <Form handleSubmit={handleSubmit} formHeading="Student Enrolment" isError={isError} errorString={errorString} isSuccess={isSuccess} successString={successString}>
             <SimpleTextField type="text" input="first name" value={formData.firstName} isError={false} onChange={(val : string) => handleChange("firstName", val)} />
             <SimpleTextField type="text" input="last name" value={formData.lastName} isError={false} onChange={(val : string) => handleChange("lastName", val)} />
@@ -97,8 +75,3 @@ export default function RegisterStudent() {
         </Form>
     )
 }
-
-// variables required
-// form heading
-// handlesubmit function
-// success string? could put this on the api

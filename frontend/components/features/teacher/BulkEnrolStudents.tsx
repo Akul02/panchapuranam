@@ -76,7 +76,7 @@ export default function BulkEnrolStudents() {
 
     return (
         <Form handleSubmit={handleSubmit} formHeading="Bulk Student Enrolment" isError={isError} errorString={errorString} isSuccess={isSuccess} successString={successString}>
-            <input className="bg-[#CC9966] text-[#6E3326] rounded-md w-3/4 mb-10" type='file' accept='.csv' ref={fileInputRef} onChange={handleFileChange} />
+            <input className="bg-secondary text-primary rounded-md w-3/4 mb-10" type='file' accept='.csv' ref={fileInputRef} onChange={handleFileChange} />
             <SubmitButton>Registers Students</SubmitButton>
         </Form>
     )

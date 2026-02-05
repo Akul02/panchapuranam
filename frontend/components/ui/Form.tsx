@@ -22,12 +22,12 @@ export default function Form({handleSubmit, formHeading, isError, errorString, i
     }
 
     return (
-        <form onSubmit={handleSubmit} className="flex flex-col items-center w-[350px] min-h-[400px] fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-xl bg-[#6E3326] color-[#CC9966] shadow-[0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)]">
+        <form onSubmit={handleSubmit} className="flex flex-col items-center w-[350px] min-h-[400px] fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-xl bg-primary text-secondary shadow-[0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)]">
             <div className="absolute right-2 top-2 cursor-pointer" onClick={handleOnClick}>
-                <IoCloseCircleOutline color="#CC9966" size={28} />
+                <IoCloseCircleOutline color="secondary" size={28} />
             </div>
 
-            <h1 className="font-bold text-2xl text-[#CC9966] mt-10 mb-8 text-center">
+            <h1 className="font-bold text-2xl mt-10 mb-8 text-center">
                 {formHeading}
             </h1>
 
@@ -35,7 +35,7 @@ export default function Form({handleSubmit, formHeading, isError, errorString, i
                 {errorString}
             </div>
 
-            <div className={`mb-5 text-[#CC9966] ${isSuccess ? "": "hidden"}`}>
+            <div className={`mb-5 ${isSuccess ? "": "hidden"}`}>
                 {successString}
             </div>
 

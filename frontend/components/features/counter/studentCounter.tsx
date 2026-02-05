@@ -31,7 +31,7 @@ export default function StudentCounter() {
         <div className="absolute right-24">
             <div className="font-bold text-4xl flex gap-x-5">
                 {counter}
-                <PiStudentBold color='#CC9966' size={40}/>
+                <PiStudentBold color="secondary" size={40}/>
             </div>
             <p className="font-bold">Students Enlightened</p>
         </div>

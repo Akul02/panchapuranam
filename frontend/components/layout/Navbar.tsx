@@ -12,7 +12,7 @@ export default function Navbar () {
     const [userRole] = useUser();
 
     return (
-        <div className="bg-[#6E3326] text-[#CC9966] w-full h-20 grid grid-cols-5">
+        <div className="bg-primary text-secondary w-full h-20 grid grid-cols-5">
 
                 <img className="h-44 absolute left-1/2 -translate-x-1/2" src="/svglogotransparent.svg"/>
 
