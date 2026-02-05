@@ -3,7 +3,7 @@ import React, { FormEvent, useEffect, useState } from 'react'
 import SimpleTextField from '../../ui/SimpleTextField';
 import { IoCloseCircleOutline } from 'react-icons/io5';
 import { useRouter } from 'next/navigation';
-import SubmitButton from '../../ui/SubmitButton';
+import SubmitButton from '../../ui/FormSubmitButton';
 import Form from '../../ui/Form';
 
 export default function Download() {

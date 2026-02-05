@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation';
 import React, { FormEvent, useRef, useState } from 'react'
 import { IoCloseCircleOutline } from 'react-icons/io5';
 import Form from '../../ui/Form';
-import SubmitButton from '../../ui/SubmitButton';
+import SubmitButton from '../../ui/FormSubmitButton';
 
 export default function BulkEnrolStudents() {
 

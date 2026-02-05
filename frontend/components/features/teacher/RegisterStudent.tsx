@@ -5,7 +5,7 @@ import SimpleTextField from '../../ui/SimpleTextField'
 import { useRouter } from 'next/navigation';
 import { IoCloseCircleOutline } from 'react-icons/io5';
 import Form from '../../ui/Form';
-import SubmitButton from '../../ui/SubmitButton';
+import SubmitButton from '../../ui/FormSubmitButton';
 
 export default function RegisterStudent() {
 

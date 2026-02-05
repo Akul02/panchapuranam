@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function ({children} : {children : React.ReactNode}) {
+export default function FormSubmitButton({children} : {children : React.ReactNode}) {
   return (
     
     // font-semibold w-1/2 rounded-md pt-1 pb-1 text-[#CC9966] border-2 border-[#CC9966] hover:bg-[#CC9966] hover:text-[#6E3326]

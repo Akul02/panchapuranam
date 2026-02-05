@@ -4,6 +4,7 @@ import { PiLineVerticalBold } from "react-icons/pi";
 import { IoIosArrowDropdown } from "react-icons/io";
 import { IoIosArrowDropup } from "react-icons/io";
 import StudentCounter from '../features/counter/studentCounter';
+import SubmitButton from '../ui/FormSubmitButton';
 
 export default function Footer() {
 

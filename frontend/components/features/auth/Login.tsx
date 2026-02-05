@@ -12,7 +12,7 @@ import SimpleTextField from '../../ui/SimpleTextField';
 import { session } from '../../../types/session';
 import PasswordPrompt from './PasswordPrompt';
 import Form from '../../ui/Form';
-import SubmitButton from '../../ui/SubmitButton';
+import SubmitButton from '../../ui/FormSubmitButton';
 
 
 

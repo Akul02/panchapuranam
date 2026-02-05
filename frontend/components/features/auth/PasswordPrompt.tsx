@@ -2,7 +2,7 @@ import { FormEvent, useState } from "react";
 import SimpleTextField from "../../ui/SimpleTextField";
 import { useRouter } from "next/navigation";
 import Form from "../../ui/Form";
-import SubmitButton from "../../ui/SubmitButton";
+import SubmitButton from "../../ui/FormSubmitButton";
 
 export default function PasswordPrompt () {
 
