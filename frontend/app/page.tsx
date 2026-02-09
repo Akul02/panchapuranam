@@ -43,10 +43,14 @@ export default function Home() {
         <div className="flex flex-col items-center justify-between h-screen">
             <Navbar/> 
             <Hero/>
-            <div className="flex items-center cursor-pointer" onClick={goToSongs}>
-                <IoMusicalNote size={40} color="#6E3227"/>
-                <PiArrowFatLinesDownDuotone size={40} color="#6E3227"/>
-                <IoMusicalNote size={40} color="#6E3227"/>
+            <div className="cursor-pointer" onClick={goToSongs}>
+                <p className="italic text-primary text-center font-semibold">Begin Listening</p>
+                <div className="flex items-center animate-pulse">
+                    <IoMusicalNote size={40} color="#6E3227"/>
+                    <PiArrowFatLinesDownDuotone size={40} color="#6E3227"/>
+                    <IoMusicalNote size={40} color="#6E3227"/>
+                </div>
+                
             </div>
             {/* sticky footer placeholder h-28 is the height of the footer*/}
             <div className="invisible h-28"></div>
@@ -54,7 +58,7 @@ export default function Home() {
 
         {/* songs component */}
         <div ref={songsRef} className="flex flex-col items-center w-full">
-            <div className="text-[#6E3326] italic text-lg mt-8">
+            <div className="text-primary italic text-lg mt-8">
                 If you have memorised and sung the below 5 songs, we will honor you by issuing a certificate. Contact us when you are ready. No age limit.
             </div>
             <Language/>
