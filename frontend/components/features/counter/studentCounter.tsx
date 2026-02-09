@@ -28,7 +28,7 @@ export default function StudentCounter() {
     }, []);
 
     return (
-        <div className="absolute right-24">
+        <div className={`absolute right-24 ${counter == 0 ? "hide" : ""}`}>
             <div className="font-bold text-4xl flex gap-x-5">
                 {counter}
                 <PiStudentBold color="secondary" size={40}/>
