@@ -1,22 +1,47 @@
 "use client"
 
 import { LiaUserLockSolid } from "react-icons/lia";
+import { RxHamburgerMenu } from "react-icons/rx";
+
 
 import useUser from "../../hooks/useUser";
 import Contact from "../sections/ContactInfo";
 import { UserRole } from "../../constants/global";
 import Logout from "../features/auth/Logout";
 import NavButton from "../ui/NavButton";
+import { useState } from "react";
 
 export default function Navbar () {
     const [userRole] = useUser();
 
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const openMenu = () => {
+        setIsMenuOpen(true);
+    }
+
+    const closeMenu = () => {
+        setIsMenuOpen(false);
+    }
+
     return (
-        <div className="bg-primary text-secondary w-full h-20 grid grid-cols-5">
+        // bg-primary text-secondary w-full h-20 grid grid-cols-5
+        <div className={`w-full h-16 bg-primary grid grid-cols-3 ${isMenuOpen ? "opacity-80" : ""}`}>
+                {/* h-44 absolute left-1/2 -translate-x-1/2 */}
+                <div className="col-start-1 self-center ml-4" onClick={openMenu}>
+                    <RxHamburgerMenu size={30} color="#CC9966"/>
+                </div>
+                <img className="h-16 col-start-3 justify-self-end" src="/svglogotransparent.svg"/>
+                
+                <div className={`h-screen w-[75vw] opacity-80 bg-primary ${isMenuOpen ? "" : "hidden"}`}>
 
-                <img className="h-44 absolute left-1/2 -translate-x-1/2" src="/svglogotransparent.svg"/>
+                </div>
 
-                {userRole == UserRole.TEACHER ?
+
+                
+
+
+                {/* {userRole == UserRole.TEACHER ?
                     <a href="/register/student" className="col-start-1 place-self-center">
                         <NavButton>Enrol Student</NavButton>
                     </a> : null}
@@ -29,15 +54,15 @@ export default function Navbar () {
                 {userRole == UserRole.ADMIN ?
                     <a href="/register/teacher" className="col-start-1 place-self-center"> 
                         <NavButton>Enrol Teacher</NavButton>
-                    </a> : null}
+                    </a> : null} */}
 
-                <div className="col-start-4 justify-self-end self-center">
+                <div className="hidden">
                     <NavButton>
                         <Contact/>
                     </NavButton>
                 </div>
 
-                <div className="col-start-5 place-self-center">
+                <div className="hidden">
                     {userRole == UserRole.NO_USER ?
                         <a href="/login">
                             {/* named group used to achieve hover effect on entire button as parent element is just the button content */}
