@@ -32,7 +32,6 @@ export default function Songs() {
                             <p className="text-lg font-semibold">{line}</p>
                         </div>
                     ))}
-                    <Audio sourceString={`${apiUrl}/audios?audioId=${song.audios[0].audioId}`} currentAudio={currentAudioRef}/>
                 </div>
             ))}
         </div>
