@@ -58,7 +58,7 @@ export default function Home() {
 
         {/* songs component */}
         <div ref={songsRef} className="flex flex-col items-center w-full">
-            <div className="text-primary italic text-lg mt-8">
+            <div className="text-[#6E3326] italic text-center text-base mt-4 mx-2 md:mt-8 md:mx-4 md:text-lg">
                 If you have memorised and sung the below 5 songs, we will honor you by issuing a certificate. Contact us when you are ready. No age limit.
             </div>
             <Language/>
