@@ -24,11 +24,11 @@ export default function Songs() {
     return (
         <div className="flex flex-col items-center gap-y-8 mt-8 mb-20 w-full">
             {songs.map((song) => (
-                <div className="w-1/2 rounded-xl p-4 text-primary shadow-[0_4px_8px_0_rgba(0,0,0,0.2),_0_6px_20px_0_rgba(0,0,0,0.19)]" key={song.songId}>
-                    <p className='text-3xl font-bold'>{song.title} </p>
+                <div className="w-11/12 xl:w-2/3 2xl:w-1/2 rounded-xl p-4 text-primary shadow-[0_4px_8px_0_rgba(0,0,0,0.2),_0_6px_20px_0_rgba(0,0,0,0.19)]" key={song.songId}>
+                    <p className='text-2xl lg:text-3xl font-bold'>{song.title} </p>
                     {song.verse.map((line, index) => (
                         <div key={index}>
-                            <p className="text-lg font-semibold">{line}</p>
+                            <p className="text-base lg:text-lg font-semibold">{line}</p>
                         </div>
                     ))}
                     <Audio sourceString={`${apiUrl}/audios?audioId=${song.audios[0].audioId}`} currentAudio={currentAudioRef}/>
