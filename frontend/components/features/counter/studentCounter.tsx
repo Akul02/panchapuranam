@@ -27,8 +27,6 @@ export default function StudentCounter() {
         })
     }, []);
 
-    ${counter == 0 ? "hidden" : ""}
-
     return (
         <div className={`bg-primary sm:relative sm:left-2 md:left-14 lg:left-28 xl:left-auto xl:top-6 xl:absolute xl:right-24 ${counter == 0 ? "hidden" : ""}`}>
             <div className="font-bold text-2xl flex gap-x-5 lg:text-4xl">
