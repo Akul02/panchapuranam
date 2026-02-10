@@ -2,6 +2,8 @@
 
 import { LiaUserLockSolid } from "react-icons/lia";
 import { RxHamburgerMenu } from "react-icons/rx";
+import { IoClose } from "react-icons/io5";
+
 
 
 import useUser from "../../hooks/useUser";
@@ -26,43 +28,39 @@ export default function Navbar () {
 
     return (
         // bg-primary text-secondary w-full h-20 grid grid-cols-5
-        <div className={`w-full h-16 bg-primary grid grid-cols-3 ${isMenuOpen ? "opacity-80" : ""}`}>
-                {/* h-44 absolute left-1/2 -translate-x-1/2 */}
-                <div className="col-start-1 self-center ml-4" onClick={openMenu}>
+        <div className={`w-full h-16 bg-primary flex flex-col ${isMenuOpen ? "h-fit" : ""} lg:h-20 lg:grid lg:grid-cols-5`}>
+                
+                <div className={`ml-4 mt-4 ${isMenuOpen ? "hidden" : ""} lg:hidden`} onClick={openMenu}>
                     <RxHamburgerMenu size={30} color="#CC9966"/>
                 </div>
-                <img className="h-16 col-start-3 justify-self-end" src="/svglogotransparent.svg"/>
-                
-                <div className={`h-screen w-[75vw] opacity-80 bg-primary ${isMenuOpen ? "" : "hidden"}`}>
-
+                <div className={`mt-4 ml-4 mb-6 ${isMenuOpen ? "" : "hidden"} lg:hidden`} onClick={closeMenu}>
+                    <IoClose size={40} color="#CC9966" />
                 </div>
 
-
+                <img className="h-16 lg:h-44 absolute left-1/2 -translate-x-1/2" src="/svglogotransparent.svg"/>
                 
-
-
-                {/* {userRole == UserRole.TEACHER ?
-                    <a href="/register/student" className="col-start-1 place-self-center">
+                {userRole == UserRole.TEACHER ?
+                    <a href="/register/student" className={`${isMenuOpen ? "" : "hidden"} mx-10 mb-2 text-sm lg:block lg:col-start-1 lg:place-self-center lg:text-base lg:m-0`}>
                         <NavButton>Enrol Student</NavButton>
                     </a> : null}
                 
                 {userRole == UserRole.TEACHER ?
-                    <a href="/register/bulk" className="col-start-2 justify-self-start self-center">
+                    <a href="/register/bulk" className={`${isMenuOpen ? "" : "hidden"} mx-10 mb-2 text-sm lg:block lg:col-start-2 lg:justify-self-start lg:self-center lg:text-base lg:m-0`}>
                         <NavButton>Bulk Enrol Student</NavButton>
                     </a> : null}
-
+                
                 {userRole == UserRole.ADMIN ?
-                    <a href="/register/teacher" className="col-start-1 place-self-center"> 
+                    <a href="/register/teacher" className={`${isMenuOpen ? "" : "hidden"} mx-10 mb-2 text-sm lg:block lg:col-start-1 lg:place-self-center lg:text-base lg:m-0`}> 
                         <NavButton>Enrol Teacher</NavButton>
-                    </a> : null} */}
+                    </a> : null}
 
-                <div className="hidden">
+                <div className={`${isMenuOpen ? "" : "hidden"} mx-10 mb-2 text-sm lg:block lg:col-start-4 lg:justify-self-end lg:self-center lg:text-base lg:m-0`}>
                     <NavButton>
                         <Contact/>
                     </NavButton>
                 </div>
 
-                <div className="hidden">
+                <div className={`${isMenuOpen ? "" : "hidden"} mx-10 mb-2 text-sm lg:block lg:col-start-5 lg:place-self-center lg:text-base lg:m-0`}>
                     {userRole == UserRole.NO_USER ?
                         <a href="/login">
                             {/* named group used to achieve hover effect on entire button as parent element is just the button content */}
