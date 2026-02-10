@@ -42,6 +42,7 @@ public class UsersController {
             
             ResponseCookie cookie = ResponseCookie.from("AUTH_TOKEN", jwtToken)
                 .httpOnly(true)
+                // MUST CHANGE TO TRUE WHEN BUILDING DOCKER IMAGE FOR DEPLOYMENT
                 .secure(false)
                 .sameSite("strict")
                 .path("/")
