@@ -4,15 +4,16 @@ import React, { DOMAttributes, SyntheticEvent } from 'react'
 export default function Audio({ sourceString, currentAudio }: { sourceString: string, currentAudio: React.RefObject<HTMLAudioElement | null> }) {
 
     const handlePlay = (e: SyntheticEvent<HTMLAudioElement>) => {
-        // if no audio is currently playing, play the selected audio
+        // if no audio is currently playing, set the audio ref to the new audio ref
         if (currentAudio.current == null) {
-            e.currentTarget.play();
             currentAudio.current = e.currentTarget;
-        } else { // otherwise, pause the current audio playing, play the new audio and modify currentaudio ref
+
+        // if the current audio ref is different to the new, pause the current and set audio ref to new
+        } else if (currentAudio.current != e.currentTarget) { 
             currentAudio.current.pause();
-            e.currentTarget.play();
             currentAudio.current = e.currentTarget;
         }
+        // if the current audio ref is the same as the new one, do nothing, browser plays audio as normal
     }
 
     // reset currentaudio ref when song has ended
