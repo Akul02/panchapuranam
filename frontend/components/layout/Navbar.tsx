@@ -55,9 +55,7 @@ export default function Navbar () {
                     </a> : null}
 
                 <div className={`${isMenuOpen ? "" : "hidden"} mx-10 mb-2 text-sm lg:block lg:col-start-4 lg:justify-self-end lg:self-center lg:text-base lg:m-0`}>
-                    <NavButton>
-                        <Contact/>
-                    </NavButton>
+                    <Contact/>
                 </div>
 
                 <div className={`${isMenuOpen ? "" : "hidden"} mx-10 mb-2 text-sm lg:block lg:col-start-5 lg:place-self-center lg:text-base lg:m-0`}>
@@ -72,10 +70,7 @@ export default function Navbar () {
                                 </div>
                             </NavButton>
                         </a>
-                    : 
-                    <NavButton>
-                        <Logout/>
-                    </NavButton> 
+                    : <Logout/>
                     }
                 </div>
             </div>

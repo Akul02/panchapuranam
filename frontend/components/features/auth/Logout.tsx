@@ -1,6 +1,7 @@
 import { useRouter } from "next/navigation";
 import { UserRole } from "../../../constants/global";
 import useUser from "../../../hooks/useUser";
+import NavButton from "../../ui/NavButton";
 
 export default function Logout () {
 
@@ -26,7 +27,7 @@ export default function Logout () {
 
     return (
         <div onClick={handleLogout}>
-            Logout
+            <NavButton>Logout</NavButton>
         </div>
     )
 }
