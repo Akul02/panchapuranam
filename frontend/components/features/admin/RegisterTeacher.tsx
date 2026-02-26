@@ -2,8 +2,6 @@
 
 import { FormEvent, useState } from "react";
 import SimpleTextField from "../../ui/SimpleTextField";
-import { IoCloseCircleOutline } from "react-icons/io5";
-import { useRouter } from "next/navigation";
 import Form from "../../ui/Form";
 import SubmitButton from "../../ui/FormSubmitButton";
 
@@ -23,8 +21,6 @@ export default function RegisterTeacher () {
     const [successString, setSuccessString] = useState("");
 
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-    const router = useRouter();
-    
 
     // generic handler for changing state
     // field is the exact state being changed
@@ -35,10 +31,6 @@ export default function RegisterTeacher () {
             ...prev,
             [field]:value
         }))
-    }
-
-    const handleOnClick = () => {
-        router.push("/");
     }
 
     const handleSubmit = (e: FormEvent) => {

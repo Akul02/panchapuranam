@@ -2,8 +2,6 @@
 
 import React, { FormEvent, useState } from 'react'
 import SimpleTextField from '../../ui/SimpleTextField'
-import { useRouter } from 'next/navigation';
-import { IoCloseCircleOutline } from 'react-icons/io5';
 import Form from '../../ui/Form';
 import SubmitButton from '../../ui/FormSubmitButton';
 
@@ -21,20 +19,13 @@ export default function RegisterStudent() {
     const [successString, setSuccessString] = useState("");
 
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-    const router = useRouter();
     
-
     const handleChange = (field: string, value: string) => {
         setFormData((prev) => ({
             ...prev,
             [field]:value
         }))
     }
-
-    const handleOnClick = () => {
-        router.push("/");
-    }
-
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
