@@ -1,18 +1,8 @@
 package com.akulprojects.firstproj.features.teachers;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.akulprojects.firstproj.exception.ConflictException;
-import com.akulprojects.firstproj.exception.ForbiddenException;
-import com.akulprojects.firstproj.features.auth.JwtUtil;
 import com.akulprojects.firstproj.features.teachers.dtos.TeachersSignUpDto;
-import com.akulprojects.firstproj.features.users.Role;
-import com.akulprojects.firstproj.features.users.Users;
-import com.akulprojects.firstproj.features.users.UsersRepo;
-import com.auth0.jwt.interfaces.DecodedJWT;
-import com.password4j.Password;
 
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,34 +12,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RestController
 @RequestMapping("/teacher")
 public class TeachersController {
-    @Autowired
-    UsersRepo repo;
-    @Autowired
-    JwtUtil jwt;
+
+    private final TeachersService teachersService;
+
+    public TeachersController(TeachersService teachersService) {
+        this.teachersService = teachersService;
+    }
 
     @PostMapping("/register")
     public String registerTeacher(@RequestBody TeachersSignUpDto signUpInfo, @CookieValue(name = "AUTH_TOKEN", required = false) String cookie) {
-
-        // AUTHORISATION CHECK
-        DecodedJWT decodedJWT = jwt.extractJwtFromCookie(cookie);
-        if (!jwt.checkPermissions(decodedJWT, Role.ADMIN)) {
-            throw new ForbiddenException("do not have permission to register a teacher");
-        }
         
-        // Check to see if email exists in database already
-        if (repo.findByEmail(signUpInfo.getEmail()).isPresent()) {
-            throw new ConflictException("the email is already used");
-        }
+        teachersService.registerTeacher(cookie, signUpInfo);
 
-        String hashString = Password.hash(signUpInfo.getPassword()).addRandomSalt().withArgon2().getResult();
-
-        // Sign Up User
-        Users newTeacher = new Users(signUpInfo.getFirstName(), signUpInfo.getLastName(), 
-            signUpInfo.getEmail(), hashString, Role.TEACHER, true);
-        
-        
-        repo.save(newTeacher);
-        // return success response
         return "Successfully added teacher";   
     }
     

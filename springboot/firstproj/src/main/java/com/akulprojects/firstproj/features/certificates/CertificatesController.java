@@ -17,42 +17,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RestController
 public class CertificatesController {
 
-    @Autowired
-    CertificatesRepo repo;
+    private final CertificatesService certificatesService;
 
-    @Autowired
-    StudentsRepo studentsRepo;
-
-    @Autowired
-    S3Service s3Service;
+    public CertificatesController(CertificatesService certificatesService) {
+        this.certificatesService = certificatesService;
+    }
 
     @GetMapping("/certificate")
     public List<String> getCertificate(@RequestParam String email) {
 
-        studentsRepo.findByEmail(email)
-            .orElseThrow(() -> new ResourceNotFoundException("email provided does not match any student record"));
-
-
-        // find all certificates in db that belong to the student with the email given
-        List<Certificates> certicates = repo.findByStudent_Email(email);
-        List<String> resList = new ArrayList<>();
-
-        if (certicates.size() == 0) {
-            System.out.println("debug");
-            return resList;
-        } 
-
-        // for each certificate, generate presigned url
-        for (Certificates cert : certicates) {
-            resList.add(s3Service.generatePresignedUrl("certficates/" + cert.getFilePath()));
-        }
-        
-        return resList;
+        return certificatesService.getCertificate(email);
     }
 
     @GetMapping("/certificates/count")
-    public long getStudentsWithCertificates() {
-        return repo.countStudentsWithCertificates();
+    public long getStudentsWithCertificatesCount() {
+        return certificatesService.getStudentsWithCertificates();
     }
     
 }
