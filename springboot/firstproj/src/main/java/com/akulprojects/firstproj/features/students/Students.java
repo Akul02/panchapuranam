@@ -3,6 +3,7 @@ package com.akulprojects.firstproj.features.students;
 import java.util.List;
 
 import com.akulprojects.firstproj.features.certificates.Certificates;
+import com.akulprojects.firstproj.features.enrolments.Enrolments;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -33,8 +34,11 @@ public class Students {
     @Column(name = "email", unique = true)
     private String email;
 
-    @OneToMany(mappedBy = "student", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "student", fetch = FetchType.LAZY)
     private List<Certificates> certficates;
+
+    @OneToMany(mappedBy = "student", fetch = FetchType.LAZY)
+    private List<Enrolments> enrolments;
 
     // phone number
     // suburb
