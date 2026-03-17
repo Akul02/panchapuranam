@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.akulprojects.firstproj.exception.ResourceNotFoundException;
+import com.akulprojects.firstproj.features.students.Students;
 import com.akulprojects.firstproj.features.students.StudentsRepo;
 import com.akulprojects.firstproj.infrastructure.s3.S3Service;
 
@@ -23,12 +24,12 @@ public class CertificatesService {
 
     public List<String> getCertificate(String emailString) {
         
-        studentsRepo.findByEmail(emailString)
+        Students student = studentsRepo.findByEmail(emailString)
             .orElseThrow(() -> new ResourceNotFoundException("email provided does not match any student record"));
 
 
         // find all certificates in db that belong to the student with the email given
-        List<Certificates> certicates = certificatesRepo.findByStudent_Email(emailString);
+        List<Certificates> certicates = student.getCertficates();
         List<String> resList = new ArrayList<>();
 
         if (certicates.size() == 0) {
