@@ -32,7 +32,7 @@ public class Certificates {
     private String filePath;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "student_id")
+    @JoinColumn(name = "student_id", nullable = false)
     private Students student;
 
 }
