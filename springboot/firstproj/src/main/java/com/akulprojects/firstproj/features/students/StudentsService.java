@@ -1,5 +1,6 @@
 package com.akulprojects.firstproj.features.students;
 
+import com.akulprojects.firstproj.features.enrolments.EnrolmentsService;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.akulprojects.firstproj.exception.ConflictException;
 import com.akulprojects.firstproj.exception.ForbiddenException;
 import com.akulprojects.firstproj.features.auth.JwtUtil;
+import com.akulprojects.firstproj.features.programs.ProgramsRepo;
 import com.akulprojects.firstproj.features.students.dtos.StudentsSignUpDto;
 import com.akulprojects.firstproj.features.students.exception.CsvParseException;
 import com.akulprojects.firstproj.features.users.Role;
@@ -23,14 +25,16 @@ import com.opencsv.exceptions.CsvException;
 @Service
 public class StudentsService {
 
+    private final EnrolmentsService enrolmentsService;
     private final StudentsRepo studentsRepo;
     private final JwtUtil jwtUtil;
     private final CustomizedStudentsRepo batchUpdateRepo;
 
-    public StudentsService(StudentsRepo studentsRepo, JwtUtil jwtUtil, CustomizedStudentsRepo batchUpdatRepo) {
+    public StudentsService(StudentsRepo studentsRepo, JwtUtil jwtUtil, CustomizedStudentsRepo batchUpdatRepo, EnrolmentsService enrolmentsService) {
         this.studentsRepo = studentsRepo;
         this.jwtUtil = jwtUtil;
         this.batchUpdateRepo = batchUpdatRepo;
+        this.enrolmentsService = enrolmentsService;
     }
 
     public void registerStudent(StudentsSignUpDto signUpInfo, String cookie) {
@@ -41,13 +45,17 @@ public class StudentsService {
         }
 
         if (studentsRepo.findByEmail(signUpInfo.getEmail()).isPresent()) {
-            System.out.println("test");
             throw new ConflictException("the email is already used");
         }
 
         Students newStudent = new Students(signUpInfo.getFirstName(), signUpInfo.getLastName(), signUpInfo.getEmail());
         
-        studentsRepo.save(newStudent);
+        Students savedStudent = studentsRepo.save(newStudent);
+
+        // add student program enrolment functionality here
+        for (String programName : signUpInfo.getProgramNames()) {
+            enrolmentsService.createEnrolment(savedStudent.getId(), programName);
+        }
 
     }
 

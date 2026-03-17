@@ -22,7 +22,7 @@ public class Programs {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "program_id")
-    private String id;
+    private int id;
     
     @Column(name = "name")
     private String name;
