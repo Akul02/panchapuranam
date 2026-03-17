@@ -39,10 +39,10 @@ public class StudentsService {
 
     public void registerStudent(StudentsSignUpDto signUpInfo, String cookie) {
 
-        DecodedJWT decodedJWT = jwtUtil.extractJwtFromCookie(cookie);
-        if (!jwtUtil.checkPermissions(decodedJWT, Role.TEACHER)) {
-            throw new ForbiddenException("do not have permission to register a student");
-        }
+        // DecodedJWT decodedJWT = jwtUtil.extractJwtFromCookie(cookie);
+        // if (!jwtUtil.checkPermissions(decodedJWT, Role.TEACHER)) {
+        //     throw new ForbiddenException("do not have permission to register a student");
+        // }
 
         if (studentsRepo.findByEmail(signUpInfo.getEmail()).isPresent()) {
             throw new ConflictException("the email is already used");

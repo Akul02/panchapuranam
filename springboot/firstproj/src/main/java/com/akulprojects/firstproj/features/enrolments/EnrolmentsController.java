@@ -1,0 +1,32 @@
+package com.akulprojects.firstproj.features.enrolments;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.akulprojects.firstproj.features.enrolments.dtos.StudentProgramEnrolmentDto;
+
+import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+
+@RestController
+@RequestMapping("enrolment")
+public class EnrolmentsController {
+    private final EnrolmentsService enrolmentsService;
+
+    public EnrolmentsController (EnrolmentsService enrolmentsService) {
+        this.enrolmentsService = enrolmentsService;
+    }
+
+    @PostMapping("/enrol-student")
+    public String enrolStudent(@RequestBody StudentProgramEnrolmentDto enrolInfo, @CookieValue(name = "AUTH_TOKEN", required = false) String authCookie) {
+        
+        enrolmentsService.enrolStudent(authCookie, enrolInfo.getProgramNames(), enrolInfo.getStudentId());
+
+        
+        return "successfully enrolled student into programs";
+    }
+    
+
+}
