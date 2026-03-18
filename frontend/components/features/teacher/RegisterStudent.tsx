@@ -1,17 +1,22 @@
 "use client"
 
 import React, { FormEvent, useState } from 'react'
+import Select, { MultiValue } from 'react-select'
 import SimpleTextField from '../../ui/SimpleTextField'
 import Form from '../../ui/Form';
 import SubmitButton from '../../ui/FormSubmitButton';
+import { Programs } from '../../../constants/global';
 
 export default function RegisterStudent() {
 
     const [formData, setFormData] = useState({
         firstName : "",
         lastName : "",
-        email : ""
+        email : "",
+        programNames : [] as string[],
     })
+
+    const options = Object.values(Programs).map((program) => ({value: program, label : program}));
 
     const [isError, setIsError] = useState(false);
     const [errorString, setErrorString] = useState("");
@@ -24,6 +29,14 @@ export default function RegisterStudent() {
         setFormData((prev) => ({
             ...prev,
             [field]:value
+        }))
+    }
+
+    const handleSelectChange = (selected : MultiValue<{value : string, label : string}>) => {
+        const programs = selected.map((item) => item.value);
+        setFormData((prev) => ({
+            ...prev,
+            programNames: programs
         }))
     }
 
@@ -46,7 +59,7 @@ export default function RegisterStudent() {
 
             const resText = await res.text();
             console.log(resText);
-            setFormData({"firstName" : "", "lastName" : "", "email" : ""});
+            setFormData({"firstName" : "", "lastName" : "", "email" : "", programNames:[]});
             setIsSuccess(true);
             setSuccessString("Successfully enrolled Student");
         })
@@ -55,6 +68,7 @@ export default function RegisterStudent() {
             setErrorString(err.message);
             console.log(err.message);
         })
+
     }
 
     return (
@@ -62,6 +76,61 @@ export default function RegisterStudent() {
             <SimpleTextField type="text" input="first name" value={formData.firstName} isError={false} onChange={(val : string) => handleChange("firstName", val)} />
             <SimpleTextField type="text" input="last name" value={formData.lastName} isError={false} onChange={(val : string) => handleChange("lastName", val)} />
             <SimpleTextField type="text" input="email" value={formData.email} isError={isError} onChange={(val : string) => handleChange("email", val)} />
+            <Select options={options} isMulti className="mb-8 w-3/5" onChange={handleSelectChange} instanceId="programs-select"
+                styles={{
+                    control: (base) => ({
+                        ...base,
+                        backgroundColor: "#CC9966",
+                        color: "#6E3326",
+                        fontWeight: "500",
+                        borderRadius: "0.375rem",
+                        border: "none",
+                        boxShadow: "none",
+                        paddingLeft: "0.5rem",
+                        cursor: "pointer",
+                        maxHeight: "80px",
+                        overflow: "auto"
+                    }),
+                    menu: (base) => ({
+                        ...base,
+                        backgroundColor: "#CC9966",
+                        borderRadius: "0.375rem",
+                    }),
+                    option: (base, state) => ({
+                        ...base,
+                        backgroundColor: state.isFocused ? "#6E3326" : "#CC9966",
+                        color: state.isFocused ? "#CC9966" : "#6E3326",
+                        fontWeight: "500",
+                        cursor: "pointer",
+                    }),
+                    multiValue: (base) => ({
+                        ...base,
+                        backgroundColor: "#6E3326",
+                    }),
+                    multiValueLabel: (base) => ({
+                        ...base,
+                        color: "#CC9966",
+                        fontWeight: "500",
+                    }),
+                    multiValueRemove: (base) => ({
+                        ...base,
+                        color: "#CC9966",
+                        ":hover": {
+                            backgroundColor: "#6E3326",
+                            opacity: 0.8,
+                        },
+                    }),
+                    placeholder: (base) => ({
+                        ...base,
+                        color: "#6E3326",
+                        opacity: 0.6,
+                    }),
+                    input: (base) => ({
+                        ...base,
+                        color: "#6E3326",
+                    }),
+                }}
+            />
             <SubmitButton>Register Student</SubmitButton> 
         </Form>
     )

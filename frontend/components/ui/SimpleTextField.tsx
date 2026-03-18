@@ -11,9 +11,9 @@ type FunctionProps = {
 
 export default function SimpleTextField ({ type, input, value, onChange, isError, id = ""}: FunctionProps) {
     return (
-        <div className="mb-8">
+        <div className="mb-8 w-full flex justify-center">
             <label htmlFor={`${input}_input`}/>
-            <input className={`bg-secondary text-primary font-medium rounded-md pl-2 placeholder-primary ${isError ? "border border-solid border-red-600" : ""}`} 
+            <input className={`w-3/5 bg-secondary text-primary font-medium rounded-md pl-2 placeholder-primary ${isError ? "border border-solid border-red-600" : ""}`} 
                 id={`${input}_input${id}`} 
                 type={`${type}`} 
                 placeholder={`enter ${input}`} 
