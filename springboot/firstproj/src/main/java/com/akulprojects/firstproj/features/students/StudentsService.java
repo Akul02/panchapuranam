@@ -13,7 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.akulprojects.firstproj.exception.ConflictException;
 import com.akulprojects.firstproj.exception.ForbiddenException;
 import com.akulprojects.firstproj.features.auth.JwtUtil;
-import com.akulprojects.firstproj.features.programs.ProgramsRepo;
 import com.akulprojects.firstproj.features.students.dtos.StudentsSignUpDto;
 import com.akulprojects.firstproj.features.students.exception.CsvParseException;
 import com.akulprojects.firstproj.features.users.Role;
@@ -39,10 +38,10 @@ public class StudentsService {
 
     public void registerStudent(StudentsSignUpDto signUpInfo, String cookie) {
 
-        // DecodedJWT decodedJWT = jwtUtil.extractJwtFromCookie(cookie);
-        // if (!jwtUtil.checkPermissions(decodedJWT, Role.TEACHER)) {
-        //     throw new ForbiddenException("do not have permission to register a student");
-        // }
+        DecodedJWT decodedJWT = jwtUtil.extractJwtFromCookie(cookie);
+        if (!jwtUtil.checkPermissions(decodedJWT, Role.TEACHER)) {
+            throw new ForbiddenException("do not have permission to register a student");
+        }
 
         if (studentsRepo.findByEmail(signUpInfo.getEmail()).isPresent()) {
             throw new ConflictException("the email is already used");

@@ -7,7 +7,11 @@ import org.springframework.stereotype.Service;
 
 import com.akulprojects.firstproj.features.students.Students;
 import com.akulprojects.firstproj.features.students.StudentsRepo;
+import com.akulprojects.firstproj.features.users.Role;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.akulprojects.firstproj.exception.ConflictException;
+import com.akulprojects.firstproj.exception.ForbiddenException;
+import com.akulprojects.firstproj.features.auth.JwtUtil;
 import com.akulprojects.firstproj.exception.ResourceNotFoundException;
 import com.akulprojects.firstproj.features.programs.Programs;
 import com.akulprojects.firstproj.features.programs.ProgramsRepo;
@@ -18,11 +22,15 @@ public class EnrolmentsService {
     private final EnrolmentsRepo enrolmentsRepo;
     private final StudentsRepo studentsRepo;
     private final ProgramsRepo programsRepo;
+    private final JwtUtil jwtUtil;
 
-    public EnrolmentsService (EnrolmentsRepo enrolmentsRepo, StudentsRepo studentsRepo, ProgramsRepo programsRepo) {
+
+    public EnrolmentsService (EnrolmentsRepo enrolmentsRepo, StudentsRepo studentsRepo, ProgramsRepo programsRepo, JwtUtil jwtUtil) {
         this.enrolmentsRepo = enrolmentsRepo;
         this.studentsRepo = studentsRepo;
         this.programsRepo = programsRepo;
+        this.jwtUtil = jwtUtil;
+
     }
 
     public void createEnrolment(int studentId, String programName) {
@@ -49,10 +57,10 @@ public class EnrolmentsService {
     }
 
     public void enrolStudent(String authCookie, List<String> programNames, int studentId) {
-        // DecodedJWT decodedJWT = jwtUtil.extractJwtFromCookie(authCooke);
-        // if (!jwtUtil.checkPermissions(decodedJWT, Role.TEACHER)) {
-        //     throw new ForbiddenException("do not have permission to enrol a student into a program");
-        // }
+        DecodedJWT decodedJWT = jwtUtil.extractJwtFromCookie(authCookie);
+        if (!jwtUtil.checkPermissions(decodedJWT, Role.TEACHER)) {
+            throw new ForbiddenException("do not have permission to enrol a student into a program");
+        }
 
         for (String programName : programNames) {
             createEnrolment(studentId, programName);
