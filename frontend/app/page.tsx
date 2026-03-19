@@ -29,7 +29,6 @@ const merriweather = Merriweather({
 
 export default function Home() {
     const [userRole] = useUser();
-    const [showLogin, setShowLogin] = useState(false);
 
     const songsRef = useRef<HTMLDivElement | null>(null);
 
@@ -41,7 +40,7 @@ export default function Home() {
     <div className="text-[#333333] w-full">
         {/* home page component */}
         <div className="flex flex-col items-center justify-between h-screen">
-            <Navbar/> 
+            <Navbar showDashButton={true}/> 
             <Hero/>
             <div className="cursor-pointer" onClick={goToSongs}>
                 <p className="italic text-primary text-center font-semibold">Begin Listening</p>
@@ -67,6 +66,7 @@ export default function Home() {
         
         {/* footer component */}
         {userRole == UserRole.NO_USER ? <Footer/> : null }
+
     </div>
   );
 }
