@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { CSSProperties } from 'react'
 
-export default function DashboardCard({ className = "", children } : {className?: string, children : React.ReactNode}) {
+export default function DashboardCard({ className, style, children } : {className?: string, style? : CSSProperties, children : React.ReactNode}) {
   return (
-    <div className="w-screen shrink-0 snap-start">
-        <div className="border-primary border-2 rounded-md mt-10 mx-10 min-h-[600px]">
+    <div className={`${className} border-primary border-2 rounded-md flex flex-col`} style={style}>
+        
             {children}
-        </div>
+        
     </div>
   )
 }

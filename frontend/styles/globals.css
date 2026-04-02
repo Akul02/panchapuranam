@@ -13,12 +13,42 @@ body {
 @layer utilities {
   /* Hide scrollbar for Chrome, Safari and Opera */
   .no-scrollbar::-webkit-scrollbar {
-      display: none;
+    display: none;
   }
 
   /* Hide scrollbar for IE, Edge and Firefox */
   .no-scrollbar {
-      -ms-overflow-style: none;  /* IE and Edge */
-      scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+
+/* for dashboard page */
+.lg-grid-layout {
+  /* 2 cols 3 rows */
+  grid-template-areas:
+    "card1 card2"
+    "card3 card2"
+    "card4 card5";
+}
+
+@media (min-width: 1024px) {
+  /* lg */
+  .lg-grid-layout {
+    /* 2 cols 3 rows */
+    grid-template-areas:
+      "card1 card2"
+      "card3 card2"
+      "card4 card5";
+  }
+}
+
+@media (min-width: 1536px) {
+  /* 2xl */
+  .two-xl-grid-layout {
+    /* 4 cols 2 rows */
+    grid-template-areas:
+      "card1 card3 card2 card4"
+      "card5 card5 card2 card4";
   }
 }
