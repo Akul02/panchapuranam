@@ -5,7 +5,6 @@ import Navbar from '../../components/layout/Navbar'
 import DashboardCard from '../../components/ui/DashboardCard'
 import DashboardMenu from '../../components/ui/DashboardMenu'
 import NavButton from "../../components/ui/NavButton"
-import FormSubmitButton from "../../components/ui/FormSubmitButton"
 import StudentDirectory from "../../components/features/student/StudentDirectory"
 
 export default function page() {
@@ -87,13 +86,13 @@ export default function page() {
                 <div className="lg:grid lg:grid-cols-2 lg:grid-rows-3 lg:gap-3 lg-grid-layout lg:w-4/5 lg:h-3/5 2xl:grid-cols-4 2xl:grid-rows-2 two-xl-grid-layout">
                     {/* quick access */}
                     <DashboardCard style={{ gridArea: "card1"}} className="max-h-[300px]">
-                        <div className="flex flex-col mx-4">
-                            <div className="font-bold text-2xl text-primary text-center my-4">Quick Access</div>
+                        <div className="flex flex-col justify-end mx-4">
+                            <div className="font-bold text-2xl text-primary text-center">Quick Access</div>
                             <a href="/register/student">
                                 <NavButton className="mb-4">Enrol Student</NavButton>
                             </a>
                             <a href="/register/bulk">
-                                <NavButton className="mb-4">Bulk Enrol Student</NavButton>
+                                <NavButton className="">Bulk Enrol Student</NavButton>
                             </a>
                         </div>
                     </DashboardCard>
