@@ -22,6 +22,7 @@ public class AudioController {
             this.audioService = audioService;
         }
 
+        /* route uses query param not a url param as songs will eventually have multiple audios that need to be selected from */
         @GetMapping("/audio")
         public ResponseEntity<Resource> getAudio(@RequestParam Integer audioId) throws IOException {
             Audio audio = audioService.getAudio(audioId);

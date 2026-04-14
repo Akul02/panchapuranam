@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.akulprojects.firstproj.exception.ConflictException;
 import com.akulprojects.firstproj.exception.ForbiddenException;
 import com.akulprojects.firstproj.features.auth.JwtUtil;
+import com.akulprojects.firstproj.features.students.dtos.StudentsSearchDto;
 import com.akulprojects.firstproj.features.students.dtos.StudentsSignUpDto;
 import com.akulprojects.firstproj.features.students.exception.CsvParseException;
 import com.akulprojects.firstproj.features.users.Role;
@@ -109,6 +110,16 @@ public class StudentsService {
             throw new CsvParseException("error relating to parsing csv file");
         } 
 
+    }
+
+    public List<StudentsSearchDto> searchStudent (String searchString, String cookie) {
+
+        DecodedJWT decodedJWT = jwtUtil.extractJwtFromCookie(cookie);
+        if (!jwtUtil.checkPermissions(decodedJWT, Role.TEACHER)) {
+            throw new ForbiddenException("do not have permission to search for a student");
+        }
+
+        return studentsRepo.searchStudentWithSearchString(searchString.toLowerCase());
     }
 
 }
