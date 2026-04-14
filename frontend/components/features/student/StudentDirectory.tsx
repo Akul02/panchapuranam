@@ -18,7 +18,7 @@ export default function StudentDirectory() {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
     const handleChange = (e : React.ChangeEvent<HTMLInputElement>) => {
-        setSearchBarValue(e.target.value);
+        setSearchBarValue(e.target.value.toLowerCase());
     }
 
     // Make an api call with the searchbarvalue
@@ -26,10 +26,13 @@ export default function StudentDirectory() {
     // dont wanna make an api call every input change, so have a timeout
 
     useEffect(() => {
-        if (searchBarValue.trim().length <= 2) { return; }
+        if (searchBarValue.trim().length <= 2) {
+            setSearchResults([]);
+            return;
+        }
 
         const timer = setTimeout(() => {
-            fetch(`${apiUrl}/search?=${searchBarValue}`, {method: "GET"})
+            fetch(`${apiUrl}/student/search?searchString=${searchBarValue}`, {method: "GET"})
             .then(async (res) => {
                 if (!res.ok) {
                     const errMsg = await res.text();
@@ -38,6 +41,7 @@ export default function StudentDirectory() {
 
                 const results = await res.json();
                 setSearchResults(results);
+                console.log(results);
             })
             .catch(err => {
                 console.log(err.message);

@@ -32,6 +32,7 @@ export default function Songs() {
                             <p className="text-base lg:text-lg font-semibold">{line}</p>
                         </div>
                     ))}
+                    {/* route uses query param not a url param as songs will eventually have multiple audios that need to be selected from */}
                     <Audio sourceString={`${apiUrl}/audio?audioId=${song.audios[0].audioId}`} currentAudio={currentAudioRef}/>
                 </div>
             ))}
