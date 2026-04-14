@@ -32,7 +32,7 @@ export default function StudentDirectory() {
         }
 
         const timer = setTimeout(() => {
-            fetch(`${apiUrl}/student/search?searchString=${searchBarValue}`, {method: "GET"})
+            fetch(`${apiUrl}/student/search?searchString=${searchBarValue}`, {method: "GET", credentials: "include"})
             .then(async (res) => {
                 if (!res.ok) {
                     const errMsg = await res.text();
