@@ -59,10 +59,16 @@ export default function StudentDirectory() {
                 <input className="text-primary bg-[#F4F4E8] ml-2 px-1 flex-1 min-w-0" placeholder="enter student's name" value={searchBarValue} onChange={handleChange}/>
             </div>
             <div className="border-2 border-primary rounded-md flex-1 m-4">
-                {searchResults.map((student) => (
-                    <div key={student.id} className="flex">
+                {searchResults.map((student, index) => (
+                    // ${index != searchResults.length - 1 ? "border-b border-secondary border-opacity-30" : ""}
+                    <div key={student.id} className={`flex items-center justify-between gap-x-1 px-4 py-2 text-primary hover:bg-primary hover:text-[#F4F4E8] transition-colors duration-150 border-b border-primary border-opacity-30`}> 
                         {student.name}
-                        <Link href={`/student/${student.id}`}>View Profile</Link>
+                        <Link href={`/student/${student.id}`}>
+                            <div className="shrink-0 border-2 rounded-md px-2 py-1 border-primary bg-[#F4F4E8] text-primary font-semibold">
+                                View Profile
+                            </div>
+                        </Link>
+                        
                     </div>
                 ))}
             </div>
