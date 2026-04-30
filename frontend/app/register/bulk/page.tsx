@@ -1,9 +1,13 @@
 "use client"
 import React, { FormEvent, useRef, useState } from 'react'
 import BulkEnrolStudents from '../../../components/features/teacher/BulkEnrolStudents';
+import Navbar from "../../../components/layout/Navbar";
 
 export default function bulk () {
     return (
-        <BulkEnrolStudents/>
+        <div>
+            <Navbar showDashButton={true} />
+            <BulkEnrolStudents/>
+        </div>
     )
 }

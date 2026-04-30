@@ -1,9 +1,13 @@
 import React from 'react'
 import Login from '../../components/features/auth/Login'
+import Navbar from "../../components/layout/Navbar"
 
 const login = () => {
   return (
-    <div><Login/></div>
+    <div>
+        <Navbar/>
+        <Login/>
+    </div>
   )
 }
 

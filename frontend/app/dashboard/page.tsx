@@ -37,13 +37,13 @@ export default function page() {
     }
 
     return (
-        <div className="flex flex-col h-screen overflow-x-autos">
+        <div className="flex flex-col h-screen overflow-x-auto">
             <Navbar />
 
             <DashboardMenu className="lg:hidden" activePage={activePage} handleMenuClick={handleMenuClick}/>
 
             {/* mobile layout */}
-            <div ref={containerRef} onScroll={handleScroll} className="lg:hidden w-screen h-screen overflow-x-auto no-scrollbar snap-x snap-mandatory">
+            <div ref={containerRef} onScroll={handleScroll} className="lg:hidden h-screen overflow-x-auto no-scrollbar snap-x snap-mandatory">
                 {/* horizontal scroll container */}
                 <div className="flex w-max">
                     {/* nested vertical scroll container */}
