@@ -2,8 +2,6 @@ package com.akulprojects.firstproj.features.students.dtos;
 
 import java.util.List;
 
-import com.akulprojects.firstproj.features.enrolments.dtos.StudentProfileEnrolmentDto;
-
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
