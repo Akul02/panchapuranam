@@ -1,5 +1,7 @@
 package com.akulprojects.firstproj.features.students;
 
+import com.akulprojects.firstproj.features.audio.AudioController;
+import com.akulprojects.firstproj.features.enrolments.Enrolments;
 import com.akulprojects.firstproj.features.enrolments.EnrolmentsService;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -13,6 +15,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.akulprojects.firstproj.exception.ConflictException;
 import com.akulprojects.firstproj.exception.ForbiddenException;
 import com.akulprojects.firstproj.features.auth.JwtUtil;
+import com.akulprojects.firstproj.features.certificates.CertificatesService;
+import com.akulprojects.firstproj.features.students.dtos.StudentProfileDto;
+import com.akulprojects.firstproj.features.students.dtos.StudentProfileEnrolmentDto;
 import com.akulprojects.firstproj.features.students.dtos.StudentsSearchDto;
 import com.akulprojects.firstproj.features.students.dtos.StudentsSignUpDto;
 import com.akulprojects.firstproj.features.students.exception.CsvParseException;
@@ -29,12 +34,14 @@ public class StudentsService {
     private final StudentsRepo studentsRepo;
     private final JwtUtil jwtUtil;
     private final CustomizedStudentsRepo batchUpdateRepo;
+    private final CertificatesService certificatesService;
 
-    public StudentsService(StudentsRepo studentsRepo, JwtUtil jwtUtil, CustomizedStudentsRepo batchUpdatRepo, EnrolmentsService enrolmentsService) {
+    public StudentsService(StudentsRepo studentsRepo, JwtUtil jwtUtil, CustomizedStudentsRepo batchUpdatRepo, EnrolmentsService enrolmentsService, CertificatesService certificatesService) {
         this.studentsRepo = studentsRepo;
         this.jwtUtil = jwtUtil;
         this.batchUpdateRepo = batchUpdatRepo;
         this.enrolmentsService = enrolmentsService;
+        this.certificatesService = certificatesService;
     }
 
     public void registerStudent(StudentsSignUpDto signUpInfo, String cookie) {
@@ -122,4 +129,30 @@ public class StudentsService {
         return studentsRepo.searchStudentWithSearchString(searchString.toLowerCase());
     }
 
+    public StudentProfileDto getStudentProfile (String uidString, String cookie) {
+
+        DecodedJWT decodedJWT = jwtUtil.extractJwtFromCookie(cookie);
+        if (!jwtUtil.checkPermissions(decodedJWT, Role.TEACHER)) {
+            throw new ForbiddenException("do not have permission to view a student");
+        }
+
+        Students student = studentsRepo.getReferenceById(Integer.valueOf(uidString));
+
+        StudentProfileDto profileDto = new StudentProfileDto();
+
+        profileDto.setId(student.getId());
+        profileDto.setFirstname(student.getFirstName());
+        profileDto.setLastname(student.getLastName());
+
+        profileDto.setCertificateUrls(certificatesService.getCertificates(student.getEmail()));
+        
+        List<StudentProfileEnrolmentDto> enrolments = new ArrayList<>();
+        for (Enrolments enrolment : student.getEnrolments()) {
+            enrolments.add(new StudentProfileEnrolmentDto(enrolment.getEnrolmentDate(), enrolment.getProgram().getName()));
+        }
+        profileDto.setEnrolments(enrolments);
+
+        return profileDto;
+
+    }
 }

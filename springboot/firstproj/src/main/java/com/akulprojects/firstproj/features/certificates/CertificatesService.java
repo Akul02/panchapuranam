@@ -22,7 +22,7 @@ public class CertificatesService {
         this.s3Service = s3Service;
     }
 
-    public List<String> getCertificate(String emailString) {
+    public List<String> getCertificates(String emailString) {
         
         Students student = studentsRepo.findByEmail(emailString)
             .orElseThrow(() -> new ResourceNotFoundException("email provided does not match any student record"));

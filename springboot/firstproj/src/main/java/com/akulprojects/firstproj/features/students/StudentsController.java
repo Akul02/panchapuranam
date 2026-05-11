@@ -1,5 +1,6 @@
 package com.akulprojects.firstproj.features.students;
 
+import com.akulprojects.firstproj.features.students.dtos.StudentProfileDto;
 import com.akulprojects.firstproj.features.students.dtos.StudentsSearchDto;
 import com.akulprojects.firstproj.features.students.dtos.StudentsSignUpDto;
 
@@ -42,6 +43,12 @@ public class StudentsController {
     public List<StudentsSearchDto> getStudent(@RequestParam String searchString, @CookieValue(name = "AUTH_TOKEN", required = false) String cookie) {
         return studentsService.searchStudent(searchString, cookie);
     }
+
+    @GetMapping("/profile")
+    public StudentProfileDto getMethodName(@RequestParam String uidString, @CookieValue(name = "AUTH_TOKEN", required = false) String cookie) {
+        return studentsService.getStudentProfile(uidString, cookie);
+    }
+    
     
     
 }

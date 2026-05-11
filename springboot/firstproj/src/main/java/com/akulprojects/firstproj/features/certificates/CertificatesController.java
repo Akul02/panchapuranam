@@ -19,7 +19,7 @@ public class CertificatesController {
     @GetMapping("/certificate")
     public List<String> getCertificate(@RequestParam String email) {
 
-        return certificatesService.getCertificate(email);
+        return certificatesService.getCertificates(email);
     }
 
     @GetMapping("/certificates/count")
