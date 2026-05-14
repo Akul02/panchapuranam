@@ -1,0 +1,66 @@
+"use client"
+
+import React, { useEffect, useState } from 'react'
+import { StudentProfileDto } from "../../../types/student";
+
+import ProfileContactDetails from "../../sections/profile/ProfileContactDetails";
+import ProfileEnrolmentDetails from "../../sections/profile/ProfileEnrolmentDetails";
+import ProfileCertificates from "../../sections/profile/ProfileCertificates";
+
+
+
+export default function StudentProfile({ studentId }: { studentId: number }) {
+    const [student, setStudent] = useState<StudentProfileDto | null>(null)
+
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
+    useEffect(() => {
+        fetch(`${apiUrl}/student/profile?uidString=${studentId.toString()}`,
+            {
+                headers: { "accept" : "application/json" },
+                method: "GET",
+                credentials: "include"
+            }
+        ).then(res => res.json())
+        .then(data => {setStudent(data); console.log(data);})
+        .catch(err => console.log(err));
+        
+    },[])
+
+    return (
+        <div className="flex justify-center w-screen px-6 py-8">
+            <div className="bg-white border-2 border-primary rounded-md w-full shadow-[0_4px_8px_0_rgba(0,0,0,0.2),_0_6px_20px_0_rgba(0,0,0,0.19)]">
+
+                <div className="h-1.5 bg-primary"/>
+
+                <div className="p-6 flex flex-col space-y-4">
+
+                    {/* profile header */}
+                    <div className="flex">
+                        <div className="w-20 h-20 rounded-full bg-primary border-2 border-secondary flex-shrink-0
+                            flex items-center justify-center text-white text-2xl font-bold tracking-wide">
+                            {student?.firstname.charAt(0).toLocaleUpperCase()}{student?.lastname.charAt(0).toUpperCase()}
+                        </div>
+                        <div className="text-primary font-bold text-xl pl-6">
+                            {student?.firstname} {student?.lastname}
+                            <p className="text-sm mt-0.5">Student ID: #{student?.id}</p>    
+                        </div>
+                    </div>
+
+                    <hr className="border-primary h-[2px]"/>
+
+                    {/* contact details */}
+                    {student? <ProfileContactDetails student={student}/> : null}
+
+                    {/* enrolments */}
+                    {student ? <ProfileEnrolmentDetails enrolments={student?.enrolments}/> : null}
+                    
+                    {/* Certificates */}
+                    {student ? <ProfileCertificates certificates={student.certificates}/> : null}
+                </div>
+
+            </div>
+
+        </div>
+    )
+}

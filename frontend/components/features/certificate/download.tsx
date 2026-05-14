@@ -5,10 +5,11 @@ import { IoCloseCircleOutline } from 'react-icons/io5';
 import { useRouter } from 'next/navigation';
 import SubmitButton from '../../ui/FormSubmitButton';
 import Form from '../../ui/Form';
+import { CertificateDto } from "../../../types/certficateDto";
 
 export default function Download() {
 
-    const [urls, setUrls] = useState<string[]>([])
+    const [certificates, setCertificates] = useState<CertificateDto[]>([])
     const [showUrls, setShowUrls] = useState(false);
 
     const [emailString, setEmailString] = useState("");
@@ -43,9 +44,9 @@ export default function Download() {
                 throw new Error(errMsg);
             }
 
-            const data: string[] = await res.json();
+            const data: CertificateDto[] = await res.json();
 
-            setUrls(data);
+            setCertificates(data);
 
             if (data.length == 0) {
                 setSuccessString("You have no certificates")
@@ -81,11 +82,11 @@ export default function Download() {
                 <p className="font-bold text-2xl text-secondary mt-10 mb-8 text-center">{successString}</p>
 
                 <div className="max-h-60 overflow-y-scroll [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-                    {urls.map((url, index) => (
-                    <div key={url} className="mb-5 text-secondary px-4 py-1 border-2 rounded-md border-secondary hover:underline">
-                        <a className=""href={url} target="_blank">Open Certificate {index + 1}</a>
+                    {certificates ? certificates.map((certificate) => (
+                    <div key={certificate.certUrl} className="mb-5 text-secondary px-4 py-1 border-2 rounded-md border-secondary hover:underline">
+                        <a className="" href={certificate.certUrl} target="_blank">{certificate.programName}.pdf</a>
                     </div>
-                    ))}
+                    )) : null}
                 </div>
 
             </div>

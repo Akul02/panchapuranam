@@ -64,7 +64,7 @@ export default function StudentDirectory() {
                     <div key={student.id} className={`flex items-center justify-between gap-x-1 px-4 py-2 text-primary hover:bg-primary hover:text-[#F4F4E8] transition-colors duration-150 border-b border-primary border-opacity-30`}> 
                         {student.name}
                         <Link href={`/student/${student.id}`}>
-                            <div className="shrink-0 border-2 rounded-md px-2 py-1 border-primary bg-[#F4F4E8] text-primary font-semibold">
+                            <div className="whitespace-nowrap border-2 rounded-md px-2 py-1 border-primary bg-[#F4F4E8] text-primary font-semibold">
                                 View Profile
                             </div>
                         </Link>
