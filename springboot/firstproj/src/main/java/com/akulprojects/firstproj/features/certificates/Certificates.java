@@ -2,6 +2,7 @@ package com.akulprojects.firstproj.features.certificates;
 
 import java.util.Date;
 
+import com.akulprojects.firstproj.features.programs.Programs;
 import com.akulprojects.firstproj.features.students.Students;
 
 import jakarta.persistence.Column;
@@ -34,5 +35,9 @@ public class Certificates {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "student_id", nullable = false)
     private Students student;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "program_id", nullable = false)
+    private Programs program;
 
 }

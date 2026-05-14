@@ -9,6 +9,7 @@ import lombok.Getter;
 @AllArgsConstructor
 
 public class StudentProfileEnrolmentDto {
+    private int id;
     private LocalDateTime enrolmentDate;
     private String programName;
     // learning progress for this enrolment

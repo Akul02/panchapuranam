@@ -3,6 +3,9 @@ package com.akulprojects.firstproj.features.certificates;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.RestController;
+
+import com.akulprojects.firstproj.features.certificates.dtos.CertificateDto;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -17,8 +20,7 @@ public class CertificatesController {
     }
 
     @GetMapping("/certificate")
-    public List<String> getCertificate(@RequestParam String email) {
-
+    public List<CertificateDto> getCertificate(@RequestParam String email) {
         return certificatesService.getCertificates(email);
     }
 

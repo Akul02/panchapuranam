@@ -2,10 +2,14 @@ package com.akulprojects.firstproj.features.students.dtos;
 
 import java.util.List;
 
+import com.akulprojects.firstproj.features.certificates.dtos.CertificateDto;
+
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Setter
+@Getter
 @NoArgsConstructor
 
 public class StudentProfileDto {
@@ -13,7 +17,7 @@ public class StudentProfileDto {
     private String firstname;
     private String lastname;
     private String email;
-    private List<String> certificateUrls;
+    private List<CertificateDto> certificates;
     private List<StudentProfileEnrolmentDto> enrolments;
     
 }

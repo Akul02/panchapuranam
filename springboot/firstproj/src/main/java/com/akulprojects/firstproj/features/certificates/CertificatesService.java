@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.akulprojects.firstproj.exception.ResourceNotFoundException;
+import com.akulprojects.firstproj.features.certificates.dtos.CertificateDto;
 import com.akulprojects.firstproj.features.students.Students;
 import com.akulprojects.firstproj.features.students.StudentsRepo;
 import com.akulprojects.firstproj.infrastructure.s3.S3Service;
@@ -22,7 +23,7 @@ public class CertificatesService {
         this.s3Service = s3Service;
     }
 
-    public List<String> getCertificates(String emailString) {
+    public List<CertificateDto> getCertificates(String emailString) {
         
         Students student = studentsRepo.findByEmail(emailString)
             .orElseThrow(() -> new ResourceNotFoundException("email provided does not match any student record"));
@@ -30,7 +31,7 @@ public class CertificatesService {
 
         // find all certificates in db that belong to the student with the email given
         List<Certificates> certicates = student.getCertficates();
-        List<String> resList = new ArrayList<>();
+        List<CertificateDto> resList = new ArrayList<>();
 
         if (certicates.size() == 0) {
             return resList;
@@ -38,7 +39,9 @@ public class CertificatesService {
 
         // for each certificate, generate presigned url
         for (Certificates cert : certicates) {
-            resList.add(s3Service.generatePresignedUrl("certficates/" + cert.getFilePath()));
+            String certUrl = s3Service.generatePresignedUrl("certficates/" + cert.getFilePath());
+            String programName = cert.getProgram().getName();
+            resList.add(new CertificateDto(certUrl, programName));
         }
         
         return resList;

@@ -143,12 +143,13 @@ public class StudentsService {
         profileDto.setId(student.getId());
         profileDto.setFirstname(student.getFirstName());
         profileDto.setLastname(student.getLastName());
+        profileDto.setEmail(student.getEmail());
 
-        profileDto.setCertificateUrls(certificatesService.getCertificates(student.getEmail()));
+        profileDto.setCertificates(certificatesService.getCertificates(student.getEmail()));
         
         List<StudentProfileEnrolmentDto> enrolments = new ArrayList<>();
         for (Enrolments enrolment : student.getEnrolments()) {
-            enrolments.add(new StudentProfileEnrolmentDto(enrolment.getEnrolmentDate(), enrolment.getProgram().getName()));
+            enrolments.add(new StudentProfileEnrolmentDto(enrolment.getId(), enrolment.getEnrolmentDate(), enrolment.getProgram().getName()));
         }
         profileDto.setEnrolments(enrolments);
 
