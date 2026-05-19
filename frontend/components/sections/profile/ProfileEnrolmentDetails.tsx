@@ -12,6 +12,7 @@ export default function ProfileEnrolmentDetails( {enrolments} : {enrolments : St
                 <ProfileEnrolmentCard enrolment={enrolment}/>
             </div>
         ))}
+        <div>test</div>
     </div>
   )
 }
