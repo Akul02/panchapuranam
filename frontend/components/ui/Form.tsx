@@ -18,7 +18,7 @@ export default function Form({handleSubmit, formHeading, isError, errorString, i
     
 
     const handleOnClick = () => {
-        router.push("/");
+        router.back();
     }
 
     return (

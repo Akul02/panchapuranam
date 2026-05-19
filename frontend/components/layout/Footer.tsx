@@ -1,8 +1,9 @@
-import React, { use, useState } from 'react'
+import React from 'react'
 
 import { PiLineVerticalBold } from "react-icons/pi";
 
 import StudentCounter from '../features/counter/studentCounter';
+import Link from "next/link";
 
 export default function Footer() {
 
@@ -14,11 +15,11 @@ export default function Footer() {
         <PiLineVerticalBold size={70} color="secondary"/>
 
         <div className="mr-2 sm:m-0">
-            <a href="/download">
+            <Link href="/download">
                 <div className="text-center text-sm font-semibold p-1 rounded-xl cursor-pointer bg-secondary text-primary lg:text-base lg:p-2">
                     Download Certificate
                 </div>
-            </a>
+            </Link>
             <p className="font-semibold text-sm text-center lg:text-base">For those that have memorised the songs</p>
         </div>
 

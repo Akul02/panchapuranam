@@ -13,6 +13,7 @@ import Logout from "../features/auth/Logout";
 import NavButton from "../ui/NavButton";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function Navbar ({showDashButton = false}: {showDashButton?:boolean}) {
     const [userRole] = useUser();
@@ -41,26 +42,16 @@ export default function Navbar ({showDashButton = false}: {showDashButton?:boole
                 </div>
 
                 <img className="h-16 lg:h-44 absolute left-1/2 -translate-x-1/2 cursor-pointer" src="/svglogotransparent.svg" onClick={() => router.push("/")} />
-                
-                {/* {userRole == UserRole.TEACHER ?
-                    <a href="/register/student" className={`${isMenuOpen ? "" : "hidden"} mx-10 mb-2 text-sm lg:block lg:col-start-1 lg:place-self-center lg:text-base lg:m-0`}>
-                        <NavButton>Enrol Student</NavButton>
-                    </a> : null}
-                
-                {userRole == UserRole.TEACHER ?
-                    <a href="/register/bulk" className={`${isMenuOpen ? "" : "hidden"} mx-10 mb-2 text-sm lg:block lg:col-start-2 lg:justify-self-start lg:self-center lg:text-base lg:m-0`}>
-                        <NavButton>Bulk Enrol Student</NavButton>
-                    </a> : null} */}
 
                 {userRole == UserRole.TEACHER && showDashButton ?
-                    <a href="/dashboard" className={`${isMenuOpen ? "" : "hidden"} mx-10 mb-2 text-sm lg:block lg:col-start-2 lg:justify-self-start lg:self-center lg:text-base lg:m-0`}>
+                    <Link href="/dashboard" className={`${isMenuOpen ? "" : "hidden"} mx-10 mb-2 text-sm lg:block lg:col-start-2 lg:justify-self-start lg:self-center lg:text-base lg:m-0`}>
                         <NavButton>Dashboard</NavButton>
-                    </a> : null}
+                    </Link> : null}
                 
                 {userRole == UserRole.ADMIN ?
-                    <a href="/register/teacher" className={`${isMenuOpen ? "" : "hidden"} mx-10 mb-2 text-sm lg:block lg:col-start-1 lg:place-self-center lg:text-base lg:m-0`}> 
+                    <Link href="/register/teacher" className={`${isMenuOpen ? "" : "hidden"} mx-10 mb-2 text-sm lg:block lg:col-start-1 lg:place-self-center lg:text-base lg:m-0`}> 
                         <NavButton>Enrol Teacher</NavButton>
-                    </a> : null}
+                    </Link> : null}
 
                 <div className={`${isMenuOpen ? "" : "hidden"} mx-10 mb-2 text-sm lg:block lg:col-start-4 lg:justify-self-end lg:self-center lg:text-base lg:m-0`}>
                     <Contact/>
@@ -68,7 +59,7 @@ export default function Navbar ({showDashButton = false}: {showDashButton?:boole
 
                 <div className={`${isMenuOpen ? "" : "hidden"} mx-10 mb-2 text-sm lg:block lg:col-start-5 lg:place-self-center lg:text-base lg:m-0`}>
                     {userRole == UserRole.NO_USER ?
-                        <a href="/login">
+                        <Link href="/login">
                             {/* named group used to achieve hover effect on entire button as parent element is just the button content */}
                             <NavButton className="group/button">
                                 <div className="flex gap-x-1">
@@ -77,7 +68,7 @@ export default function Navbar ({showDashButton = false}: {showDashButton?:boole
                                     <p className="text-sm hidden group-hover/button:block">Only for Teachers</p>
                                 </div>
                             </NavButton>
-                        </a>
+                        </Link>
                     : <Logout/>
                     }
                 </div>

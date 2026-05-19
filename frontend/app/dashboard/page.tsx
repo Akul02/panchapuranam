@@ -6,6 +6,7 @@ import DashboardCard from '../../components/ui/DashboardCard'
 import DashboardMenu from '../../components/ui/DashboardMenu'
 import NavButton from "../../components/ui/NavButton"
 import StudentDirectory from "../../components/features/student/StudentDirectory"
+import Link from "next/link"
 
 export default function page() {
 
@@ -52,12 +53,12 @@ export default function page() {
                         <DashboardCard className="min-h-[450px] mx-10 mt-10">
                             <div className="flex flex-col mx-8">
                                 <div className="font-bold text-2xl text-primary text-center mt-4 mb-6">Quick Access</div>
-                                <a href="/register/student">
+                                <Link href="/register/student">
                                     <NavButton className="mb-4">Enrol Student</NavButton>
-                                </a>
-                                <a href="/register/bulk">
+                                </Link>
+                                <Link href="/register/bulk">
                                     <NavButton className="">Bulk Enrol Student</NavButton>
-                                </a>
+                                </Link>
                             </div>
                         </DashboardCard>
                         <DashboardCard className="min-h-[450px] m-10">
@@ -77,7 +78,6 @@ export default function page() {
                             Test
                         </DashboardCard>
                     </div>
-                    s
                 </div>
             </div>
 
@@ -88,12 +88,12 @@ export default function page() {
                     <DashboardCard style={{ gridArea: "card1"}} className="max-h-[300px] overflow-y-auto">
                         <div className="flex-1 w-full flex flex-col justify-start gap-4 px-4">
                             <div className="font-bold text-2xl text-primary text-center mt-4">Quick Access</div>
-                            <a href="/register/student">
+                            <Link href="/register/student">
                                 <NavButton className="">Enrol Student</NavButton>
-                            </a>
-                            <a href="/register/bulk">
+                            </Link>
+                            <Link href="/register/bulk">
                                 <NavButton className="">Bulk Enrol Student</NavButton>
-                            </a>
+                            </Link>
                         </div>
                     </DashboardCard>
 

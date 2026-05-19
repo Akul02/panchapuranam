@@ -1,7 +1,5 @@
 "use client"
-import { useRouter } from 'next/navigation';
 import React, { FormEvent, useRef, useState } from 'react'
-import { IoCloseCircleOutline } from 'react-icons/io5';
 import Form from '../../ui/Form';
 import SubmitButton from '../../ui/FormSubmitButton';
 
@@ -15,11 +13,6 @@ export default function BulkEnrolStudents() {
     const [successString, setSuccessString] = useState("");
 
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-    const router = useRouter();
-
-    const handleOnClick = () => {
-        router.push("/");
-    }
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files && event.target.files.length > 0) {

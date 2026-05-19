@@ -29,10 +29,6 @@ export default function Login () {
     const router = useRouter();
     const [userRole, setUserRole] = useUser();
 
-    const handleOnClick = () => {
-        router.push("/");
-    }
-
     const handleSubmit = (e: FormEvent) => {
 
         e.preventDefault();
