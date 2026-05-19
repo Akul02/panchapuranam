@@ -10,7 +10,7 @@ export default function ProfileContactDetails( {student} : {student : StudentPro
   return (
     <div>
         <SectionHeader title="Contact Details"></SectionHeader>
-        <div className="grid grid-cols-[0.5fr_0.5fr_1fr] grid-rows-3 gap-2 overflow-x-auto mt-1">
+        <div className="grid grid-cols-[30px_90px_1fr] grid-rows-3 gap-2 overflow-x-auto mt-1">
 
             {/* col one */}
             <div className="col-start-1 row-start-1 self-center"><MdEmail color="#6E3326" size={22}/></div>
