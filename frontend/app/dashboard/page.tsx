@@ -85,11 +85,11 @@ export default function page() {
             <div className="hidden flex-1 lg:flex lg:items-center lg:justify-center">
                 <div className="lg:grid lg:grid-cols-2 lg:grid-rows-3 lg:gap-3 lg-grid-layout lg:w-4/5 lg:h-3/5 2xl:grid-cols-4 2xl:grid-rows-2 two-xl-grid-layout">
                     {/* quick access */}
-                    <DashboardCard style={{ gridArea: "card1"}} className="max-h-[300px]">
-                        <div className="flex flex-col justify-end mx-4">
-                            <div className="font-bold text-2xl text-primary text-center">Quick Access</div>
+                    <DashboardCard style={{ gridArea: "card1"}} className="max-h-[300px] overflow-y-auto">
+                        <div className="flex-1 w-full flex flex-col justify-start gap-4 px-4">
+                            <div className="font-bold text-2xl text-primary text-center mt-4">Quick Access</div>
                             <a href="/register/student">
-                                <NavButton className="mb-4">Enrol Student</NavButton>
+                                <NavButton className="">Enrol Student</NavButton>
                             </a>
                             <a href="/register/bulk">
                                 <NavButton className="">Bulk Enrol Student</NavButton>

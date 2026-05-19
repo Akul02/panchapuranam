@@ -52,7 +52,7 @@ export default function StudentDirectory() {
     }, [searchBarValue]);
 
     return (
-        <div className="flex flex-col flex-grow">
+        <div className=" flex-1 flex flex-col">
             <div className="font-bold text-2xl text-primary text-center mt-4 mb-6">Student Directory</div>
             <div className="border-2 border-primary rounded-md mx-4 p-2 flex items-center">
                 <FaSearch color="#6E3326" className="shrink-0"/>
