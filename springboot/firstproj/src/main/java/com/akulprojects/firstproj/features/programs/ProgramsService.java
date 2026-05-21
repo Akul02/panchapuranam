@@ -20,7 +20,7 @@ public class ProgramsService {
     }
     
     public List<String> getAllPrograms(String cookie) {
-        if (!jwtUtil.checkPermissions(jwtUtil.extractJwtFromCookie(cookie), Role.TEACHER) || !jwtUtil.checkPermissions(jwtUtil.extractJwtFromCookie(cookie), Role.ADMIN)) {
+        if (!jwtUtil.checkPermissions(jwtUtil.extractJwtFromCookie(cookie), Role.TEACHER) && !jwtUtil.checkPermissions(jwtUtil.extractJwtFromCookie(cookie), Role.ADMIN)) {
             throw new ForbiddenException("do not have permission to access programs list");
         }
 
