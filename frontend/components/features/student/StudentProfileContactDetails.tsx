@@ -6,7 +6,7 @@ import { PiCertificateFill } from "react-icons/pi"
 
 import { StudentProfileDto } from "../../../types/student"
 
-export default function ProfileContactDetails({ student }: { student: StudentProfileDto }) {
+export default function StudentProfileContactDetails({ student }: { student: StudentProfileDto }) {
     return (
         <div>
             <SectionHeader title="Contact Details"></SectionHeader>

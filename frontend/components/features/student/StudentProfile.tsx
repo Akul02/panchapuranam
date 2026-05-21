@@ -3,9 +3,9 @@
 import React, { useEffect, useState } from 'react'
 import { StudentProfileDto } from "../../../types/student";
 
-import ProfileContactDetails from "../../sections/profile/ProfileContactDetails";
-import ProfileEnrolmentDetails from "../../sections/profile/ProfileEnrolmentDetails";
-import ProfileCertificates from "../../sections/profile/ProfileCertificates";
+import StudentProfileContactDetails from "./StudentProfileContactDetails";
+import StudentProfileEnrolmentDetails from "./StudentProfileEnrolmentDetails";
+import StudentProfileCertificates from "./StudentProfileCertificates";
 
 
 
@@ -22,7 +22,7 @@ export default function StudentProfile({ studentId }: { studentId: number }) {
                 credentials: "include"
             }
         ).then(res => res.json())
-        .then(data => {setStudent(data); console.log(data);})
+        .then(data => setStudent(data))
         .catch(err => console.log(err));
         
     },[])
@@ -50,13 +50,13 @@ export default function StudentProfile({ studentId }: { studentId: number }) {
                     <hr className="border-primary h-[2px]"/>
 
                     {/* contact details */}
-                    {student? <ProfileContactDetails student={student}/> : null}
+                    {student? <StudentProfileContactDetails student={student}/> : null}
 
                     {/* enrolments */}
-                    {student ? <ProfileEnrolmentDetails enrolments={student?.enrolments}/> : null}
+                    {student ? <StudentProfileEnrolmentDetails enrolments={student?.enrolments}/> : null}
                     
                     {/* Certificates */}
-                    {student ? <ProfileCertificates certificates={student.certificates}/> : null}
+                    {student ? <StudentProfileCertificates certificates={student.certificates}/> : null}
                 </div>
 
             </div>

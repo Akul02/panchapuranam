@@ -6,8 +6,7 @@ import { CertificateDto } from "../../../types/certficateDto";
 import { PiCertificateBold } from "react-icons/pi";
 
 
-export default function ProfileCertificates({ certificates }: { certificates: CertificateDto[] }) {
-    console.log(certificates);
+export default function StudentProfileCertificates({ certificates }: { certificates: CertificateDto[] }) {
     return (
         <div className="flex flex-col space-y-2">
             <SectionHeader title="Certificates" />

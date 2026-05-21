@@ -13,9 +13,9 @@ export default function ProfileEnrolmentCard({ enrolment }: { enrolment: Student
 
     return (
         <div className="border-primary border rounded-md w-full flex flex-col">
-            <div className="bg-[#ede7d9] px-4 py-2 cursor-pointer flex justify-between">
+            <div className="bg-[#ede7d9] px-4 py-2 cursor-pointer flex justify-between" onClick={() => setShowDetails(!showDetails)}>
                 {enrolment.programName}
-                <div className="" onClick={() => setShowDetails(!showDetails)}>
+                <div>
                     {showDetails ? <MdOutlineKeyboardArrowUp size={24} color="#6E3326"/> : <MdOutlineKeyboardArrowDown size={24} color="#6E3326"/>}
                 </div>
                 
