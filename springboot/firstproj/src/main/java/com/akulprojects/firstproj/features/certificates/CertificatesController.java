@@ -4,7 +4,8 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import com.akulprojects.firstproj.features.certificates.dtos.CertificateDto;
+import com.akulprojects.firstproj.features.certificates.CertificatesDtos.CertificateCountDto;
+import com.akulprojects.firstproj.features.certificates.CertificatesDtos.CertificateDto;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,7 +26,7 @@ public class CertificatesController {
     }
 
     @GetMapping("/certificates/count")
-    public long getStudentsWithCertificatesCount() {
+    public CertificateCountDto getStudentsWithCertificatesCount() {
         return certificatesService.getStudentsWithCertificates();
     }
     

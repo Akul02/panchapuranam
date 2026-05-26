@@ -6,7 +6,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.akulprojects.firstproj.exception.ResourceNotFoundException;
-import com.akulprojects.firstproj.features.certificates.dtos.CertificateDto;
+import com.akulprojects.firstproj.features.certificates.CertificatesDtos.CertificateCountDto;
+import com.akulprojects.firstproj.features.certificates.CertificatesDtos.CertificateDto;
 import com.akulprojects.firstproj.features.students.Students;
 import com.akulprojects.firstproj.features.students.StudentsRepo;
 import com.akulprojects.firstproj.infrastructure.s3.S3Service;
@@ -47,8 +48,8 @@ public class CertificatesService {
         return resList;
     }
 
-    public long getStudentsWithCertificates() {
-        return certificatesRepo.countStudentsWithCertificates();
+    public CertificateCountDto getStudentsWithCertificates() {
+        return new CertificateCountDto(certificatesRepo.countStudentsWithCertificates());
     }
 
 }
