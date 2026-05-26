@@ -1,3 +1,4 @@
+import { SuccessResponse } from "../types/apiResponse"
 import { apiFetch } from "./client"
 
 type RegisterTeacherData = {
@@ -7,7 +8,7 @@ type RegisterTeacherData = {
   password: string
 }
 
-export async function registerTeacher(data: RegisterTeacherData): Promise<string> {
+export async function registerTeacher(data: RegisterTeacherData): Promise<SuccessResponse> {
   return apiFetch("/teacher/register", {
     method: "POST",
     headers: { "Content-Type": "application/json" },

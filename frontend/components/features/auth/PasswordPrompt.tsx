@@ -3,7 +3,7 @@ import SimpleTextField from "../../ui/SimpleTextField";
 import { useRouter } from "next/navigation";
 import Form from "../../ui/Form";
 import SubmitButton from "../../ui/FormSubmitButton";
-import { SuccessResponse } from "../../../types/apiResponse";
+import { changePassword } from "../../../api/auth";
 
 export default function PasswordPrompt () {
 
@@ -16,7 +16,7 @@ export default function PasswordPrompt () {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     const router = useRouter();
 
-    const handleSubmit = (e :FormEvent) => {
+    const handleSubmit = async (e :FormEvent) => {
         
         e.preventDefault();
 
@@ -27,30 +27,13 @@ export default function PasswordPrompt () {
             return;
         }
 
-        fetch(`${apiUrl}/password`, {
-            method: "POST",
-            headers: { "Content-Type" : "application/json" },
-            body: JSON.stringify({
-                "password" : password1String
-            }),
-            credentials: "include"
-        })
-        .then(async (res) => {
-            if (!res.ok) {
-                const errMsg = await res.text();
-                throw new Error(errMsg);
-            }
-
-            // successfully changed password
-            const resSuccess: SuccessResponse = await res.json();
+        try {
+            await changePassword(password1String);
             router.push("/");
-            
-        })
-        .catch(err => {
+        } catch (err) {
             setIsError(true);
-            setErrorString(err.message);
-            console.log(err.message);
-        })
+            setErrorString(err instanceof Error ? err.message : "Something went wrong");
+        }
     }
 
     return (

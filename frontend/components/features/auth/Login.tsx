@@ -10,6 +10,7 @@ import { session } from '../../../types/session';
 import PasswordPrompt from './PasswordPrompt';
 import Form from '../../ui/Form';
 import SubmitButton from '../../ui/FormSubmitButton';
+import { login } from "../../../api/auth";
 
 
 
@@ -26,25 +27,14 @@ export default function Login () {
     const router = useRouter();
     const [userRole, setUserRole] = useUser();
 
-    const handleSubmit = (e: FormEvent) => {
+    const handleSubmit = async (e: FormEvent) => {
 
         e.preventDefault();
 
-        fetch(`${apiUrl}/login`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                "email" : emailString,
-                "password" : passwordString
-            }),
-            credentials: "include"
-        })
-        .then(async (res) => {
-            if (!res.ok) {
-                const errMsg = await res.text();
-                throw new Error(errMsg);
-            }
-                        
+        try {
+
+            await login(emailString, passwordString);
+
             // useRoleSetter();
             fetch(`${apiUrl}/session`,{credentials: "include"})
             .then(async (res) => {
@@ -53,7 +43,7 @@ export default function Login () {
                 }
         
                 const sessionInfo: session = await res.json();
-        
+
                 switch (sessionInfo.role) {
                     case UserRole.ADMIN:
                         setUserRole(UserRole.ADMIN);
@@ -79,16 +69,14 @@ export default function Login () {
                 }
             })
             . catch(err => {
-            setIsError(true);
-            setErrorString(err.message);
-            console.log(err.message);
+                setIsError(true);
+                setErrorString(err.message);
+                console.log(err.message);
             })
-        })
-        . catch(err => {
+        } catch (err) {
             setIsError(true);
-            setErrorString(err.message);
-            console.log(err.message);
-        })
+            setErrorString(err instanceof Error ? err.message : "Something went wrong");
+        }
     }
 
     return (

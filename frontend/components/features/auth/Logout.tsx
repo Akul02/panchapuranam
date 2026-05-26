@@ -2,27 +2,22 @@ import { useRouter } from "next/navigation";
 import { UserRole } from "../../../constants/global";
 import useUser from "../../../hooks/useUser";
 import NavButton from "../../ui/NavButton";
+import { logout } from "../../../api/auth";
 
 export default function Logout () {
 
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     const [userRole, setUserRole] = useUser();
 
     const router = useRouter();
 
-    const handleLogout = () => {
-        fetch(`${apiUrl}/logout`, {
-            method: 'POST',
-            credentials: "include"
-        })
-        .then(async (res) => {
-            if (!res.ok) {
-                const errMsg = await res.text();
-                throw new Error(errMsg);
-            }
+    const handleLogout = async () => {
+        try {
+            await logout();
             setUserRole(UserRole.NO_USER);
             router.push("/");
-        })
+        } catch (err) {
+            console.log(err instanceof Error ? err.message : "Something went wrong");
+        }
     }
 
     return (
