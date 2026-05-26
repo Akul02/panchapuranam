@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react'
 
 import { PiStudentBold } from "react-icons/pi";
+import { CertificateCountDto } from "../../../types/certificateCountDto";
 
 
 export default function StudentCounter() {
@@ -18,8 +19,8 @@ export default function StudentCounter() {
                 throw new Error(errMsg);
             }
 
-            const count = await res.text();
-            setCounter(+count);
+            const count: CertificateCountDto = await res.json();
+            setCounter(+count.count);
 
         })
         .catch(err => {
