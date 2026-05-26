@@ -3,7 +3,8 @@ package com.akulprojects.firstproj.features.enrolments;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.akulprojects.firstproj.features.enrolments.dtos.StudentProgramEnrolmentDto;
+import com.akulprojects.firstproj.apidto.ApiResponses.SuccessResponse;
+import com.akulprojects.firstproj.features.enrolments.EnrolmentsDtos.StudentProgramEnrolmentDto;
 
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,12 +21,9 @@ public class EnrolmentsController {
     }
 
     @PostMapping("/enrol-student")
-    public String enrolStudent(@RequestBody StudentProgramEnrolmentDto enrolInfo, @CookieValue(name = "AUTH_TOKEN", required = false) String authCookie) {
-        
-        enrolmentsService.enrolStudent(authCookie, enrolInfo.getProgramNames(), enrolInfo.getStudentId());
+    public SuccessResponse enrolStudent(@RequestBody StudentProgramEnrolmentDto enrolInfo, @CookieValue(name = "AUTH_TOKEN", required = false) String authCookie) {
 
-        
-        return "successfully enrolled student into programs";
+        return enrolmentsService.enrolStudent(authCookie, enrolInfo.programNames(), enrolInfo.studentId());
     }
     
 

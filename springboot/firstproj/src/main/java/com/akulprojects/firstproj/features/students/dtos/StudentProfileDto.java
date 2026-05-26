@@ -2,7 +2,7 @@ package com.akulprojects.firstproj.features.students.dtos;
 
 import java.util.List;
 
-import com.akulprojects.firstproj.features.certificates.dtos.CertificateDto;
+import com.akulprojects.firstproj.features.certificates.CertificatesDtos.CertificateDto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

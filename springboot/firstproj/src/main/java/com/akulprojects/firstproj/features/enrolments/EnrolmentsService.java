@@ -9,6 +9,7 @@ import com.akulprojects.firstproj.features.students.Students;
 import com.akulprojects.firstproj.features.students.StudentsRepo;
 import com.akulprojects.firstproj.features.users.Role;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.akulprojects.firstproj.apidto.ApiResponses.SuccessResponse;
 import com.akulprojects.firstproj.exception.ConflictException;
 import com.akulprojects.firstproj.exception.ForbiddenException;
 import com.akulprojects.firstproj.features.auth.JwtUtil;
@@ -56,7 +57,7 @@ public class EnrolmentsService {
 
     }
 
-    public void enrolStudent(String authCookie, List<String> programNames, int studentId) {
+    public SuccessResponse enrolStudent(String authCookie, List<String> programNames, int studentId) {
         DecodedJWT decodedJWT = jwtUtil.extractJwtFromCookie(authCookie);
         if (!jwtUtil.checkPermissions(decodedJWT, Role.TEACHER)) {
             throw new ForbiddenException("do not have permission to enrol a student into a program");
@@ -65,6 +66,8 @@ public class EnrolmentsService {
         for (String programName : programNames) {
             createEnrolment(studentId, programName);
         }
+
+        return new SuccessResponse("Successfully enrolled student into selected programs");
     }
 
 }
