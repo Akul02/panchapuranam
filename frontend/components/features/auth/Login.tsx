@@ -6,7 +6,6 @@ import React, { FormEvent, useState } from 'react';
 import useUser from '../../../hooks/useUser';
 import { UserRole } from '../../../constants/global';
 import SimpleTextField from '../../ui/SimpleTextField';
-import { session } from '../../../types/session';
 import PasswordPrompt from './PasswordPrompt';
 import Form from '../../ui/Form';
 import SubmitButton from '../../ui/FormSubmitButton';

@@ -1,8 +1,7 @@
 "use client"
 
-import React, { createContext, ReactNode, useEffect, useState } from "react"
+import React, { ReactNode, useEffect, useState } from "react"
 import { UserRole } from "../constants/global";
-import { session } from "../types/session";
 import { getUserSession } from "../api/auth";
 
 type UserContextType = [UserRole, React.Dispatch<React.SetStateAction<UserRole>>];
