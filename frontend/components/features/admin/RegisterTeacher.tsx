@@ -4,6 +4,7 @@ import { FormEvent, useState } from "react";
 import SimpleTextField from "../../ui/SimpleTextField";
 import Form from "../../ui/Form";
 import SubmitButton from "../../ui/FormSubmitButton";
+import { registerTeacher } from "../../../api/teacher";
 
 export default function RegisterTeacher () {
 
@@ -62,6 +63,23 @@ export default function RegisterTeacher () {
             setErrorString(err.message);
             console.log(err.message);
         })
+
+        // const handleSubmit = (e: FormEvent) => {
+        //     e.preventDefault();
+        //     setIsSuccess(false);
+        //     setIsError(false);
+    
+        //     registerTeacher(formData)
+        //         .then(() => {
+        //             setFormData({"firstName": "", "lastName" : "", "email" : "", "password" : ""});
+        //             setIsSuccess(true);
+        //             setSuccessString("Successfully added Teacher");                    
+        //         })
+        //         .catch(err => {
+        //             setIsError(true);
+        //             setErrorString(err.message);
+        //         })
+        // }
 
     }
 
