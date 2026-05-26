@@ -9,6 +9,7 @@ import { useParams, useRouter } from "next/navigation";
 import { MultiValue } from "react-select";
 import { getPrograms } from "../../../api/program";
 import { enrolStudentInProgram } from "../../../api/enrolment";
+import { SuccessResponse } from "../../../types/apiResponse";
 
 
 export default function StudentProgramEnrolment( {currentEnrolments, onSuccess} : {currentEnrolments: StudentProfileEnrolmentDto[], onSuccess : () => void}) {
@@ -56,8 +57,8 @@ export default function StudentProgramEnrolment( {currentEnrolments, onSuccess} 
         setError(null);
     
         try {
-            const resMessage = await enrolStudentInProgram(params.id, newPrograms);
-            setMessage(resMessage);
+            const res: SuccessResponse = await enrolStudentInProgram(params.id, newPrograms);
+            setMessage(res.message);
             onSuccess();
         } catch (err) {
             setError(err instanceof Error ? err.message : "Something went wrong");

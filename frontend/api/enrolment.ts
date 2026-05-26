@@ -1,13 +1,13 @@
-import { Programs } from "../constants/global";
+import { SuccessResponse } from "../types/apiResponse";
+import { apiFetch } from "./client";
 
-const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 export async function enrolStudentInProgram(
     studentId: string,
     programNames: string[],
-): Promise<string> {
+): Promise<SuccessResponse> {
 
-    const res = await fetch(`${apiUrl}/enrolment/enrol-student`, {
+    return apiFetch("/enrolment/enrol-student", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -16,12 +16,4 @@ export async function enrolStudentInProgram(
         credentials: "include",
         body: JSON.stringify({studentId, programNames})
     })
-
-    if (!res.ok) {
-        const message = await res.text();
-        throw new Error(message);
-    }
-
-    return res.text();
-
 }
