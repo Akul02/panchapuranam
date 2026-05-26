@@ -6,7 +6,9 @@ import org.springframework.stereotype.Service;
 
 import com.akulprojects.firstproj.exception.InvalidInputException;
 import com.akulprojects.firstproj.exception.ResourceNotFoundException;
+import com.akulprojects.firstproj.features.audio.AudiosDtos.AudioDto;
 import com.akulprojects.firstproj.features.languages.Language;
+import com.akulprojects.firstproj.features.songs.SongsDtos.SongDto;
 
 @Service
 public class SongService {
@@ -17,7 +19,7 @@ public class SongService {
         this.songRepo = songRepo;
     }
 
-    public List<Song> getSong(String languageString) {
+    public List<SongDto> getSong(String languageString) {
         
         Language lang;
 
@@ -33,6 +35,23 @@ public class SongService {
             throw new ResourceNotFoundException("no songs found for the language: " + languageString);
         }
 
-        return songs;
+        
+
+        List<SongDto> songsDtos = songs.stream()
+            .map(song -> new SongDto(
+                song.getSongId(), 
+                song.getTitle(), 
+                song.getVerse(),
+                song.getAudios().stream()
+                    .map(audio -> new AudioDto(
+                        audio.getAudioId(),
+                        audio.getTitle(),
+                        audio.getFilePath()
+                    ))
+                    .toList()
+            ))
+            .toList();
+
+        return songsDtos;
     }
 }

@@ -3,6 +3,9 @@ package com.akulprojects.firstproj.features.songs;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.RestController;
+
+import com.akulprojects.firstproj.features.songs.SongsDtos.SongDto;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -16,7 +19,7 @@ public class SongController {
     }
 
     @GetMapping("/song")
-    public List<Song> getSong(@RequestParam String languageString) {
+    public List<SongDto> getSong(@RequestParam String languageString) {
         
         return songService.getSong(languageString);
     }
