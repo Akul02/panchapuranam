@@ -6,6 +6,7 @@ import SimpleTextField from '../../ui/SimpleTextField'
 import Form from '../../ui/Form';
 import SubmitButton from '../../ui/FormSubmitButton';
 import { Programs } from '../../../constants/global';
+import { SuccessResponse } from "../../../types/apiResponse";
 
 export default function RegisterStudent() {
 
@@ -57,8 +58,8 @@ export default function RegisterStudent() {
                 throw new Error(errMsg);
             }
 
-            const resText = await res.text();
-            console.log(resText);
+            const resSuccess: SuccessResponse = await res.json();
+            console.log(resSuccess.message);
             setFormData({"firstName" : "", "lastName" : "", "email" : "", programNames:[]});
             setIsSuccess(true);
             setSuccessString("Successfully enrolled Student");

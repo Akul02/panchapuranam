@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.akulprojects.firstproj.apidto.ApiResponses.ErrorResponse;
+import com.akulprojects.firstproj.features.students.exception.StudentBulkRegisterException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -36,6 +37,12 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ConflictException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
     public ErrorResponse handleConflict(ConflictException ex) {
+        return new ErrorResponse(ex.getMessage());
+    }
+
+    @ExceptionHandler(StudentBulkRegisterException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResponse handleStudentBulkRegisterFail(StudentBulkRegisterException ex) {
         return new ErrorResponse(ex.getMessage());
     }
 

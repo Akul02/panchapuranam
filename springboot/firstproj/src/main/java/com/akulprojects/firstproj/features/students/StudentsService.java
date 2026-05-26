@@ -9,23 +9,26 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.akulprojects.firstproj.apidto.ApiResponses.SuccessResponse;
 import com.akulprojects.firstproj.exception.ConflictException;
 import com.akulprojects.firstproj.exception.ForbiddenException;
 import com.akulprojects.firstproj.features.auth.JwtUtil;
 import com.akulprojects.firstproj.features.certificates.CertificatesService;
-import com.akulprojects.firstproj.features.students.dtos.StudentProfileDto;
-import com.akulprojects.firstproj.features.students.dtos.StudentProfileEnrolmentDto;
 import com.akulprojects.firstproj.features.students.dtos.StudentsSearchDto;
-import com.akulprojects.firstproj.features.students.dtos.StudentsSignUpDto;
+import com.akulprojects.firstproj.features.students.dtos.StudentsDtos.*;
 import com.akulprojects.firstproj.features.students.exception.CsvParseException;
+import com.akulprojects.firstproj.features.students.exception.StudentBulkRegisterException;
 import com.akulprojects.firstproj.features.users.Role;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import com.opencsv.exceptions.CsvException;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class StudentsService {
@@ -44,29 +47,32 @@ public class StudentsService {
         this.certificatesService = certificatesService;
     }
 
-    public void registerStudent(StudentsSignUpDto signUpInfo, String cookie) {
+    public SuccessResponse registerStudent(StudentsSignUpDto signUpInfo, String cookie) {
 
         DecodedJWT decodedJWT = jwtUtil.extractJwtFromCookie(cookie);
         if (!jwtUtil.checkPermissions(decodedJWT, Role.TEACHER)) {
             throw new ForbiddenException("do not have permission to register a student");
         }
 
-        if (studentsRepo.findByEmail(signUpInfo.getEmail()).isPresent()) {
+        if (studentsRepo.findByEmail(signUpInfo.email()).isPresent()) {
             throw new ConflictException("the email is already used");
         }
 
-        Students newStudent = new Students(signUpInfo.getFirstName(), signUpInfo.getLastName(), signUpInfo.getEmail());
+        Students newStudent = new Students(signUpInfo.firstName(), signUpInfo.lastName(), signUpInfo.email());
         
         Students savedStudent = studentsRepo.save(newStudent);
 
         // add student program enrolment functionality here
-        for (String programName : signUpInfo.getProgramNames()) {
+        for (String programName : signUpInfo.programNames()) {
             enrolmentsService.createEnrolment(savedStudent.getId(), programName);
         }
 
+        return new SuccessResponse("Successfully enrolled student");
+
     }
 
-    public String bulkRegisterStudent(MultipartFile file, String cookie) {
+    @Transactional
+    public SuccessResponse bulkRegisterStudent(MultipartFile file, String cookie) {
         
         DecodedJWT decodedJWT = jwtUtil.extractJwtFromCookie(cookie);
         if (!jwtUtil.checkPermissions(decodedJWT, Role.TEACHER)) {
@@ -103,15 +109,24 @@ public class StudentsService {
             .toList();
 
             // perform batchupdate
-            int[] res = batchUpdateRepo.saveAll(studentData);
+            try {
+                batchUpdateRepo.saveAll(studentData);
+                return new SuccessResponse("Successfully enrolled set of students");
+            } catch (DataAccessException e) {
+                throw new StudentBulkRegisterException("failed to bulk register students, no students registered, check data");
 
-            if (res.length == studentData.size()) {
-                System.out.println(Arrays.toString(res));
-                System.out.println(studentData.size());
-                return "Successfully enrolled set of students";
-            } else {
-                return "failed";
             }
+
+            // CAN REMOVE IF NO ISSUES WITH BULKREGISTERING
+            // int[] res = batchUpdateRepo.saveAll(studentData);
+
+            // if (res.length == studentData.size()) {
+            //     System.out.println(Arrays.toString(res));
+            //     System.out.println(studentData.size());
+            //     return new SuccessResponse("Successfully enrolled set of students");
+            // } else {
+            //     return "failed";
+            // }
 
         } catch (IOException | CsvException e) {
             throw new CsvParseException("error relating to parsing csv file");
@@ -138,20 +153,19 @@ public class StudentsService {
 
         Students student = studentsRepo.getReferenceById(Integer.valueOf(uidString));
 
-        StudentProfileDto profileDto = new StudentProfileDto();
-
-        profileDto.setId(student.getId());
-        profileDto.setFirstname(student.getFirstName());
-        profileDto.setLastname(student.getLastName());
-        profileDto.setEmail(student.getEmail());
-
-        profileDto.setCertificates(certificatesService.getCertificates(student.getEmail()));
-        
         List<StudentProfileEnrolmentDto> enrolments = new ArrayList<>();
         for (Enrolments enrolment : student.getEnrolments()) {
             enrolments.add(new StudentProfileEnrolmentDto(enrolment.getId(), enrolment.getEnrolmentDate(), enrolment.getProgram().getName()));
         }
-        profileDto.setEnrolments(enrolments);
+
+        StudentProfileDto profileDto = new StudentProfileDto(
+            student.getId(), 
+            student.getFirstName(), 
+            student.getLastName(), 
+            student.getEmail(), 
+            certificatesService.getCertificates(student.getEmail()) , 
+            enrolments
+        );
 
         return profileDto;
 

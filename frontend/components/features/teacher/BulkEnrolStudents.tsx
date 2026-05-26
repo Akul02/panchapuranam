@@ -2,6 +2,7 @@
 import React, { FormEvent, useRef, useState } from 'react'
 import Form from '../../ui/Form';
 import SubmitButton from '../../ui/FormSubmitButton';
+import { SuccessResponse } from "../../../types/apiResponse";
 
 export default function BulkEnrolStudents() {
 
@@ -48,8 +49,8 @@ export default function BulkEnrolStudents() {
                     throw new Error(errMsg);
                 }
 
-                const resText = await res.text();
-                console.log(resText);
+                const resSuccess: SuccessResponse = await res.json();
+                console.log(resSuccess.message);
                 setIsSuccess(true);
                 setSuccessString("Successfully enrolled all students");
 

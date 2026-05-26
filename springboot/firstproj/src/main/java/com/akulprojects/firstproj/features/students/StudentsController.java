@@ -1,8 +1,9 @@
 package com.akulprojects.firstproj.features.students;
 
-import com.akulprojects.firstproj.features.students.dtos.StudentProfileDto;
+import com.akulprojects.firstproj.apidto.ApiResponses.SuccessResponse;
 import com.akulprojects.firstproj.features.students.dtos.StudentsSearchDto;
-import com.akulprojects.firstproj.features.students.dtos.StudentsSignUpDto;
+import com.akulprojects.firstproj.features.students.dtos.StudentsDtos.StudentProfileDto;
+import com.akulprojects.firstproj.features.students.dtos.StudentsDtos.StudentsSignUpDto;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,15 +28,12 @@ public class StudentsController {
     }
 
     @PostMapping("/register")
-    public String registerStudent(@RequestBody StudentsSignUpDto signUpInfo, @CookieValue(name = "AUTH_TOKEN", required = false) String cookie) {
-
-        studentsService.registerStudent(signUpInfo, cookie);
-
-        return "Successfully enrolled student";
+    public SuccessResponse registerStudent(@RequestBody StudentsSignUpDto signUpInfo, @CookieValue(name = "AUTH_TOKEN", required = false) String cookie) {
+        return studentsService.registerStudent(signUpInfo, cookie);
     }
 
     @PostMapping("/bulk/register")
-    public String bulkRegisterStudent(@RequestParam(value = "file", required = true) MultipartFile file, @CookieValue(name = "AUTH_TOKEN", required = false) String cookie) {
+    public SuccessResponse bulkRegisterStudent(@RequestParam(value = "file", required = true) MultipartFile file, @CookieValue(name = "AUTH_TOKEN", required = false) String cookie) {
         return studentsService.bulkRegisterStudent(file, cookie);
     }
 

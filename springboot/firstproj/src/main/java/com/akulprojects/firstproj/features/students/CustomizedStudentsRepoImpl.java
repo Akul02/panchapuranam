@@ -19,12 +19,9 @@ public class CustomizedStudentsRepoImpl implements CustomizedStudentsRepo {
     public void setTemplate(JdbcTemplate template) {
         this.template = template;
     }
-    
-    public int[] saveAll(List<Object[]> students) {
-        return template.batchUpdate("INSERT INTO STUDENTS (first_name, last_name, email) VALUES (?, ?, ?)", students);
 
-
-
+    public void saveAll(List<Object[]> students) {
+        template.batchUpdate("INSERT INTO STUDENTS (first_name, last_name, email) VALUES (?, ?, ?)", students);
     }
     
 }
