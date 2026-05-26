@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.akulprojects.firstproj.apidto.ApiResponses.SuccessResponse;
 import com.akulprojects.firstproj.features.users.dtos.LoginRequestDto;
 import com.akulprojects.firstproj.features.users.dtos.SessionDto;
 
@@ -23,7 +24,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequestDto loginRequest) {
+    public ResponseEntity<SuccessResponse> login(@RequestBody LoginRequestDto loginRequest) {
 
         String jwtToken = authService.login(loginRequest);
         
@@ -36,12 +37,12 @@ public class AuthController {
             .maxAge(Duration.ofHours(1))
             .build();
     
-        return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString()).body("login success");
+        return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString()).body(new SuccessResponse("Login successful"));
    
     }
 
     @PostMapping("/logout")
-    public ResponseEntity<String> logout() {
+    public ResponseEntity<SuccessResponse> logout() {
 
         ResponseCookie cookie = ResponseCookie.from("AUTH_TOKEN", "")
                 .httpOnly(true)
@@ -52,7 +53,7 @@ public class AuthController {
                 .maxAge(0)
                 .build();
 
-        return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString()).body("logout success");
+        return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString()).body(new SuccessResponse("Logout successful"));
     }
 
     @GetMapping("/session")
