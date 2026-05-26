@@ -37,7 +37,7 @@ public class UsersService {
 
         DecodedJWT decodedJWT = jwt.extractJwtFromCookie(cookie);
 
-        Users current_user = findUserWithId(Integer.parseInt(decodedJWT.getId()));
+        Users current_user = findUserWithId(jwt.getId(decodedJWT));
 
         if (Password.check(password, current_user.getPassword()).withArgon2()) {
             throw new InvalidInputException("password must be different to current password");
@@ -47,7 +47,7 @@ public class UsersService {
 
         // teacher sets their password on their first login
         current_user.setFirstLogin(false);
-
+        System.out.println("5");
         repo.save(current_user);
 
         return new SuccessResponse("Successfully changed password");

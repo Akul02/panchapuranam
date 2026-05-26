@@ -49,6 +49,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorResponse handleOther(Exception ex) {
+        ex.printStackTrace();
         return new ErrorResponse("An unexpected error occurred");
     }
 }
