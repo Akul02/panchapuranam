@@ -1,6 +1,7 @@
+import { Session } from "../types/session";
 import { apiFetch } from "./client";
 
-export async function login (emailString: string, passwordString: string) {
+export async function login (emailString: string, passwordString: string): Promise<String> {
     return apiFetch("/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -12,14 +13,14 @@ export async function login (emailString: string, passwordString: string) {
     })
 }
 
-export async function logout () {
+export async function logout (): Promise<String> {
     return apiFetch("/logout", {
         method: 'POST',
         credentials: "include"
     })
 }
 
-export async function changePassword (passwordString: string) {
+export async function changePassword (passwordString: string): Promise<String> {
     return apiFetch("/password", {
         method: "POST",
         headers: { "Content-Type" : "application/json" },
@@ -28,4 +29,8 @@ export async function changePassword (passwordString: string) {
         }),
         credentials: "include"
     })
+}
+
+export async function getUserSession (): Promise<Session> {
+    return apiFetch("/session", { credentials: "include"});
 }

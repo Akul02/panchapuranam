@@ -14,3 +14,15 @@ export type StudentProfileDto = {
     certificates: CertificateDto[];
     enrolments: StudentProfileEnrolmentDto[];
 }
+
+export interface StudentSearchResult {
+    id: string,
+    name: string
+}
+
+export type StudentRegisterData = {
+    firstName : string,
+    lastName : string,
+    email : string,
+    programNames: string[],
+}

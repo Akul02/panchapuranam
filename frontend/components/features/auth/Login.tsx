@@ -10,7 +10,7 @@ import { session } from '../../../types/session';
 import PasswordPrompt from './PasswordPrompt';
 import Form from '../../ui/Form';
 import SubmitButton from '../../ui/FormSubmitButton';
-import { login } from "../../../api/auth";
+import { getUserSession, login } from "../../../api/auth";
 
 
 
@@ -35,15 +35,9 @@ export default function Login () {
 
             await login(emailString, passwordString);
 
-            // useRoleSetter();
-            fetch(`${apiUrl}/session`,{credentials: "include"})
-            .then(async (res) => {
-                if (!res.ok) {
-                    throw new Error("failed to fetch user role")
-                }
-        
-                const sessionInfo: session = await res.json();
-
+            try {
+                const sessionInfo = await getUserSession();
+                
                 switch (sessionInfo.role) {
                     case UserRole.ADMIN:
                         setUserRole(UserRole.ADMIN);
@@ -67,12 +61,12 @@ export default function Login () {
                 } else {
                     router.push("/")
                 }
-            })
-            . catch(err => {
+
+            } catch (err) {
                 setIsError(true);
-                setErrorString(err.message);
-                console.log(err.message);
-            })
+                setErrorString(err instanceof Error ? err.message : "Something went wrong");
+            }
+
         } catch (err) {
             setIsError(true);
             setErrorString(err instanceof Error ? err.message : "Something went wrong");

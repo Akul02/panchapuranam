@@ -4,17 +4,13 @@ import Link from "next/link";
 import React, { useEffect, useState } from 'react'
 
 import { FaSearch } from "react-icons/fa";
-
+import { StudentSearchResult } from "../../../types/student";
+import { searchStudentDirectory } from "../../../api/student";
 
 export default function StudentDirectory() {
 
-    interface studentSearchResult {
-        id: string,
-        name: string
-    }
-
     const [searchBarValue, setSearchBarValue] = useState("");
-    const [searchResults, setSearchResults] = useState<studentSearchResult[]>([]);
+    const [searchResults, setSearchResults] = useState<StudentSearchResult[]>([]);
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
     const handleChange = (e : React.ChangeEvent<HTMLInputElement>) => {
@@ -30,24 +26,14 @@ export default function StudentDirectory() {
             setSearchResults([]);
             return;
         }
-
-        const timer = setTimeout(() => {
-            fetch(`${apiUrl}/student/search?searchString=${searchBarValue}`, {method: "GET", credentials: "include"})
-            .then(async (res) => {
-                if (!res.ok) {
-                    const errMsg = await res.text();
-                    throw new Error(errMsg);
-                }
-
-                const results = await res.json();
+        const timer = setTimeout( async () => {
+            try {
+                const results = await searchStudentDirectory(searchBarValue);
                 setSearchResults(results);
-                console.log(results);
-            })
-            .catch(err => {
-                console.log(err.message);
-            })
+            } catch (err) {
+                console.log(err instanceof Error ? err.message : "Something went wrong");
+            }
         }, 300)
-
         return () => clearTimeout(timer);
     }, [searchBarValue]);
 

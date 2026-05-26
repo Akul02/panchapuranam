@@ -5,6 +5,7 @@ import useLanguage from '../../../hooks/useLanguage';
 import { Song } from '../../../types/song';
 
 import Audio from './Audio';
+import { getSongs } from "../../../api/songs";
 
 export default function Songs() {
 
@@ -16,10 +17,9 @@ export default function Songs() {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
     useEffect(() => {
-        fetch(`${apiUrl}/song?languageString=${language}`)
-            .then(response => response.json())
-            .then((data) => { setSongs(data)})
-            .catch((err) => console.log(err));
+        getSongs(language)
+            .then((songs) => { setSongs(songs)})
+            .catch((err) => console.log(err instanceof Error ? err.message : "Something went wrong"));
     }, [language]);
 
     return (

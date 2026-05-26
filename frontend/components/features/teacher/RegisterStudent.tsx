@@ -7,6 +7,7 @@ import Form from '../../ui/Form';
 import SubmitButton from '../../ui/FormSubmitButton';
 import { Programs } from '../../../constants/global';
 import { SuccessResponse } from "../../../types/apiResponse";
+import { registerStudent } from "../../../api/student";
 
 export default function RegisterStudent() {
 
@@ -23,8 +24,6 @@ export default function RegisterStudent() {
     const [errorString, setErrorString] = useState("");
     const [isSuccess, setIsSuccess] = useState(false);
     const [successString, setSuccessString] = useState("");
-
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     
     const handleChange = (field: string, value: string) => {
         setFormData((prev) => ({
@@ -41,35 +40,20 @@ export default function RegisterStudent() {
         }))
     }
 
-    const handleSubmit = (e: FormEvent) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         setIsSuccess(false);
         setIsError(false);
 
-        fetch(`${apiUrl}/student/register`, {
-            method: "post",
-            headers: {"Content-Type" : "application/json"},
-            body: JSON.stringify(formData),
-            credentials: "include"
-        })
-        .then(async (res) => {
-            if (!res.ok) {
-                const errMsg = await res.text();
-                throw new Error(errMsg);
-            }
-
-            const resSuccess: SuccessResponse = await res.json();
-            console.log(resSuccess.message);
+        try {
+            const resSuccess = await registerStudent(formData);
             setFormData({"firstName" : "", "lastName" : "", "email" : "", programNames:[]});
             setIsSuccess(true);
-            setSuccessString("Successfully enrolled Student");
-        })
-        .catch(err => {
+            setSuccessString(resSuccess.message);
+        } catch (err)  {
             setIsError(true);
-            setErrorString(err.message);
-            console.log(err.message);
-        })
-
+            setErrorString(err instanceof Error ? err.message : "Something went wrong");
+        }
     }
 
     return (

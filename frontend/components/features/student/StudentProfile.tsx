@@ -6,24 +6,16 @@ import { StudentProfileDto } from "../../../types/student";
 import StudentProfileContactDetails from "./StudentProfileContactDetails";
 import StudentProfileEnrolmentDetails from "./StudentProfileEnrolmentDetails";
 import StudentProfileCertificates from "./StudentProfileCertificates";
-
-
+import { getStudentProfile } from "../../../api/student";
 
 export default function StudentProfile({ studentId }: { studentId: number }) {
+    
     const [student, setStudent] = useState<StudentProfileDto | null>(null)
 
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-
     useEffect(() => {
-        fetch(`${apiUrl}/student/profile?uidString=${studentId.toString()}`,
-            {
-                headers: { "accept" : "application/json" },
-                method: "GET",
-                credentials: "include"
-            }
-        ).then(res => res.json())
-        .then(data => setStudent(data))
-        .catch(err => console.log(err));
+        getStudentProfile(studentId.toString())
+        .then(studentData => setStudent(studentData))
+        .catch(err => console.log(err instanceof Error ? err.message : "Something went wrong"));
         
     },[])
 

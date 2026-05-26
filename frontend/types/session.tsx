@@ -1,6 +1,6 @@
 import { UserRole } from "../constants/global"
 
-export type session = {
+export type Session = {
     role: UserRole;
     firstLogin: boolean;
 }

@@ -3,6 +3,7 @@
 import React, { createContext, ReactNode, useEffect, useState } from "react"
 import { UserRole } from "../constants/global";
 import { session } from "../types/session";
+import { getUserSession } from "../api/auth";
 
 type UserContextType = [UserRole, React.Dispatch<React.SetStateAction<UserRole>>];
 
@@ -15,19 +16,10 @@ interface Props {
 export default function UserProvider({children}: Props) {
 
     const  [userRole, setUserRole] = useState(UserRole.NO_USER);
-    const apiUrl =  process.env.NEXT_PUBLIC_API_URL;
 
     useEffect(() => {
-        fetch(`${apiUrl}/session`, {credentials: "include"})
-            .then(async (res) => {
-
-                if (!res.ok) {
-                    const errMsg = await res.text();
-                    throw new Error(errMsg);
-                }
-
-                const sessionInfo: session = await res.json();
-
+        getUserSession()
+            .then((sessionInfo) => {
                 switch (sessionInfo.role) {
                     case UserRole.ADMIN:
                         setUserRole(UserRole.ADMIN);
@@ -44,10 +36,9 @@ export default function UserProvider({children}: Props) {
                     default:
                         throw new Error("unknown role value");
                 }
-                
+            }) .catch((err) => {
+                console.log(err instanceof Error ? err.message : "Something went wrong");
             })
-            .catch((err) => console.log(err.message));
-
     }, []);
 
     return ( 

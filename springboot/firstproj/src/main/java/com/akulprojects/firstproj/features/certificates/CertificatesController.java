@@ -20,7 +20,7 @@ public class CertificatesController {
         this.certificatesService = certificatesService;
     }
 
-    @GetMapping("/certificate")
+    @GetMapping("/certificates")
     public List<CertificateDto> getCertificate(@RequestParam String email) {
         return certificatesService.getCertificates(email);
     }

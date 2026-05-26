@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import SubmitButton from '../../ui/FormSubmitButton';
 import Form from '../../ui/Form';
 import { CertificateDto } from "../../../types/certficateDto";
+import { downloadCertificates } from "../../../api/certificate";
 
 export default function Download() {
 
@@ -19,44 +20,30 @@ export default function Download() {
     const [isSuccess, setIsSuccess] = useState(false);
     const [successString, setSuccessString] = useState("");
 
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     const router = useRouter();
 
-    const handleSubmit = (e: FormEvent) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         setIsError(false);
         setErrorString("");
         setIsSuccess(false);
         setSuccessString("")
-
-        fetch(`${apiUrl}/certificate?email=${emailString}`, {
-            method: "GET"
-        })
-        .then(async (res) => {
-            
-            if (!res.ok) {
-                const errMsg = await res.text();
-                console.log(errMsg)
-                throw new Error(errMsg);
-            }
-
-            const data: CertificateDto[] = await res.json();
+        
+        try {
+            const data = await downloadCertificates(emailString);
 
             setCertificates(data);
-
             if (data.length == 0) {
                 setSuccessString("You have no certificates")
             } else{
                 setSuccessString("Here are your certificates:")
             }
             setShowUrls(true);
-            
 
-        })
-        .catch(err => {
+        } catch (err) {
             setIsError(true);
-            setErrorString(err.message)
-        })
+            setErrorString(err instanceof Error ? err.message : "Something went wrong");
+        }
     }
 
     return (

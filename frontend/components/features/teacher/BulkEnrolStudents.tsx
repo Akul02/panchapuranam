@@ -1,8 +1,9 @@
 "use client"
+
 import React, { FormEvent, useRef, useState } from 'react'
 import Form from '../../ui/Form';
 import SubmitButton from '../../ui/FormSubmitButton';
-import { SuccessResponse } from "../../../types/apiResponse";
+import { bulkRegisterStudents } from "../../../api/student";
 
 export default function BulkEnrolStudents() {
 
@@ -13,8 +14,6 @@ export default function BulkEnrolStudents() {
     const [isSuccess, setIsSuccess] = useState(false);
     const [successString, setSuccessString] = useState("");
 
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files && event.target.files.length > 0) {
             setSelectedFile(event.target.files[0]);
@@ -23,7 +22,7 @@ export default function BulkEnrolStudents() {
 
     const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-    const handleSubmit = (e: FormEvent) => {
+    const handleSubmit = async (e: FormEvent) => {
 
         e.preventDefault();
         setIsSuccess(false);
@@ -38,34 +37,21 @@ export default function BulkEnrolStudents() {
         const formData = new FormData;
         formData.append("file", selectedFile);
 
-        fetch(`${apiUrl}/student/bulk/register`, {
-            method: "POST",
-            body: formData,
-            credentials: "include",
-        })
-            .then(async (res) => {
-                if (!res.ok) {
-                    const errMsg = await res.text();
-                    throw new Error(errMsg);
-                }
+        try {
+            const resSuccess = await bulkRegisterStudents(formData);
+            setIsSuccess(true);
+            setSuccessString(resSuccess.message);
 
-                const resSuccess: SuccessResponse = await res.json();
-                console.log(resSuccess.message);
-                setIsSuccess(true);
-                setSuccessString("Successfully enrolled all students");
+        } catch (err) {
+            setIsError(true);
+            setErrorString(err instanceof Error ? err.message : "Something went wrong");
 
-            })
-            .catch(err => {
-                setIsError(true);
-                setErrorString(err.message);
-                console.log(err.message);
-            })
-            .finally(() => {
-                if (fileInputRef.current) {
-                    fileInputRef.current.value = "";
-                }
-                setSelectedFile(null);
-            })
+        } finally {
+            if (fileInputRef.current) {
+                fileInputRef.current.value = "";
+            }
+            setSelectedFile(null);
+        }
     }
 
     return (

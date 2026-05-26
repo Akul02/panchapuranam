@@ -4,28 +4,21 @@ import React, { useEffect, useState } from 'react'
 
 import { PiStudentBold } from "react-icons/pi";
 import { CertificateCountDto } from "../../../types/certificateCountDto";
+import { certificatesCount } from "../../../api/certificate";
 
 
 export default function StudentCounter() {
 
     const [counter, setCounter] = useState(0);
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
     useEffect(() => {
-        fetch(`${apiUrl}/certificates/count`, {method: "GET"})
-        .then(async (res) => {
-            if (!res.ok) {
-                const errMsg = await res.text();
-                throw new Error(errMsg);
-            }
-
-            const count: CertificateCountDto = await res.json();
-            setCounter(+count.count);
-
-        })
-        .catch(err => {
-            console.log(err.message);
-        })
+        certificatesCount()
+            .then((res) => {
+                setCounter(+res.count);
+            })
+            .catch(err => {
+                console.log(err.message);
+            })
     }, []);
 
     return (

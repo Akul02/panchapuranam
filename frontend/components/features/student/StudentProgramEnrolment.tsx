@@ -2,15 +2,12 @@
 
 import React, { useEffect, useState } from 'react'
 
-import { Programs } from '../../../constants/global';
 import StyledSelect from "../../ui/StyledSelect";
 import { StudentProfileEnrolmentDto } from "../../../types/student";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { MultiValue } from "react-select";
 import { getPrograms } from "../../../api/program";
 import { enrolStudentInProgram } from "../../../api/enrolment";
-import { SuccessResponse } from "../../../types/apiResponse";
-
 
 export default function StudentProgramEnrolment( {currentEnrolments, onSuccess} : {currentEnrolments: StudentProfileEnrolmentDto[], onSuccess : () => void}) {
 
@@ -18,10 +15,7 @@ export default function StudentProgramEnrolment( {currentEnrolments, onSuccess} 
     const [message, setMessage] = useState<string | null>(null);
 
     const [newPrograms, setNewPrograms] = useState<string[]>([]);
-    const [programOptions, setProgramOptions] = useState<string[]>([]);
-
-    const router = useRouter();
-    
+    const [programOptions, setProgramOptions] = useState<string[]>([]);    
 
     useEffect(() => {
         getPrograms()
@@ -57,8 +51,8 @@ export default function StudentProgramEnrolment( {currentEnrolments, onSuccess} 
         setError(null);
     
         try {
-            const res: SuccessResponse = await enrolStudentInProgram(params.id, newPrograms);
-            setMessage(res.message);
+            const resSuccess = await enrolStudentInProgram(params.id, newPrograms);
+            setMessage(resSuccess.message);
             onSuccess();
         } catch (err) {
             setError(err instanceof Error ? err.message : "Something went wrong");
@@ -67,7 +61,6 @@ export default function StudentProgramEnrolment( {currentEnrolments, onSuccess} 
 
     }
     
-
     return (
         <div className="">
             {error && <p className="text-red-400 text-xs mt-1">{error}</p>}
