@@ -2,9 +2,10 @@ package com.akulprojects.firstproj.features.teachers;
 
 import org.springframework.stereotype.Service;
 
+import com.akulprojects.firstproj.apidto.ApiResponses.SuccessResponse;
 import com.akulprojects.firstproj.exception.ForbiddenException;
 import com.akulprojects.firstproj.features.auth.JwtUtil;
-import com.akulprojects.firstproj.features.teachers.dtos.TeachersSignUpDto;
+import com.akulprojects.firstproj.features.teachers.TeachersDtos.TeachersSignUpDto;
 import com.akulprojects.firstproj.features.users.Role;
 import com.akulprojects.firstproj.features.users.UsersService;
 import com.auth0.jwt.interfaces.DecodedJWT;
@@ -20,7 +21,7 @@ public class TeachersService {
         this.jwtUtil = jwtUtil;
     }
 
-    public void registerTeacher(String cookie, TeachersSignUpDto signUpInfo) {
+    public SuccessResponse registerTeacher(String cookie, TeachersSignUpDto signUpInfo) {
 
         DecodedJWT decodedJWT = jwtUtil.extractJwtFromCookie(cookie);
         if (!jwtUtil.checkPermissions(decodedJWT, Role.ADMIN)) {
@@ -28,6 +29,8 @@ public class TeachersService {
         }
         
         usersService.addTeacherUser(signUpInfo);
+
+        return new SuccessResponse("Successfully registered teacher");
     }
 
 }

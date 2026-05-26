@@ -1,6 +1,7 @@
 package com.akulprojects.firstproj.features.teachers;
 
-import com.akulprojects.firstproj.features.teachers.dtos.TeachersSignUpDto;
+import com.akulprojects.firstproj.apidto.ApiResponses.SuccessResponse;
+import com.akulprojects.firstproj.features.teachers.TeachersDtos.TeachersSignUpDto;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -20,11 +21,8 @@ public class TeachersController {
     }
 
     @PostMapping("/register")
-    public String registerTeacher(@RequestBody TeachersSignUpDto signUpInfo, @CookieValue(name = "AUTH_TOKEN", required = false) String cookie) {
-        
-        teachersService.registerTeacher(cookie, signUpInfo);
-
-        return "Successfully added teacher";   
+    public SuccessResponse registerTeacher(@RequestBody TeachersSignUpDto signUpInfo, @CookieValue(name = "AUTH_TOKEN", required = false) String cookie) {
+        return teachersService.registerTeacher(cookie, signUpInfo);  
     }
     
 }

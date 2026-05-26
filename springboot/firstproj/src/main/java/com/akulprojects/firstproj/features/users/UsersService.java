@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import com.akulprojects.firstproj.exception.ConflictException;
 import com.akulprojects.firstproj.exception.InvalidInputException;
 import com.akulprojects.firstproj.exception.ResourceNotFoundException;
-import com.akulprojects.firstproj.features.teachers.dtos.TeachersSignUpDto;
+import com.akulprojects.firstproj.features.teachers.TeachersDtos.TeachersSignUpDto;
 import com.password4j.Password;
 
 @Service
@@ -44,14 +44,14 @@ public class UsersService {
     } 
 
     public void addTeacherUser(TeachersSignUpDto signUpInfo) {
-        if (repo.findByEmail(signUpInfo.getEmail()).isPresent()) {
+        if (repo.findByEmail(signUpInfo.email()).isPresent()) {
             throw new ConflictException("the email is already used");
         }
 
-        String hashString = Password.hash(signUpInfo.getPassword()).addRandomSalt().withArgon2().getResult();
+        String hashString = Password.hash(signUpInfo.password()).addRandomSalt().withArgon2().getResult();
 
-        Users newTeacher = new Users(signUpInfo.getFirstName(), signUpInfo.getLastName(), 
-            signUpInfo.getEmail(), hashString, Role.TEACHER, true);
+        Users newTeacher = new Users(signUpInfo.firstName(), signUpInfo.lastName(), 
+            signUpInfo.email(), hashString, Role.TEACHER, true);
 
         repo.save(newTeacher);
 
