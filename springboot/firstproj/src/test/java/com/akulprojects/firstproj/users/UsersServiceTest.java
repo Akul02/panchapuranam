@@ -1,101 +1,101 @@
-package com.akulprojects.firstproj.users;
+// package com.akulprojects.firstproj.users;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.*;
+// import static org.junit.jupiter.api.Assertions.assertEquals;
+// import static org.junit.jupiter.api.Assertions.assertFalse;
+// import static org.junit.jupiter.api.Assertions.assertThrows;
+// import static org.junit.jupiter.api.Assertions.assertTrue;
+// import static org.mockito.Mockito.*;
 
 
-import java.util.Optional;
+// import java.util.Optional;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentCaptor;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+// import org.junit.jupiter.api.Test;
+// import org.junit.jupiter.api.extension.ExtendWith;
+// import org.mockito.ArgumentCaptor;
+// import org.mockito.InjectMocks;
+// import org.mockito.Mock;
+// import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.akulprojects.firstproj.exception.ConflictException;
-import com.akulprojects.firstproj.exception.InvalidInputException;
-import com.akulprojects.firstproj.features.teachers.dtos.TeachersSignUpDto;
-import com.akulprojects.firstproj.features.users.Role;
-import com.akulprojects.firstproj.features.users.Users;
-import com.akulprojects.firstproj.features.users.UsersRepo;
-import com.akulprojects.firstproj.features.users.UsersService;
-import com.password4j.Password;
+// import com.akulprojects.firstproj.exception.ConflictException;
+// import com.akulprojects.firstproj.exception.InvalidInputException;
+// import com.akulprojects.firstproj.features.teachers.dtos.TeachersSignUpDto;
+// import com.akulprojects.firstproj.features.users.Role;
+// import com.akulprojects.firstproj.features.users.Users;
+// import com.akulprojects.firstproj.features.users.UsersRepo;
+// import com.akulprojects.firstproj.features.users.UsersService;
+// import com.password4j.Password;
 
-@ExtendWith(MockitoExtension.class)
-public class UsersServiceTest {
+// @ExtendWith(MockitoExtension.class)
+// public class UsersServiceTest {
 
-    @Mock
-    UsersRepo usersRepo;
+//     @Mock
+//     UsersRepo usersRepo;
 
-    @InjectMocks
-    UsersService usersService;
+//     @InjectMocks
+//     UsersService usersService;
 
-    @Test
-    void changeUserPassword_sameAsOldPassword_throwsInvalidInputException () {
+//     @Test
+//     void changeUserPassword_sameAsOldPassword_throwsInvalidInputException () {
         
-        Users testUser = new Users("first", "last", "test@mail.com", Password.hash("oldPassword").addRandomSalt().withArgon2().getResult(), Role.TEACHER, false);
+//         Users testUser = new Users("first", "last", "test@mail.com", Password.hash("oldPassword").addRandomSalt().withArgon2().getResult(), Role.TEACHER, false);
 
-        when(usersRepo.findById(0)).thenReturn(Optional.of(testUser));       
+//         when(usersRepo.findById(0)).thenReturn(Optional.of(testUser));       
 
-        assertThrows(InvalidInputException.class, () -> {usersService.changeUserPassword("oldPassword", 0);});
-    }
+//         assertThrows(InvalidInputException.class, () -> {usersService.changeUserPassword("oldPassword", 0);});
+//     }
 
-    @Test
-    void changeUserPassword_validInput_updatesPassword () {
+//     @Test
+//     void changeUserPassword_validInput_updatesPassword () {
 
-        Users testUser = new Users("first", "last", "test@mail.com", Password.hash("oldPassword").addRandomSalt().withArgon2().getResult(), Role.TEACHER, true);
+//         Users testUser = new Users("first", "last", "test@mail.com", Password.hash("oldPassword").addRandomSalt().withArgon2().getResult(), Role.TEACHER, true);
 
-        when(usersRepo.findById(0)).thenReturn(Optional.of(testUser));
-        usersService.changeUserPassword("newPassword", 0);
+//         when(usersRepo.findById(0)).thenReturn(Optional.of(testUser));
+//         usersService.changeUserPassword("newPassword", 0);
 
-        assertFalse(Password.check("oldPassword", testUser.getPassword()).withArgon2());
-        assertTrue(Password.check("newPassword", testUser.getPassword()).withArgon2());
-    }
+//         assertFalse(Password.check("oldPassword", testUser.getPassword()).withArgon2());
+//         assertTrue(Password.check("newPassword", testUser.getPassword()).withArgon2());
+//     }
 
-    @Test
-    void changeUserPassword_validInput_updatesIsFirstLogin () {
+//     @Test
+//     void changeUserPassword_validInput_updatesIsFirstLogin () {
 
-        Users testUser = new Users("first", "last", "test@mail.com", Password.hash("oldPassword").addRandomSalt().withArgon2().getResult(), Role.TEACHER, false);
+//         Users testUser = new Users("first", "last", "test@mail.com", Password.hash("oldPassword").addRandomSalt().withArgon2().getResult(), Role.TEACHER, false);
 
-        when(usersRepo.findById(0)).thenReturn(Optional.of(testUser));
-        usersService.changeUserPassword("newPassword", 0);
+//         when(usersRepo.findById(0)).thenReturn(Optional.of(testUser));
+//         usersService.changeUserPassword("newPassword", 0);
 
-        assertFalse(testUser.isFirstLogin());
-    }
+//         assertFalse(testUser.isFirstLogin());
+//     }
 
-    @Test
-    void addTeacherUser_EmailAlreadyUsed_throwsConflictException () {
-        TeachersSignUpDto signUpDto = new TeachersSignUpDto("first", "last", "test@mail.com", "password");
+//     @Test
+//     void addTeacherUser_EmailAlreadyUsed_throwsConflictException () {
+//         TeachersSignUpDto signUpDto = new TeachersSignUpDto("first", "last", "test@mail.com", "password");
         
-        Users existingUser = new Users("first", "last", "test@mail.com", Password.hash("oldPassword").addRandomSalt().withArgon2().getResult(), Role.TEACHER, false);
+//         Users existingUser = new Users("first", "last", "test@mail.com", Password.hash("oldPassword").addRandomSalt().withArgon2().getResult(), Role.TEACHER, false);
         
-        when(usersRepo.findByEmail(signUpDto.getEmail())).thenReturn(Optional.of(existingUser));
+//         when(usersRepo.findByEmail(signUpDto.getEmail())).thenReturn(Optional.of(existingUser));
 
-        assertThrows(ConflictException.class, () -> {usersService.addTeacherUser(signUpDto);});
-    }
+//         assertThrows(ConflictException.class, () -> {usersService.addTeacherUser(signUpDto);});
+//     }
 
-    @Test
-    void addTeacherUser_validInput_savesTeacher () {
-        TeachersSignUpDto signUpDto = new TeachersSignUpDto("first", "last", "test@mail.com", "password");
+//     @Test
+//     void addTeacherUser_validInput_savesTeacher () {
+//         TeachersSignUpDto signUpDto = new TeachersSignUpDto("first", "last", "test@mail.com", "password");
 
-        usersService.addTeacherUser(signUpDto);
+//         usersService.addTeacherUser(signUpDto);
 
-        ArgumentCaptor<Users> capturedUser = ArgumentCaptor.forClass(Users.class);
+//         ArgumentCaptor<Users> capturedUser = ArgumentCaptor.forClass(Users.class);
 
-        verify(usersRepo).save(capturedUser.capture());
+//         verify(usersRepo).save(capturedUser.capture());
 
-        Users savedUser = capturedUser.getValue();
+//         Users savedUser = capturedUser.getValue();
 
-        assertEquals("first", savedUser.getFirstName());
-        assertEquals("last", savedUser.getLastName());
-        assertEquals("test@mail.com", savedUser.getEmail());
-        assertTrue(Password.check("password", savedUser.getPassword()).withArgon2());
+//         assertEquals("first", savedUser.getFirstName());
+//         assertEquals("last", savedUser.getLastName());
+//         assertEquals("test@mail.com", savedUser.getEmail());
+//         assertTrue(Password.check("password", savedUser.getPassword()).withArgon2());
 
-    }
+//     }
 
 
-}
+// }

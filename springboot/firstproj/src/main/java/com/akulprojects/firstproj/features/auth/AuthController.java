@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.akulprojects.firstproj.apidto.ApiResponses.SuccessResponse;
-import com.akulprojects.firstproj.features.users.dtos.LoginRequestDto;
-import com.akulprojects.firstproj.features.users.dtos.SessionDto;
+import com.akulprojects.firstproj.features.users.UsersDtos.LoginRequestDto;
+import com.akulprojects.firstproj.features.users.UsersDtos.SessionDto;
 
 @RestController
 public class AuthController {

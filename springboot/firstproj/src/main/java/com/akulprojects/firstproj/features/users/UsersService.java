@@ -4,19 +4,24 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.akulprojects.firstproj.apidto.ApiResponses.SuccessResponse;
 import com.akulprojects.firstproj.exception.ConflictException;
 import com.akulprojects.firstproj.exception.InvalidInputException;
 import com.akulprojects.firstproj.exception.ResourceNotFoundException;
+import com.akulprojects.firstproj.features.auth.JwtUtil;
 import com.akulprojects.firstproj.features.teachers.TeachersDtos.TeachersSignUpDto;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.password4j.Password;
 
 @Service
 public class UsersService {
 
     private final UsersRepo repo;
+    private final JwtUtil jwt;
 
-    public UsersService(UsersRepo repo) {
+    public UsersService(UsersRepo repo, JwtUtil jwt) {
         this.repo = repo;
+        this.jwt = jwt;
     }
 
     public Optional<Users> findUserWithEmail(String emailString) {
@@ -28,8 +33,11 @@ public class UsersService {
                 .orElseThrow(() -> new ResourceNotFoundException("id does not correspond to a user"));
     }
 
-    public void changeUserPassword(String password, int userId) {
-        Users current_user = findUserWithId(userId);
+    public SuccessResponse changeUserPassword(String password, String cookie) {
+
+        DecodedJWT decodedJWT = jwt.extractJwtFromCookie(cookie);
+
+        Users current_user = findUserWithId(Integer.parseInt(decodedJWT.getId()));
 
         if (Password.check(password, current_user.getPassword()).withArgon2()) {
             throw new InvalidInputException("password must be different to current password");
@@ -41,6 +49,8 @@ public class UsersService {
         current_user.setFirstLogin(false);
 
         repo.save(current_user);
+
+        return new SuccessResponse("Successfully changed password");
     } 
 
     public void addTeacherUser(TeachersSignUpDto signUpInfo) {

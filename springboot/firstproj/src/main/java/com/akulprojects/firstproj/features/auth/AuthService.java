@@ -6,8 +6,8 @@ import com.akulprojects.firstproj.exception.UnauthorizedException;
 import com.akulprojects.firstproj.features.users.Role;
 import com.akulprojects.firstproj.features.users.Users;
 import com.akulprojects.firstproj.features.users.UsersService;
-import com.akulprojects.firstproj.features.users.dtos.LoginRequestDto;
-import com.akulprojects.firstproj.features.users.dtos.SessionDto;
+import com.akulprojects.firstproj.features.users.UsersDtos.LoginRequestDto;
+import com.akulprojects.firstproj.features.users.UsersDtos.SessionDto;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.password4j.Password;
 
@@ -23,10 +23,10 @@ public class AuthService {
 
     public String login(LoginRequestDto loginRequest) {
 
-        Users user = usersService.findUserWithEmail(loginRequest.getEmail())
+        Users user = usersService.findUserWithEmail(loginRequest.email())
                 .orElseThrow(() -> new UnauthorizedException("the email or password is incorrect"));
 
-        if (!Password.check(loginRequest.getPassword(), user.getPassword()).withArgon2()) {
+        if (!Password.check(loginRequest.password(), user.getPassword()).withArgon2()) {
         throw new UnauthorizedException("the email or password is incorrect");
         }
 
@@ -34,24 +34,16 @@ public class AuthService {
     }
 
     public SessionDto getSessionInfo(String cookie) {
-        
-        SessionDto info = new SessionDto();
 
         // if cookie is null return empty info dto
         if (cookie == null) {
-            info.setRole(Role.NO_USER.toString());
-            info.setFirstLogin(false);
-            return info;
+            return new SessionDto(Role.NO_USER.toString(), false);
         }
 
         DecodedJWT decodedJWT = jwt.extractJwtFromCookie(cookie);
-
-        info.setRole(decodedJWT.getClaim("role").asString());
-
         Users current_user = usersService.findUserWithId(jwt.getId(decodedJWT));
-        info.setFirstLogin(current_user.isFirstLogin());
 
-        return info;
+        return new SessionDto(decodedJWT.getClaim("role").asString(), current_user.isFirstLogin());
     }
 
 

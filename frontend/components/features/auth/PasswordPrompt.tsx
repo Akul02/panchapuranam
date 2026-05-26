@@ -3,6 +3,7 @@ import SimpleTextField from "../../ui/SimpleTextField";
 import { useRouter } from "next/navigation";
 import Form from "../../ui/Form";
 import SubmitButton from "../../ui/FormSubmitButton";
+import { SuccessResponse } from "../../../types/apiResponse";
 
 export default function PasswordPrompt () {
 
@@ -41,8 +42,7 @@ export default function PasswordPrompt () {
             }
 
             // successfully changed password
-            const msg = await res.text();
-            console.log(msg);
+            const resSuccess: SuccessResponse = await res.json();
             router.push("/");
             
         })
