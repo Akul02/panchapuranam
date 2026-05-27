@@ -1,7 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from 'react'
-
+import { useEffect, useState } from 'react'
 import StyledSelect from "../../ui/StyledSelect";
 import { StudentProfileEnrolmentDto } from "../../../types/student";
 import { useParams } from "next/navigation";

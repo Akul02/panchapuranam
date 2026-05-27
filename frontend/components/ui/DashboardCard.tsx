@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react'
+import { CSSProperties } from 'react'
 
 export default function DashboardCard({ className, style, children } : {className?: string, style? : CSSProperties, children : React.ReactNode}) {
   return (

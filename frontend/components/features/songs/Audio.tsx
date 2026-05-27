@@ -1,5 +1,4 @@
-import { hasNonStaticMethods } from 'next/dist/server/route-modules/app-route/module';
-import React, { DOMAttributes, SyntheticEvent } from 'react'
+import { SyntheticEvent } from 'react'
 
 export default function Audio({ sourceString, currentAudio }: { sourceString: string, currentAudio: React.RefObject<HTMLAudioElement | null> }) {
 

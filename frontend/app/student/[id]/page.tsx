@@ -1,4 +1,3 @@
-import React from 'react'
 import Navbar from "../../../components/layout/Navbar";
 import StudentProfile from "../../../components/features/student/StudentProfile";
 

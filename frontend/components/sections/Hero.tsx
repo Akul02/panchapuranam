@@ -1,5 +1,3 @@
-import React from 'react'
-
 import {Merriweather, Noto_Serif_Tamil, Arima} from "next/font/google";
 
 const merriweather = Merriweather({
@@ -16,8 +14,6 @@ const arima = Arima({
     subsets:["tamil"],
     weight:["700"]
 })
-
-
 
 export default function Hero() {
   return (

@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { CloseIcon } from "./Icons"
 
 export default function Modal( {onClose, title, children} : {onClose: () => void, title: string, children : React.ReactNode}) {

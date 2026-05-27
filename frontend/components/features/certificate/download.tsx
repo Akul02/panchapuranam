@@ -1,5 +1,6 @@
 "use client"
-import React, { FormEvent, useState } from 'react'
+
+import { FormEvent, useState } from 'react'
 import SimpleTextField from '../../ui/SimpleTextField';
 import { IoCloseCircleOutline } from 'react-icons/io5';
 import { useRouter } from 'next/navigation';

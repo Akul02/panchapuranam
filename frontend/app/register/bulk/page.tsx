@@ -1,5 +1,3 @@
-"use client"
-import React, { FormEvent, useRef, useState } from 'react'
 import BulkEnrolStudents from '../../../components/features/teacher/BulkEnrolStudents';
 import Navbar from "../../../components/layout/Navbar";
 

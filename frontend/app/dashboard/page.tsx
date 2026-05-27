@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import Navbar from '../../components/layout/Navbar'
 import DashboardCard from '../../components/ui/DashboardCard'
 import DashboardMenu from '../../components/ui/DashboardMenu'

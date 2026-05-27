@@ -1,8 +1,7 @@
 "use client"
 
 import Link from "next/link";
-import React, { useEffect, useState } from 'react'
-
+import { useEffect, useState } from 'react'
 import { FaSearch } from "react-icons/fa";
 import { StudentSearchResult } from "../../../types/student";
 import { searchStudentDirectory } from "../../../api/student";

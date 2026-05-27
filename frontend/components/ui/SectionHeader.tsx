@@ -1,4 +1,3 @@
-import React from 'react'
 
 export default function SectionHeader( {children, title} : {children?: React.ReactNode, title : string}) {
   return (

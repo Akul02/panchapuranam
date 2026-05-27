@@ -1,7 +1,7 @@
 "use client"
 
 import { useRouter } from 'next/navigation';
-import React, { FormEvent, useState } from 'react';
+import { FormEvent, useState } from 'react';
 
 import useUser from '../../../hooks/useUser';
 import { UserRole } from '../../../constants/global';
@@ -22,7 +22,6 @@ export default function Login () {
 
     const [isFirstLogin, setIsFirstLogin] = useState(false);
 
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     const router = useRouter();
     const [userRole, setUserRole] = useUser();
 

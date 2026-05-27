@@ -1,12 +1,11 @@
 "use client"
 
-import React, { FormEvent, useState } from 'react'
+import { FormEvent, useState } from 'react'
 import Select, { MultiValue } from 'react-select'
 import SimpleTextField from '../../ui/SimpleTextField'
 import Form from '../../ui/Form';
 import SubmitButton from '../../ui/FormSubmitButton';
 import { Programs } from '../../../constants/global';
-import { SuccessResponse } from "../../../types/apiResponse";
 import { registerStudent } from "../../../api/student";
 
 export default function RegisterStudent() {

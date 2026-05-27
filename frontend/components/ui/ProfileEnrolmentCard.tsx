@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { StudentProfileEnrolmentDto } from "../../types/student"
 
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";

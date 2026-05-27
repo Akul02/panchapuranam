@@ -1,7 +1,4 @@
-import React from "react";
-
 import { PiLineVerticalBold } from "react-icons/pi";
-
 import StudentCounter from "../features/counter/studentCounter";
 import Link from "next/link";
 import { certificatesCount } from "../../api/certificate";
@@ -9,8 +6,7 @@ import { certificatesCount } from "../../api/certificate";
 export default async function Footer() {
 
     const res = await certificatesCount();
-
-
+    
     return (
         <div className="bg-primary w-full h-20 sticky bottom-0 text-secondary flex justify-center items-center lg:h-28">
             <div className="font-semibold text-lg text-center lg:text-2xl">

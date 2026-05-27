@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import { useRef } from "react";
 import Navbar from "../layout/Navbar";
 import Hero from "./Hero";
 import { IoMusicalNote } from "react-icons/io5";

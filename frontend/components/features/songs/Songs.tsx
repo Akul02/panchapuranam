@@ -1,9 +1,8 @@
 "use client"
 
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import useLanguage from '../../../hooks/useLanguage';
 import { Song } from '../../../types/song';
-
 import Audio from './Audio';
 import { getSongs } from "../../../api/songs";
 

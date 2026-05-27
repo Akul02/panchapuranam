@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { PiStudentBold } from "react-icons/pi";
 
 export default function StudentCounter({count}: {count: number}) {

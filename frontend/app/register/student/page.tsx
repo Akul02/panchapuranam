@@ -1,8 +1,7 @@
-import React from 'react'
 import RegisterStudent from '../../../components/features/teacher/RegisterStudent'
 import Navbar from "../../../components/layout/Navbar"
 
-const register = () => {
+export default function register () {
   return (
     <div>
         <Navbar showDashButton = {true} />
@@ -11,4 +10,3 @@ const register = () => {
   )   
 }
 
-export default register

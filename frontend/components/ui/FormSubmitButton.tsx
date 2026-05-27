@@ -1,4 +1,3 @@
-import React from 'react'
 
 export default function FormSubmitButton({children} : {children : React.ReactNode}) {
   return (

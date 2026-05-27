@@ -1,5 +1,5 @@
 import { useRouter } from 'next/navigation';
-import React, { FormEvent, ReactNode } from 'react'
+import { FormEvent, ReactNode } from 'react'
 import { IoCloseCircleOutline } from 'react-icons/io5'
 
 interface formProps {

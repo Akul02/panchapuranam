@@ -1,4 +1,3 @@
-import React, { Dispatch, SetStateAction } from 'react'
 
 export default function DashboardMenu({className, activePage, handleMenuClick} : {className? : String, activePage : number, handleMenuClick:(page: number) => void}) {
     const tabs = ["Quick access", "Students", "Test"];

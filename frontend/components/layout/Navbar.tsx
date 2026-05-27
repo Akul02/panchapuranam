@@ -3,9 +3,6 @@
 import { LiaUserLockSolid } from "react-icons/lia";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoClose } from "react-icons/io5";
-
-
-
 import useUser from "../../hooks/useUser";
 import Contact from "../sections/ContactInfo";
 import { UserRole } from "../../constants/global";

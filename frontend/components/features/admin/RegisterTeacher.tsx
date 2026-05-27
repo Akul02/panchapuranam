@@ -5,7 +5,6 @@ import SimpleTextField from "../../ui/SimpleTextField";
 import Form from "../../ui/Form";
 import SubmitButton from "../../ui/FormSubmitButton";
 import { registerTeacher } from "../../../api/teacher";
-import { SuccessResponse } from "../../../types/apiResponse";
 
 export default function RegisterTeacher () {
 
@@ -21,8 +20,6 @@ export default function RegisterTeacher () {
 
     const [isSuccess, setIsSuccess] = useState(false);
     const [successString, setSuccessString] = useState("");
-
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
     // generic handler for changing state
     // field is the exact state being changed

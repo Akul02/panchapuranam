@@ -1,5 +1,3 @@
-import React from 'react'
-
 import Select, { MultiValue, StylesConfig } from 'react-select'
 
 type OptionType = {

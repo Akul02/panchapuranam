@@ -1,6 +1,4 @@
-import React from 'react';
 import SectionHeader from "../../ui/SectionHeader";
-
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { CertificateDto } from "../../../types/certficateDto";
 import { PiCertificateBold } from "react-icons/pi";

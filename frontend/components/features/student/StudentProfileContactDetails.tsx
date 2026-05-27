@@ -1,9 +1,7 @@
-import React from 'react'
 import SectionHeader from "../../ui/SectionHeader"
 import { MdEmail } from "react-icons/md"
 import { GiGraduateCap } from "react-icons/gi"
 import { PiCertificateFill } from "react-icons/pi"
-
 import { StudentProfileDto } from "../../../types/student"
 
 export default function StudentProfileContactDetails({ student }: { student: StudentProfileDto }) {
