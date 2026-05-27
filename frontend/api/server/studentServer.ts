@@ -10,6 +10,15 @@ export async function getStudentProfile(studentId: string): Promise<StudentProfi
     return apiFetch(`/student/profile?uidString=${studentId}`, {
         headers: { "accept" : "application/json", Cookie: cookieHeader },
         method: "GET",
-        credentials: "include"
+    })
+}
+
+export async function getStudentAvailablePrograms(studentId: string): Promise<string[]> {
+    const cookieStore = await cookies();
+    const cookieHeader = cookieStore.toString();
+
+    return apiFetch(`/student/${studentId}/available-programs`, {
+        headers: { "accept" : "application/json", Cookie: cookieHeader },
+        method: "GET",
     })
 }

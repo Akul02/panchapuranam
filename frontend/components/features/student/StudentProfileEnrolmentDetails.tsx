@@ -9,7 +9,7 @@ import Modal from "../../ui/Modal"
 import StudentProgramEnrolment from "./StudentProgramEnrolment"
 import { useRouter } from "next/navigation"
 
-export default function StudentProfileEnrolmentDetails({ enrolments }: { enrolments: StudentProfileEnrolmentDto[] }) {
+export default function StudentProfileEnrolmentDetails({ enrolments, availablePrograms }: { enrolments: StudentProfileEnrolmentDto[], availablePrograms: string[] }) {
 
     const [showEnrolModal, setShowEnrolModal] = useState(false);
 
@@ -35,7 +35,7 @@ export default function StudentProfileEnrolmentDetails({ enrolments }: { enrolme
             <div className={`${showEnrolModal ? "block" : "hidden"}`}>
                 <Modal onClose={() => setShowEnrolModal(false)} title="Enrol into Program">
                     {/* instead of router refresh call getstudentprofile again and must link it back to the original state maybe a hook? */}
-                    <StudentProgramEnrolment currentEnrolments={enrolments} onSuccess={() => {refreshProfileAfterUpdate}}/>
+                    <StudentProgramEnrolment availablePrograms={availablePrograms} onSuccess={refreshProfileAfterUpdate}/>
                 </Modal>
             </div>
         </div>

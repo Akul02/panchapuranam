@@ -1,11 +1,13 @@
 import StudentProfileContactDetails from "./StudentProfileContactDetails";
 import StudentProfileEnrolmentDetails from "./StudentProfileEnrolmentDetails";
 import StudentProfileCertificates from "./StudentProfileCertificates";
-import { getStudentProfile } from "../../../api/server/studentServer";
+import { getStudentAvailablePrograms, getStudentProfile } from "../../../api/server/studentServer";
 
 export default async function StudentProfile({studentId} : {studentId : number}) {
 
     const student = await getStudentProfile(studentId.toString());
+
+    const availablePrograms = await getStudentAvailablePrograms(studentId.toString());
     
     return (
         <div className="flex justify-center w-screen">
@@ -33,7 +35,7 @@ export default async function StudentProfile({studentId} : {studentId : number})
                     <StudentProfileContactDetails student={student}/>
 
                     {/* enrolments */}
-                    <StudentProfileEnrolmentDetails enrolments={student?.enrolments}/>
+                    <StudentProfileEnrolmentDetails enrolments={student?.enrolments} availablePrograms={availablePrograms}/>
                     
                     {/* Certificates */}
                     <StudentProfileCertificates certificates={student.certificates}/>

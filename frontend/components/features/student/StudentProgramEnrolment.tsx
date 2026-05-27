@@ -8,7 +8,7 @@ import { MultiValue } from "react-select";
 import { getPrograms } from "../../../api/client/program";
 import { enrolStudentInProgram } from "../../../api/client/enrolment";
 
-export default function StudentProgramEnrolment( {currentEnrolments, onSuccess} : {currentEnrolments: StudentProfileEnrolmentDto[], onSuccess : () => void}) {
+export default function StudentProgramEnrolment( {availablePrograms, onSuccess} : {availablePrograms: string[], onSuccess : () => void}) {
 
     const [error, setError] = useState<string | null>(null);
     const [message, setMessage] = useState<string | null>(null);
@@ -16,19 +16,6 @@ export default function StudentProgramEnrolment( {currentEnrolments, onSuccess} 
     const [newPrograms, setNewPrograms] = useState<string[]>([]);
     const [programOptions, setProgramOptions] = useState<string[]>([]);    
 
-    useEffect(() => {
-        getPrograms()
-            .then(allPrograms => {
-                // for each program go through current enrolments, to see if it is there, if it is not, the program is available
-                const availablePrograms = allPrograms.filter(p => !currentEnrolments.some(e => e.programName === p));
-                if (availablePrograms.length >= 1) {
-                    setProgramOptions(availablePrograms);
-                } else {
-                    setMessage("Already enrolled in all programs");
-                }
-            })
-            .catch(err => {setError(err.message); console.log(err)});
-    }, []);
 
     const handleSelectInput = (selected : MultiValue<{value : string, label : string}>) => {
         const programs = selected.map((item) => item.value);
@@ -64,8 +51,9 @@ export default function StudentProgramEnrolment( {currentEnrolments, onSuccess} 
         <div className="">
             {error && <p className="text-red-400 text-xs mt-1">{error}</p>}
             {/* revisit text colour when making colour pallete */}
-            {message && <p className="text-primary text-sm font-semibold mb-1">{message}</p>} 
-            <StyledSelect options={programOptions?.map(p => ({value: p, label: p}))} handleSelectInput={handleSelectInput} instanceId="programEnrolments" label="Select Programs"/>
+            {message && <p className="text-primary text-sm font-semibold mb-1">{message}</p>}
+            {availablePrograms.length == 0 ? <p className="text-primary text-sm font-semibold mb-1">Student already enrolled in all programs</p> : null} 
+            <StyledSelect options={availablePrograms.map(p => ({value: p, label: p}))} handleSelectInput={handleSelectInput} instanceId="programEnrolments" label="Select Programs"/>
             <div className="w-full flex justify-center">
                 <button onClick={handleConfirm} className="w-1/2 mt-2 bg-primary text-secondary font-bold text-sm py-2.5 rounded-md hover:bg-secondary hover:text-primary transition-colors">
                     Confirm Enrolment

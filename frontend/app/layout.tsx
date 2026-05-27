@@ -20,7 +20,6 @@ export default async function RootLayout({
 }>) {
 
   const session = await getUserSessionServer();
-  console.log(session);
 
   return (
     <html lang="en" className="scroll-smooth">
