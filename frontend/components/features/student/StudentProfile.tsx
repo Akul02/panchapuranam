@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react'
 import { StudentProfileDto } from "../../../types/student";
-
 import StudentProfileContactDetails from "./StudentProfileContactDetails";
 import StudentProfileEnrolmentDetails from "./StudentProfileEnrolmentDetails";
 import StudentProfileCertificates from "./StudentProfileCertificates";

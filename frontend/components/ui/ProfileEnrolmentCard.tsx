@@ -2,10 +2,8 @@
 
 import { useState } from 'react'
 import { StudentProfileEnrolmentDto } from "../../types/student"
-
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { MdOutlineKeyboardArrowUp } from "react-icons/md";
-
 
 export default function ProfileEnrolmentCard({ enrolment }: { enrolment: StudentProfileEnrolmentDto }) {
 
