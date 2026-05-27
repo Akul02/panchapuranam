@@ -1,25 +1,13 @@
 "use client"
 
-import { useEffect, useRef, useState } from 'react';
-import useLanguage from '../../../hooks/useLanguage';
+import { useRef } from 'react';
 import { Song } from '../../../types/song';
 import Audio from './Audio';
-import { getSongs } from "../../../api/songs";
 
-export default function Songs() {
-
-    const [songs, setSongs] = useState<Song[]>([]);
-    const [language] = useLanguage();
+export default function Songs({songs} : {songs: Song[]}) {
 
     const currentAudioRef = useRef(null);
-
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-
-    useEffect(() => {
-        getSongs(language)
-            .then((songs) => { setSongs(songs)})
-            .catch((err) => console.log(err instanceof Error ? err.message : "Something went wrong"));
-    }, [language]);
 
     return (
         <div className="flex flex-col items-center gap-y-8 mt-8 mb-20 w-full">

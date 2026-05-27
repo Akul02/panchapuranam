@@ -7,8 +7,9 @@ import { IoMusicalNote } from "react-icons/io5";
 import { PiArrowFatLinesDownDuotone } from "react-icons/pi";
 import Language from "../features/songs/Language";
 import Songs from "../features/songs/Songs";
+import { Song } from "../../types/song";
 
-export default function HomeClient() {
+export default function HomeClient({songs} : {songs: Song[]}) {
     const songsRef = useRef<HTMLDivElement | null>(null);
 
     const goToSongs = () => {
@@ -42,7 +43,7 @@ export default function HomeClient() {
                     issuing a certificate. Contact us when you are ready. No age limit.
                 </div>
                 <Language />
-                <Songs />
+                <Songs songs={songs} />
             </div>
         </div>
     );
