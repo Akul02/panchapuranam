@@ -9,7 +9,7 @@ import SimpleTextField from '../../ui/SimpleTextField';
 import PasswordPrompt from './PasswordPrompt';
 import Form from '../../ui/Form';
 import SubmitButton from '../../ui/FormSubmitButton';
-import { getUserSession, login } from "../../../api/auth";
+import { getUserSession, login } from "../../../api/client/auth";
 
 
 

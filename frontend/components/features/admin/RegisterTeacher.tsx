@@ -4,7 +4,7 @@ import { FormEvent, useState } from "react";
 import SimpleTextField from "../../ui/SimpleTextField";
 import Form from "../../ui/Form";
 import SubmitButton from "../../ui/FormSubmitButton";
-import { registerTeacher } from "../../../api/teacher";
+import { registerTeacher } from "../../../api/client/teacher";
 
 export default function RegisterTeacher () {
 

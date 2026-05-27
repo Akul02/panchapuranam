@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from 'react'
 import { FaSearch } from "react-icons/fa";
 import { StudentSearchResult } from "../../../types/student";
-import { searchStudentDirectory } from "../../../api/student";
+import { searchStudentDirectory } from "../../../api/client/student";
 
 export default function StudentDirectory() {
 

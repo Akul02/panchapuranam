@@ -3,7 +3,7 @@ import SimpleTextField from "../../ui/SimpleTextField";
 import { useRouter } from "next/navigation";
 import Form from "../../ui/Form";
 import SubmitButton from "../../ui/FormSubmitButton";
-import { changePassword } from "../../../api/auth";
+import { changePassword } from "../../../api/client/auth";
 
 export default function PasswordPrompt () {
 

@@ -1,5 +1,5 @@
-import { SuccessResponse } from "../types/apiResponse";
-import { apiFetch } from "./client";
+import { SuccessResponse } from "../../types/apiResponse";
+import { apiFetch } from "../client";
 
 
 export async function enrolStudentInProgram(

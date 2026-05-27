@@ -2,7 +2,7 @@ import { useRouter } from "next/navigation";
 import { UserRole } from "../../../constants/global";
 import useUser from "../../../hooks/useUser";
 import NavButton from "../../ui/NavButton";
-import { logout } from "../../../api/auth";
+import { logout } from "../../../api/client/auth";
 
 export default function Logout () {
 

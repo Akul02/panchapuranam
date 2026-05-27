@@ -1,14 +1,6 @@
-import { SuccessResponse } from "../types/apiResponse";
-import { StudentProfileDto, StudentRegisterData, StudentSearchResult } from "../types/student";
-import { apiFetch } from "./client";
-
-export async function getStudentProfile(studentId: string): Promise<StudentProfileDto> {
-    return apiFetch(`/student/profile?uidString=${studentId}`, {
-        headers: { "accept" : "application/json" },
-        method: "GET",
-        credentials: "include"
-    })
-}
+import { SuccessResponse } from "../../types/apiResponse";
+import { StudentRegisterData, StudentSearchResult } from "../../types/student";
+import { apiFetch } from "../client";
 
 export async function searchStudentDirectory(searchBarValue: string): Promise<StudentSearchResult[]> {
     return apiFetch(`/student/search?searchString=${searchBarValue}`, {method: "GET", credentials: "include"});

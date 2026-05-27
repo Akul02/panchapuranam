@@ -1,7 +1,7 @@
 import { PiLineVerticalBold } from "react-icons/pi";
 import StudentCounter from "../features/counter/studentCounter";
 import Link from "next/link";
-import { certificatesCount } from "../../api/certificate";
+import { certificatesCount } from "../../api/client/certificate";
 
 export default async function Footer() {
 

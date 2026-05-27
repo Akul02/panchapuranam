@@ -6,26 +6,31 @@ import LanguageProvider from "../context/LanguageContext";
 import Navbar from "../components/layout/Navbar";
 import UserProvider from "../context/UserContext";
 import StudentCounter from "../components/features/counter/studentCounter";
+import { getUserSessionServer } from "../api/server/authServer";
 
 export const metadata: Metadata = {
   title: "Panchapuranam Home",
   description: "",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  const session = await getUserSessionServer();
+  console.log(session);
+
   return (
     <html lang="en" className="scroll-smooth">
       <body className="bg-[#F4F4E8]">
         <LanguageProvider>
-            <UserProvider>
-                {/* <StudentCounter/> */}
-                {children}
+          <UserProvider initialUserRole={session.role}>
+            {/* <StudentCounter/> */}
+            {children}
 
-            </UserProvider>
+          </UserProvider>
         </LanguageProvider>
       </body>
     </html>

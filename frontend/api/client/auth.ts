@@ -1,5 +1,5 @@
-import { Session } from "../types/session";
-import { apiFetch } from "./client";
+import { Session } from "../../types/session";
+import { apiFetch } from "../client";
 
 export async function login (emailString: string, passwordString: string): Promise<String> {
     return apiFetch("/login", {

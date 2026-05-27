@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import SubmitButton from '../../ui/FormSubmitButton';
 import Form from '../../ui/Form';
 import { CertificateDto } from "../../../types/certficateDto";
-import { downloadCertificates } from "../../../api/certificate";
+import { downloadCertificates } from "../../../api/client/certificate";
 
 export default function Download() {
 

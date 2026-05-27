@@ -5,8 +5,8 @@ import StyledSelect from "../../ui/StyledSelect";
 import { StudentProfileEnrolmentDto } from "../../../types/student";
 import { useParams } from "next/navigation";
 import { MultiValue } from "react-select";
-import { getPrograms } from "../../../api/program";
-import { enrolStudentInProgram } from "../../../api/enrolment";
+import { getPrograms } from "../../../api/client/program";
+import { enrolStudentInProgram } from "../../../api/client/enrolment";
 
 export default function StudentProgramEnrolment( {currentEnrolments, onSuccess} : {currentEnrolments: StudentProfileEnrolmentDto[], onSuccess : () => void}) {
 

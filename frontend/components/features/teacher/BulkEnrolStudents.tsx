@@ -3,7 +3,7 @@
 import { FormEvent, useRef, useState } from 'react'
 import Form from '../../ui/Form';
 import SubmitButton from '../../ui/FormSubmitButton';
-import { bulkRegisterStudents } from "../../../api/student";
+import { bulkRegisterStudents } from "../../../api/client/student";
 
 export default function BulkEnrolStudents() {
 

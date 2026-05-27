@@ -6,7 +6,7 @@ import SimpleTextField from '../../ui/SimpleTextField'
 import Form from '../../ui/Form';
 import SubmitButton from '../../ui/FormSubmitButton';
 import { Programs } from '../../../constants/global';
-import { registerStudent } from "../../../api/student";
+import { registerStudent } from "../../../api/client/student";
 
 export default function RegisterStudent() {
 
