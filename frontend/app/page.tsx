@@ -1,71 +1,17 @@
-"use client"
 
-import { ReactElement, useRef, useState } from "react";
-import {Merriweather} from "next/font/google";
-
-import { RxDoubleArrowDown } from "react-icons/rx";
-import { FaScroll } from "react-icons/fa";
-import { PiLineVerticalBold } from "react-icons/pi";
-import { PiArrowFatLinesDownDuotone } from "react-icons/pi";
-import { IoMusicalNote } from "react-icons/io5";
-
-
-
-
-import Songs from "../components/features/songs/Songs";
-import Navbar from "../components/layout/Navbar";
-import Language from "../components/features/songs/Language";
 import { UserRole } from "../constants/global";
-import useUser from "../hooks/useUser";
-import Hero from "../components/sections/Hero";
 import Footer from "../components/layout/Footer";
-import Login from "../components/features/auth/Login";
+import { getUserSession } from "../api/auth";
+import HomeClient from "../components/sections/HomeClient";
 
+export default async function Home() {
 
-const merriweather = Merriweather({
-    subsets:["latin"],
-    weight:["900"],
-})
-
-export default function Home() {
-    const [userRole] = useUser();
-
-    const songsRef = useRef<HTMLDivElement | null>(null);
-
-    const goToSongs = () => {
-        songsRef.current?.scrollIntoView({behavior: "smooth"})
-    }
+    const session = await getUserSession();
 
   return (
     <div className="text-[#333333] w-full">
-        {/* home page component */}
-        <div className="flex flex-col items-center justify-between h-screen">
-            <Navbar showDashButton={true}/> 
-            <Hero/>
-            <div className="cursor-pointer" onClick={goToSongs}>
-                <p className="italic text-primary text-center font-semibold">Begin Listening</p>
-                <div className="flex items-center animate-pulse">
-                    <IoMusicalNote size={40} color="#6E3227"/>
-                    <PiArrowFatLinesDownDuotone size={40} color="#6E3227"/>
-                    <IoMusicalNote size={40} color="#6E3227"/>
-                </div>
-                
-            </div>
-            {/* sticky footer placeholder h-28 is the height of the footer*/}
-            <div className="invisible h-28"></div>
-        </div>
-
-        {/* songs component */}
-        <div ref={songsRef} className="flex flex-col items-center w-full">
-            <div className="text-[#6E3326] italic text-center text-base mt-4 mx-2 md:mt-8 md:mx-4 md:text-lg">
-                If you have memorised and sung the below 5 songs, we will honor you by issuing a certificate. Contact us when you are ready. No age limit.
-            </div>
-            <Language/>
-            <Songs/>
-        </div>
-        
-        {/* footer component */}
-        {userRole == UserRole.NO_USER ? <Footer/> : null }
+        <HomeClient/>
+        {session.role == UserRole.NO_USER ? <Footer/> : null }
 
     </div>
   );
