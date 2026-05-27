@@ -15,6 +15,11 @@ export default function StudentProfileEnrolmentDetails({ enrolments }: { enrolme
 
     const router = useRouter();
 
+    const refreshProfileAfterUpdate = () => {
+        setShowEnrolModal(false);
+        router.refresh();
+    }
+
     return (
         <div className="flex flex-col space-y-2">
             <SectionHeader title="Enrolments">
@@ -30,7 +35,7 @@ export default function StudentProfileEnrolmentDetails({ enrolments }: { enrolme
             <div className={`${showEnrolModal ? "block" : "hidden"}`}>
                 <Modal onClose={() => setShowEnrolModal(false)} title="Enrol into Program">
                     {/* instead of router refresh call getstudentprofile again and must link it back to the original state maybe a hook? */}
-                    <StudentProgramEnrolment currentEnrolments={enrolments} onSuccess={() => {setShowEnrolModal(false); router.refresh();}}/>
+                    <StudentProgramEnrolment currentEnrolments={enrolments} onSuccess={() => {refreshProfileAfterUpdate}}/>
                 </Modal>
             </div>
         </div>
