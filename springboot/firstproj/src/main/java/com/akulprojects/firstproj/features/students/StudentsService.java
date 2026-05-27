@@ -1,12 +1,14 @@
 package com.akulprojects.firstproj.features.students;
 
-import com.akulprojects.firstproj.features.audio.AudioController;
 import com.akulprojects.firstproj.features.enrolments.Enrolments;
 import com.akulprojects.firstproj.features.enrolments.EnrolmentsService;
+import com.akulprojects.firstproj.features.programs.Programs;
+import com.akulprojects.firstproj.features.programs.ProgramsRepo;
+import com.akulprojects.firstproj.features.programs.ProgramsService;
+
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.dao.DataAccessException;
@@ -16,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.akulprojects.firstproj.apidto.ApiResponses.SuccessResponse;
 import com.akulprojects.firstproj.exception.ConflictException;
 import com.akulprojects.firstproj.exception.ForbiddenException;
+import com.akulprojects.firstproj.exception.ResourceNotFoundException;
 import com.akulprojects.firstproj.features.auth.JwtUtil;
 import com.akulprojects.firstproj.features.certificates.CertificatesService;
 import com.akulprojects.firstproj.features.students.dtos.StudentsSearchDto;
@@ -38,13 +41,15 @@ public class StudentsService {
     private final JwtUtil jwtUtil;
     private final CustomizedStudentsRepo batchUpdateRepo;
     private final CertificatesService certificatesService;
+    private final ProgramsRepo programsRepo;
 
-    public StudentsService(StudentsRepo studentsRepo, JwtUtil jwtUtil, CustomizedStudentsRepo batchUpdatRepo, EnrolmentsService enrolmentsService, CertificatesService certificatesService) {
+    public StudentsService(StudentsRepo studentsRepo, JwtUtil jwtUtil, CustomizedStudentsRepo batchUpdatRepo, EnrolmentsService enrolmentsService, CertificatesService certificatesService, ProgramsRepo programsRepo) {
         this.studentsRepo = studentsRepo;
         this.jwtUtil = jwtUtil;
         this.batchUpdateRepo = batchUpdatRepo;
         this.enrolmentsService = enrolmentsService;
         this.certificatesService = certificatesService;
+        this.programsRepo = programsRepo;
     }
 
     public SuccessResponse registerStudent(StudentsSignUpDto signUpInfo, String cookie) {
@@ -151,7 +156,8 @@ public class StudentsService {
             throw new ForbiddenException("do not have permission to view a student");
         }
 
-        Students student = studentsRepo.getReferenceById(Integer.valueOf(uidString));
+        Students student = studentsRepo.findById(Integer.valueOf(uidString))
+                            .orElseThrow(() -> new ResourceNotFoundException("id does not correspond to a student"));
 
         List<StudentProfileEnrolmentDto> enrolments = new ArrayList<>();
         for (Enrolments enrolment : student.getEnrolments()) {
@@ -169,5 +175,21 @@ public class StudentsService {
 
         return profileDto;
 
+    }
+
+    public List<String> getStudentsAvailableProgramsList(String studentIdString, String cookie) {
+        
+        DecodedJWT decodedJWT = jwtUtil.extractJwtFromCookie(cookie);
+        if (!jwtUtil.checkPermissions(decodedJWT, Role.TEACHER)) {
+            throw new ForbiddenException("do not have permission to view a student");
+        }
+        
+        if (!studentsRepo.existsById(Integer.valueOf(studentIdString))) {
+            throw new ResourceNotFoundException("id does not correspond to a student");
+        }
+    
+        List<Programs> availablePrograms = programsRepo.findProgramsStudentIsNotEnrolledIn(Integer.valueOf(studentIdString));
+
+        return availablePrograms.stream().map((program) -> program.getName()).toList();
     }
 }

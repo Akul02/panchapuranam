@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 
 @RestController
@@ -43,9 +44,15 @@ public class StudentsController {
     }
 
     @GetMapping("/profile")
-    public StudentProfileDto getMethodName(@RequestParam String uidString, @CookieValue(name = "AUTH_TOKEN", required = false) String cookie) {
+    public StudentProfileDto getStudentProfile(@RequestParam String uidString, @CookieValue(name = "AUTH_TOKEN", required = false) String cookie) {
         return studentsService.getStudentProfile(uidString, cookie);
     }
+
+    @GetMapping("/{id}/available-programs")
+    public List<String> getStudentAvailablePrograms(@PathVariable String id, @CookieValue(name = "AUTH_TOKEN", required = false) String cookie) {
+        return studentsService.getStudentsAvailableProgramsList(id, cookie);
+    }
+    
     
     
     
