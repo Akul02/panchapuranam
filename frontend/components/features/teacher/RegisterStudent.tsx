@@ -1,26 +1,20 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import Select, { MultiValue } from "react-select";
+import { MultiValue } from "react-select";
 import SimpleTextField from "../../ui/form/SimpleTextField";
 import Form from "../../ui/form/Form";
-import { Programs } from "../../../constants/global";
 import { registerStudent } from "../../../api/client/student";
 import SubmitButton from "../../ui/buttons/SubmitButton";
 import StyledSelect from "../../ui/form/StyledSelect";
 
-export default function RegisterStudent() {
+export default function RegisterStudent( {availablePrograms} : {availablePrograms: string[]}) {
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
         email: "",
         programNames: [] as string[],
     });
-
-    const options = Object.values(Programs).map((program) => ({
-        value: program,
-        label: program,
-    }));
 
     const [isError, setIsError] = useState(false);
     const [errorString, setErrorString] = useState("");
@@ -99,7 +93,7 @@ export default function RegisterStudent() {
                     onChange={(val: string) => handleChange("email", val)}
                 />
                 <StyledSelect
-                    options={options}
+                    options={availablePrograms.map((p) => ({ value: p, label: p }))}
                     handleSelectInput={handleSelectChange}
                     instanceId="programs-select"
                     label="Select Programs"

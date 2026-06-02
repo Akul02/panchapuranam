@@ -3,9 +3,7 @@ import "../styles/globals.css";
 
 //  components
 import LanguageProvider from "../context/LanguageContext";
-import Navbar from "../components/layout/Navbar";
 import UserProvider from "../context/UserContext";
-import StudentCounter from "../components/features/counter/studentCounter";
 import { getUserSessionServer } from "../api/server/authServer";
 
 export const metadata: Metadata = {

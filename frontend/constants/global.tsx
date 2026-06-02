@@ -10,9 +10,4 @@ enum UserRole {
     NO_USER = "NO_USER"
 }
 
-enum Programs {
-    PANCHAPURANAM = "panchapuranam",
-    PROGRAM1 = "program1"
-}
-
-export {languages, UserRole, Programs}
+export {languages, UserRole}
