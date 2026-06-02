@@ -5,11 +5,11 @@ import { FormEvent, useState } from 'react';
 
 import useUser from '../../../hooks/useUser';
 import { UserRole } from '../../../constants/global';
-import SimpleTextField from '../../ui/SimpleTextField';
+import SimpleTextField from '../../ui/form/SimpleTextField';
 import PasswordPrompt from './PasswordPrompt';
-import Form from '../../ui/Form';
-import SubmitButton from '../../ui/FormSubmitButton';
+import Form from '../../ui/form/Form';
 import { getUserSession, login } from "../../../api/client/auth";
+import SubmitButton from "../../ui/buttons/SubmitButton";
 
 
 
@@ -72,12 +72,12 @@ export default function Login () {
     }
 
     return (
-        <div>
+        <div className="h-full flex justify-center items-center">
             <Form handleSubmit={handleSubmit} formHeading="Teacher Login" isError={isError} errorString={errorString}>
                 <SimpleTextField type="email" input="email" value={emailString} isError={isError} onChange={setEmailString}/>
                 {/* hardcoded id also present in passwordprompt file */}
                 <SimpleTextField type="password" input="password" value={passwordString} id={"1"} isError={isError} onChange={setPasswordString}/>
-                <SubmitButton>Log In</SubmitButton>
+                <SubmitButton className="w-3/4">Log In</SubmitButton>
             </Form>
             {/* might need to comeback to the bg inherit  */}
             <div className={`fixed h-full w-full bg-inherit ${isFirstLogin ? "" : "hidden"}`}>

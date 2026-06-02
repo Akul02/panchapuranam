@@ -1,11 +1,11 @@
 "use client"
 
 import { useState } from 'react'
-import { StudentProfileEnrolmentDto } from "../../types/student"
+import { StudentProfileEnrolmentDto } from "../../../../types/student"
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { MdOutlineKeyboardArrowUp } from "react-icons/md";
 
-export default function ProfileEnrolmentCard({ enrolment }: { enrolment: StudentProfileEnrolmentDto }) {
+export default function ProgramInfoCard ({ enrolment }: { enrolment: StudentProfileEnrolmentDto }) {
 
     const [showDetails, setShowDetails] = useState(false);
 

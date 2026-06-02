@@ -1,13 +1,13 @@
 "use client"
 
 import { FormEvent, useState } from 'react'
-import SimpleTextField from '../../ui/SimpleTextField';
+import SimpleTextField from '../../ui/form/SimpleTextField';
 import { IoCloseCircleOutline } from 'react-icons/io5';
 import { useRouter } from 'next/navigation';
-import SubmitButton from '../../ui/FormSubmitButton';
-import Form from '../../ui/Form';
+import Form from '../../ui/form/Form';
 import { CertificateDto } from "../../../types/certficateDto";
 import { downloadCertificates } from "../../../api/client/certificate";
+import SubmitButton from "../../ui/buttons/SubmitButton";
 
 export default function Download() {
 
@@ -48,12 +48,12 @@ export default function Download() {
     }
 
     return (
-        <div>
-            <div className={showUrls ? "hidden" : ""}>
+        <div className="h-full">
+            <div className={`h-full flex justify-center items-center ${showUrls ? "hidden" : ""}`}>
                 <Form handleSubmit={handleSubmit} formHeading="Certificate Download" isError={isError} errorString={errorString}>
-                    <p className="mb-5 text-secondary">Enter your email to retrieve your certificates</p>
+                    <p className="text-primary">Enter your email to retrieve your certificates</p>
                     <SimpleTextField type="email" input="email" value={emailString} id={undefined} isError={isError} onChange={setEmailString}/>
-                    <SubmitButton>Submit</SubmitButton>
+                    <SubmitButton className="w-3/4 mt-4">Submit</SubmitButton>
                 </Form>
             </div>
 

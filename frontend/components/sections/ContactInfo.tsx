@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { MdOutlineEmail } from "react-icons/md";
-import NavButton from "../ui/NavButton";
+import NavButton from "../ui/buttons/NavButton";
 
 export default function Contact () {
     const [isOpen, setIsOpen] = useState(false)

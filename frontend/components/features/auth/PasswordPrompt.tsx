@@ -1,9 +1,9 @@
 import { FormEvent, useState } from "react";
-import SimpleTextField from "../../ui/SimpleTextField";
+import SimpleTextField from "../../ui/form/SimpleTextField";
 import { useRouter } from "next/navigation";
-import Form from "../../ui/Form";
-import SubmitButton from "../../ui/FormSubmitButton";
+import Form from "../../ui/form/Form";
 import { changePassword } from "../../../api/client/auth";
+import SubmitButton from "../../ui/buttons/SubmitButton";
 
 export default function PasswordPrompt () {
 
@@ -41,7 +41,7 @@ export default function PasswordPrompt () {
             {/* hardcoded id also present in login */}
             <SimpleTextField type="password" input="password" value={password1String} id={"2"} isError={isError} onChange={setPassword1String}/>
             <SimpleTextField type="password" input="password" value={password2String} id={"3"} isError={isError} onChange={setPassword2String}/>
-            <SubmitButton>Submit</SubmitButton>
+            <SubmitButton className="w-3/4">Change Password</SubmitButton>
         </Form>
     )
 }   

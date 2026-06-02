@@ -1,7 +1,7 @@
-import SectionHeader from "../../ui/SectionHeader";
 import { FaExternalLinkAlt } from "react-icons/fa";
-import { CertificateDto } from "../../../types/certficateDto";
 import { PiCertificateBold } from "react-icons/pi";
+import { CertificateDto } from "../../../../types/certficateDto";
+import SectionHeader from "../../../ui/SectionHeader";
 
 
 export default function StudentProfileCertificates({ certificates }: { certificates: CertificateDto[] }) {

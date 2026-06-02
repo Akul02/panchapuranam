@@ -1,13 +1,12 @@
 "use client"
 
 import { useState } from 'react'
-import SectionHeader from "../../ui/SectionHeader"
-import { StudentProfileEnrolmentDto } from "../../../types/student"
-import ProfileEnrolmentCard from "../../ui/ProfileEnrolmentCard"
 import { FaRegSquarePlus } from "react-icons/fa6";
-import Modal from "../../ui/Modal"
-import StudentProgramEnrolment from "./StudentProgramEnrolment"
 import { useRouter } from "next/navigation"
+import { StudentProfileEnrolmentDto } from "../../../../types/student";
+import SectionHeader from "../../../ui/SectionHeader";
+import StudentProgramEnrolment from "./StudentProgramEnrolment";
+import ProgramInfoCard from "./ProgramInfoCard";
 
 export default function StudentProfileEnrolmentDetails({ enrolments, availablePrograms }: { enrolments: StudentProfileEnrolmentDto[], availablePrograms: string[] }) {
 
@@ -29,15 +28,11 @@ export default function StudentProfileEnrolmentDetails({ enrolments, availablePr
             </SectionHeader>
             {enrolments.map((enrolment) => (
                 <div key={enrolment.id}>
-                    <ProfileEnrolmentCard enrolment={enrolment} />
+                    <ProgramInfoCard enrolment={enrolment} />
                 </div>
             ))}
-            <div className={`${showEnrolModal ? "block" : "hidden"}`}>
-                <Modal onClose={() => setShowEnrolModal(false)} title="Enrol into Program">
-                    {/* instead of router refresh call getstudentprofile again and must link it back to the original state maybe a hook? */}
-                    <StudentProgramEnrolment availablePrograms={availablePrograms} onSuccess={refreshProfileAfterUpdate}/>
-                </Modal>
-            </div>
+            {/* instead of router refresh call getstudentprofile again and must link it back to the original state maybe a hook? */}
+            <StudentProgramEnrolment showEnrolModal={showEnrolModal} setShowEnrolModal={setShowEnrolModal} availablePrograms={availablePrograms} onSuccess={refreshProfileAfterUpdate}/>
         </div>
     )
 }

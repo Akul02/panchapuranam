@@ -10,12 +10,11 @@ type FunctionProps = {
 
 export default function SimpleTextField ({ type, input, value, onChange, isError, id = ""}: FunctionProps) {
     return (
-        <div className="mb-8 w-full flex justify-center">
-            <label htmlFor={`${input}_input`}/>
-            <input className={`w-3/5 bg-secondary text-primary font-medium rounded-md pl-2 placeholder-primary ${isError ? "border border-solid border-red-600" : ""}`} 
+        <div className="flex flex-col w-full">
+            <label htmlFor={`${input}_input`} className="block text-xs font-bold uppercase tracking-widest text-maroon/60 mb-1">{input}</label>
+            <input className={`bg-white text-primary border-primary border rounded-md pl-2 ${isError ? "border border-solid border-red-600" : ""}`} 
                 id={`${input}_input${id}`} 
                 type={`${type}`} 
-                placeholder={`enter ${input}`} 
                 value={value ?? ""} 
                 required onChange={(e) => onChange(e.target.value)}/>
         </div>

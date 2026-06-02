@@ -7,7 +7,7 @@ import useUser from "../../hooks/useUser";
 import Contact from "../sections/ContactInfo";
 import { UserRole } from "../../constants/global";
 import Logout from "../features/auth/Logout";
-import NavButton from "../ui/NavButton";
+import NavButton from "../ui/buttons/NavButton";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";

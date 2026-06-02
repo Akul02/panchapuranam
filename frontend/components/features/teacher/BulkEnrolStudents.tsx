@@ -1,9 +1,9 @@
 "use client"
 
 import { FormEvent, useRef, useState } from 'react'
-import Form from '../../ui/Form';
-import SubmitButton from '../../ui/FormSubmitButton';
+import Form from '../../ui/form/Form';
 import { bulkRegisterStudents } from "../../../api/client/student";
+import SubmitButton from '../../ui/buttons/SubmitButton';
 
 export default function BulkEnrolStudents() {
 
@@ -55,9 +55,16 @@ export default function BulkEnrolStudents() {
     }
 
     return (
-        <Form handleSubmit={handleSubmit} formHeading="Bulk Student Enrolment" isError={isError} errorString={errorString} isSuccess={isSuccess} successString={successString}>
-            <input className="bg-secondary text-primary rounded-md w-3/4 mb-10" type='file' accept='.csv' ref={fileInputRef} onChange={handleFileChange} />
-            <SubmitButton>Registers Students</SubmitButton>
-        </Form>
+        <div className="h-full flex items-center justify-center">
+            <Form handleSubmit={handleSubmit} formHeading="Bulk Student Enrolment" isError={isError} errorString={errorString} isSuccess={isSuccess} successString={successString}>
+                <div>
+                    <label htmlFor="file_input" className="block text-xs font-bold uppercase tracking-widest text-maroon/60 mb-1">Select File</label>
+                    <input className="bg-white border-primary border text-primary rounded-md w-full" type='file' accept='.csv' ref={fileInputRef} onChange={handleFileChange} />
+                </div>
+                
+                <SubmitButton className="mt-6 w-3/4">Register Students</SubmitButton>
+            </Form>
+        </div>
+            
     )
 }

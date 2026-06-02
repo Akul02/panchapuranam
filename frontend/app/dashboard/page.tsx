@@ -2,11 +2,11 @@
 
 import { useRef, useState } from 'react'
 import Navbar from '../../components/layout/Navbar'
-import DashboardCard from '../../components/ui/DashboardCard'
-import DashboardMenu from '../../components/ui/DashboardMenu'
-import NavButton from "../../components/ui/NavButton"
+import DashboardCard from '../../components/ui/cards/DashboardCard'
+import NavButton from "../../components/ui/buttons/NavButton"
 import StudentDirectory from "../../components/features/student/StudentDirectory"
 import Link from "next/link"
+import DashboardMenu from "../../components/features/dashboard/DashboardMenu"
 
 export default function page() {
 

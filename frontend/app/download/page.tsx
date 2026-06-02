@@ -3,7 +3,7 @@ import Navbar from "../../components/layout/Navbar"
 
 export default function page() {
   return (
-    <div>
+    <div className="h-screen flex flex-col">
         <Navbar/>
         <Download/>
     </div>

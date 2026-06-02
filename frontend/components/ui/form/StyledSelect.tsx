@@ -75,8 +75,8 @@ export default function StyledSelect({ options, handleSelectInput, error, instan
     label: string
 }) {
     return (
-        <div>
-            <label className="block text-xs font-bold uppercase tracking-widest text-maroon/60 mb-2">
+        <div className="w-full">
+            <label className="block text-xs font-bold uppercase tracking-widest text-maroon/60 mb-1">
                 {label}
             </label>
             <Select

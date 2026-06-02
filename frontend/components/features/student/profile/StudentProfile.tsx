@@ -1,7 +1,9 @@
+import { getStudentAvailablePrograms, getStudentProfile } from "../../../../api/server/studentServer";
+import StyledPageCard from "../../../ui/cards/StyledPageCard";
+import StudentProfileCertificates from "./StudentProfileCertificates";
 import StudentProfileContactDetails from "./StudentProfileContactDetails";
 import StudentProfileEnrolmentDetails from "./StudentProfileEnrolmentDetails";
-import StudentProfileCertificates from "./StudentProfileCertificates";
-import { getStudentAvailablePrograms, getStudentProfile } from "../../../api/server/studentServer";
+
 
 export default async function StudentProfile({studentId} : {studentId : number}) {
 
@@ -11,9 +13,7 @@ export default async function StudentProfile({studentId} : {studentId : number})
     
     return (
         <div className="flex justify-center w-screen">
-            <div className="bg-white border-2 border-primary rounded-md shadow-[0_4px_8px_0_rgba(0,0,0,0.2),_0_6px_20px_0_rgba(0,0,0,0.19)] w-[80%] mt-8 sm:mt-16 md:w-[70%] lg:w-[60%] lg:mt-32 2xl:w-[40%] 2xl:mt-40">
-
-                <div className="h-1.5 bg-primary"/>
+            <StyledPageCard className="w-[80%] mt-8 sm:mt-16 md:w-[70%] lg:w-[60%] lg:mt-32 2xl:w-[40%] 2xl:mt-40">
 
                 <div className="p-6 flex flex-col space-y-4">
 
@@ -41,7 +41,7 @@ export default async function StudentProfile({studentId} : {studentId : number})
                     <StudentProfileCertificates certificates={student.certificates}/>
                 </div>
 
-            </div>
+            </StyledPageCard>
 
         </div>
     )

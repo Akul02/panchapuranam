@@ -1,11 +1,11 @@
-import BulkEnrolStudents from '../../../components/features/teacher/BulkEnrolStudents';
+import BulkEnrolStudents from "../../../components/features/teacher/BulkEnrolStudents";
 import Navbar from "../../../components/layout/Navbar";
 
-export default function bulk () {
+export default function bulk() {
     return (
-        <div>
+        <div className="flex flex-col h-screen">
             <Navbar showDashButton={true} />
-            <BulkEnrolStudents/>
+            <BulkEnrolStudents />
         </div>
-    )
+    );
 }
