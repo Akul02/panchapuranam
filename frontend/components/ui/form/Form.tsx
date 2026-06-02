@@ -30,7 +30,7 @@ export default function Form({handleSubmit, formHeading, isError, errorString, i
 
                 <div className="mt-4 flex flex-col items-center gap-6 px-12">
                     <div className="absolute right-1 top-1 p-3 cursor-pointer" onClick={handleOnClick}>
-                    <IoCloseCircleOutline color="#6E3326" size={28} />
+                    <IoCloseCircleOutline className="text-primary" size={28} />
                     </div>
 
                     <h1 className="mt-2 font-bold text-2xl text-primary text-center">

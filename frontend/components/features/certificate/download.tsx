@@ -57,17 +57,17 @@ export default function Download() {
                 </Form>
             </div>
 
-            <div className={`${showUrls ? "" : "hidden"} flex flex-col items-center w-[350px] min-h-[400px] fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-xl bg-primary color-secondary shadow-[0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)]`}>
+            <div className={`${showUrls ? "" : "hidden"} flex flex-col items-center w-[350px] min-h-[400px] fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-xl bg-primary color-accent shadow-[0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)]`}>
                 
                 <div className="absolute right-2 top-2 cursor-pointer" onClick={() => router.back()}>
                     <IoCloseCircleOutline color="#CC9966" size={28} />
                 </div>
 
-                <p className="font-bold text-2xl text-secondary mt-10 mb-8 text-center">{successString}</p>
+                <p className="font-bold text-2xl text-accent mt-10 mb-8 text-center">{successString}</p>
 
                 <div className="max-h-60 overflow-y-scroll [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                     {certificates ? certificates.map((certificate) => (
-                    <div key={certificate.certUrl} className="mb-5 text-secondary px-4 py-1 border-2 rounded-md border-secondary hover:underline">
+                    <div key={certificate.certUrl} className="mb-5 text-accent px-4 py-1 border-2 rounded-md border-accent hover:underline">
                         <a className="" href={certificate.certUrl} target="_blank">{certificate.programName}.pdf</a>
                     </div>
                     )) : null}

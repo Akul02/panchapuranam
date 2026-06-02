@@ -40,16 +40,15 @@ export default function StudentDirectory() {
         <div className=" flex-1 flex flex-col">
             <div className="font-bold text-2xl text-primary text-center mt-4 mb-6">Student Directory</div>
             <div className="border-2 border-primary rounded-md mx-4 p-2 flex items-center">
-                <FaSearch color="#6E3326" className="shrink-0"/>
-                <input className="text-primary bg-[#F4F4E8] ml-2 px-1 flex-1 min-w-0" placeholder="enter student's name" value={searchBarValue} onChange={handleChange}/>
+                <FaSearch className="shrink-0 text-primary"/>
+                <input className="text-primary bg-base ml-2 px-1 flex-1 min-w-0" placeholder="enter student's name" value={searchBarValue} onChange={handleChange}/>
             </div>
             <div className="border-2 border-primary rounded-md flex-1 m-4">
                 {searchResults.map((student, index) => (
-                    // ${index != searchResults.length - 1 ? "border-b border-secondary border-opacity-30" : ""}
-                    <div key={student.id} className={`flex items-center justify-between gap-x-1 px-4 py-2 text-primary hover:bg-primary hover:text-[#F4F4E8] transition-colors duration-150 border-b border-primary border-opacity-30`}> 
+                    <div key={student.id} className={`flex items-center justify-between gap-x-1 px-4 py-2 text-primary hover:bg-primary hover:text-base transition-colors duration-150 border-b border-primary border-opacity-30`}> 
                         {student.name}
                         <Link href={`/student/${student.id}`}>
-                            <div className="whitespace-nowrap border-2 rounded-md px-2 py-1 border-primary bg-[#F4F4E8] text-primary font-semibold">
+                            <div className="whitespace-nowrap border-2 rounded-md px-2 py-1 border-primary bg-base text-primary font-semibold">
                                 View Profile
                             </div>
                         </Link>

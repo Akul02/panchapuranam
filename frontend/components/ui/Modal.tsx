@@ -9,7 +9,7 @@ export default function Modal( {onClose, title, className, children} : {onClose:
                     <div className="flex justify-between mb-2"> 
                         <h2 className="text-lg font-bold text-primary">{title}</h2>
                         <div onClick={onClose}>
-                            <CloseIcon size={26} color="#6E3326"/>
+                            <CloseIcon size={26} className="text-primary"/>
                         </div>
                     </div>
                     {children}

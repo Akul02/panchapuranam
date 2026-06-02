@@ -10,10 +10,10 @@ export default function StudentProfileCertificates({ certificates }: { certifica
             <SectionHeader title="Certificates" />
             {certificates.map((certificate, id) => (
                 <a key={id} href={certificate.certUrl}>
-                    <div className="w-full px-4 py-2 border border-primary rounded-md flex items-center gap-4">
-                        <PiCertificateBold color="#6E3326" size={22} />
+                    <div className="w-full px-4 py-2 bg-accent border border-primary rounded-md flex items-center gap-4">
+                        <PiCertificateBold className="text-primary" size={22} />
                         <div>{certificate.programName}.pdf</div>
-                        <div className="ml-auto"><FaExternalLinkAlt color="#6E3326" size={18} /></div>
+                        <div className="ml-auto"><FaExternalLinkAlt className="text-primary" size={18} /></div>
                     </div>
                 </a>
             ))}

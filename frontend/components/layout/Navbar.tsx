@@ -28,14 +28,13 @@ export default function Navbar ({showDashButton = false}: {showDashButton?:boole
     const router = useRouter();
 
     return (
-        // bg-primary text-secondary w-full h-20 grid grid-cols-5
         <div className={`w-full h-16 bg-primary flex flex-col ${isMenuOpen ? "h-fit" : ""} lg:h-20 lg:grid lg:grid-cols-5`}>
                 
                 <div className={`ml-4 mt-4 ${isMenuOpen ? "hidden" : ""} lg:hidden`} onClick={openMenu}>
-                    <RxHamburgerMenu size={30} color="#CC9966"/>
+                    <RxHamburgerMenu size={30} className="text-accent"/>
                 </div>
                 <div className={`mt-4 ml-4 mb-6 ${isMenuOpen ? "" : "hidden"} lg:hidden`} onClick={closeMenu}>
-                    <IoClose size={40} color="#CC9966" />
+                    <IoClose size={40} className="text-accent" />
                 </div>
 
                 <img className="h-16 lg:h-44 absolute left-1/2 -translate-x-1/2 cursor-pointer" src="/svglogotransparent.svg" onClick={() => router.push("/")} />

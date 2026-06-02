@@ -23,7 +23,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en" className="scroll-smooth">
-      <body className="bg-[#F4F4E8]">
+      <body className="bg-base">
         <LanguageProvider>
           <UserProvider initialUserRole={session.role}>
             {/* <StudentCounter/> */}

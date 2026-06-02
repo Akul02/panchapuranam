@@ -27,9 +27,9 @@ export default function HomeClient({songs} : {songs: Song[]}) {
                         Begin Listening
                     </p>
                     <div className="flex items-center animate-pulse">
-                        <IoMusicalNote size={40} color="#6E3227" />
-                        <PiArrowFatLinesDownDuotone size={40} color="#6E3227" />
-                        <IoMusicalNote size={40} color="#6E3227" />
+                        <IoMusicalNote size={40} className="text-primary" />
+                        <PiArrowFatLinesDownDuotone size={40} className="text-primary" />
+                        <IoMusicalNote size={40} className="text-primary" />
                     </div>
                 </div>
                 {/* sticky footer placeholder h-28 is the height of the footer*/}
@@ -38,7 +38,7 @@ export default function HomeClient({songs} : {songs: Song[]}) {
 
             {/* songs component */}
             <div ref={songsRef} className="flex flex-col items-center w-full">
-                <div className="text-[#6E3326] italic text-center text-base mt-4 mx-2 md:mt-8 md:mx-4 md:text-lg">
+                <div className="text-primary italic text-center text-base mt-4 mx-2 md:mt-8 md:mx-4 md:text-lg">
                     If you have memorised and sung the below 5 songs, we will honor you by
                     issuing a certificate. Contact us when you are ready. No age limit.
                 </div>

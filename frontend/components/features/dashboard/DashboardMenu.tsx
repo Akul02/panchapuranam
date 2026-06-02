@@ -6,7 +6,7 @@ export default function DashboardMenu({className, activePage, handleMenuClick} :
         <div className={`flex bg-primary ${className}`}>
             {tabs.map((tab, index) => (
                 <div key={tab} onClick={() => {handleMenuClick(index)}} 
-                    className={`px-5 py-3 text-secondary font-semibold text-sm border-b-2 ${activePage === index ? "border-secondary opacity-100" : "border-transparent opacity-60"}`}>
+                    className={`px-5 py-3 text-accent font-semibold text-sm border-b-2 ${activePage === index ? "border-accent opacity-100" : "border-transparent opacity-60"}`}>
                     {tab}
                 </div>
             ))}

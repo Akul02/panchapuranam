@@ -3,8 +3,8 @@
 import { FormEvent, useState } from "react";
 import SimpleTextField from "../../ui/form/SimpleTextField";
 import Form from "../../ui/form/Form";
-import SubmitButton from "../../ui/form/FormSubmitButton";
 import { registerTeacher } from "../../../api/client/teacher";
+import SubmitButton from "../../ui/buttons/SubmitButton";
 
 export default function RegisterTeacher () {
 
@@ -55,7 +55,7 @@ export default function RegisterTeacher () {
                 <SimpleTextField type="text" input="last name" value={formData.lastName} isError={false} onChange={(val : string) => handleChange("lastName", val)}/>
                 <SimpleTextField type="email" input="email" value={formData.email} isError={isError} onChange={(val : string) => handleChange("email", val)}/>
                 <SimpleTextField type="password" input="password" value={formData.password} isError={false} onChange={(val : string) => handleChange("password", val)}/>
-                <SubmitButton>Enrol Teacher</SubmitButton>
+                <SubmitButton className="w-3/4">Enrol Teacher</SubmitButton>
             </Form>
         </div>
         

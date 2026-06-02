@@ -23,7 +23,7 @@ export default function StudentProfileEnrolmentDetails({ enrolments, availablePr
         <div className="flex flex-col space-y-2">
             <SectionHeader title="Enrolments">
                 <div onClick={() => setShowEnrolModal(true)}>
-                    <FaRegSquarePlus size={20} color="#6E3326"/>
+                    <FaRegSquarePlus size={20} className="text-primary"/>
                 </div>
             </SectionHeader>
             {enrolments.map((enrolment) => (

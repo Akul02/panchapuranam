@@ -11,9 +11,9 @@ export default function StudentProfileContactDetails({ student }: { student: Stu
             <div className="grid grid-cols-[30px_90px_1fr] grid-rows-3 gap-2 overflow-x-auto mt-1">
 
                 {/* col one */}
-                <div className="col-start-1 row-start-1 self-center"><MdEmail color="#6E3326" size={22} /></div>
-                <div className="col-start-1 row-start-2 self-center"><GiGraduateCap color="#6E3326" size={22} /></div>
-                <div className="col-start-1 row-start-3 self-center"><PiCertificateFill color="#6E3326" size={22} /></div>
+                <div className="col-start-1 row-start-1 self-center"><MdEmail className="text-primary" size={22} /></div>
+                <div className="col-start-1 row-start-2 self-center"><GiGraduateCap className="text-primary" size={22} /></div>
+                <div className="col-start-1 row-start-3 self-center"><PiCertificateFill className="text-primary" size={22} /></div>
 
                 {/* col two */}
                 <div className="col-start-2 row-start-1 self-center">Email</div>
