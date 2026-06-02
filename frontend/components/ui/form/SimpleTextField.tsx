@@ -12,7 +12,7 @@ export default function SimpleTextField ({ type, input, value, onChange, isError
     return (
         <div className="flex flex-col w-full">
             <label htmlFor={`${input}_input`} className="block text-xs font-bold uppercase tracking-widest text-maroon/60 mb-1">{input}</label>
-            <input className={`bg-white text-primary border-primary border rounded-md pl-2 ${isError ? "border border-solid border-red-600" : ""}`} 
+            <input className={`bg-surface text-primary text-base border-primary border rounded-md pl-2 py-0.5 ${isError ? "border border-solid border-red-600" : ""}`} 
                 id={`${input}_input${id}`} 
                 type={`${type}`} 
                 value={value ?? ""} 
