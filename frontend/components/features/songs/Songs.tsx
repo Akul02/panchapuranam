@@ -16,7 +16,7 @@ export default function Songs({songs} : {songs: Song[]}) {
                     <p className='text-2xl lg:text-3xl font-bold'>{song.title} </p>
                     {song.verse.map((line, index) => (
                         <div key={index}>
-                            <p className="text-base lg:text-lg font-semibold">{line}</p>
+                            <p className="text-primary lg:text-lg font-semibold">{line}</p>
                         </div>
                     ))}
                     {/* route uses query param not a url param as songs will eventually have multiple audios that need to be selected from */}
