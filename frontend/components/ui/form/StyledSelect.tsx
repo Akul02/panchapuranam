@@ -49,7 +49,7 @@ const selectStyles: StylesConfig<OptionType, true> = {
         color: "var(--primary)",
         "&:hover": {
             backgroundColor: "var(--primary)",
-            color: "var(--accent)",
+            color: "var(--surface)",
         },
     }),
     placeholder: (base) => ({

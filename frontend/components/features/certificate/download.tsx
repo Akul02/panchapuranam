@@ -2,12 +2,12 @@
 
 import { FormEvent, useState } from 'react'
 import SimpleTextField from '../../ui/form/SimpleTextField';
-import { IoCloseCircleOutline } from 'react-icons/io5';
 import { useRouter } from 'next/navigation';
 import Form from '../../ui/form/Form';
 import { CertificateDto } from "../../../types/certficateDto";
 import { downloadCertificates } from "../../../api/client/certificate";
 import SubmitButton from "../../ui/buttons/SubmitButton";
+import { CloseIcon } from "../../ui/Icons";
 
 export default function Download() {
 
@@ -60,7 +60,7 @@ export default function Download() {
             <div className={`${showUrls ? "" : "hidden"} flex flex-col items-center w-[350px] min-h-[400px] fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-xl bg-primary color-accent shadow-[0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)]`}>
                 
                 <div className="absolute right-2 top-2 cursor-pointer" onClick={() => router.back()}>
-                    <IoCloseCircleOutline color="#CC9966" size={28} />
+                    <CloseIcon className="text-accent" size={28} />
                 </div>
 
                 <p className="font-bold text-2xl text-accent mt-10 mb-8 text-center">{successString}</p>

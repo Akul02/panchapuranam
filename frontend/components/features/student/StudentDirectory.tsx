@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { useEffect, useState } from 'react'
-import { FaSearch } from "react-icons/fa";
 import { StudentSearchResult } from "../../../types/student";
 import { searchStudentDirectory } from "../../../api/client/student";
+import { SearchIcon } from "../../ui/Icons";
 
 export default function StudentDirectory() {
 
@@ -40,7 +40,7 @@ export default function StudentDirectory() {
         <div className=" flex-1 flex flex-col">
             <div className="font-bold text-2xl text-primary text-center mt-4 mb-6">Student Directory</div>
             <div className="border-2 border-primary rounded-md mx-4 p-2 flex items-center">
-                <FaSearch className="shrink-0 text-primary"/>
+                <SearchIcon className="shrink-0 text-primary"/>
                 <input className="text-primary bg-surface ml-2 px-1 flex-1 min-w-0" placeholder="enter student's name" value={searchBarValue} onChange={handleChange}/>
             </div>
             <div className="border-2 border-primary rounded-md flex-1 m-4">

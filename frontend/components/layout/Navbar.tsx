@@ -1,8 +1,6 @@
 "use client"
 
-import { LiaUserLockSolid } from "react-icons/lia";
-import { RxHamburgerMenu } from "react-icons/rx";
-import { IoClose } from "react-icons/io5";
+
 import useUser from "../../hooks/useUser";
 import Contact from "../sections/ContactInfo";
 import { UserRole } from "../../constants/global";
@@ -11,6 +9,7 @@ import NavButton from "../ui/buttons/NavButton";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { CloseIcon, MenuIcon, UserLockIcon } from "../ui/Icons";
 
 export default function Navbar ({showDashButton = false}: {showDashButton?:boolean}) {
     const [userRole] = useUser();
@@ -31,10 +30,10 @@ export default function Navbar ({showDashButton = false}: {showDashButton?:boole
         <div className={`w-full h-16 bg-primary flex flex-col ${isMenuOpen ? "h-fit" : ""} lg:h-20 lg:grid lg:grid-cols-5`}>
                 
                 <div className={`ml-4 mt-4 ${isMenuOpen ? "hidden" : ""} lg:hidden`} onClick={openMenu}>
-                    <RxHamburgerMenu size={30} className="text-accent"/>
+                    <MenuIcon size={30} className="text-accent"/>
                 </div>
                 <div className={`mt-4 ml-4 mb-6 ${isMenuOpen ? "" : "hidden"} lg:hidden`} onClick={closeMenu}>
-                    <IoClose size={40} className="text-accent" />
+                    <CloseIcon size={30} className="text-accent" />
                 </div>
 
                 <img className="h-16 lg:h-44 absolute left-1/2 -translate-x-1/2 cursor-pointer" src="/svglogotransparent.svg" onClick={() => router.push("/")} />
@@ -60,7 +59,7 @@ export default function Navbar ({showDashButton = false}: {showDashButton?:boole
                             <NavButton className="group/button">
                                 <div className="flex gap-x-1">
                                     Login
-                                    <LiaUserLockSolid size={22}/>
+                                    <UserLockIcon size={22}/>
                                     <p className="text-sm hidden group-hover/button:block">Only for Teachers</p>
                                 </div>
                             </NavButton>

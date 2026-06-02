@@ -1,7 +1,7 @@
-import { PiLineVerticalBold } from "react-icons/pi";
 import StudentCounter from "../features/counter/studentCounter";
 import Link from "next/link";
 import { certificatesCount } from "../../api/client/certificate";
+import { VerticalLineIcon } from "../ui/Icons";
 
 export default async function Footer() {
 
@@ -12,7 +12,7 @@ export default async function Footer() {
             <div className="font-semibold text-lg text-accent text-center lg:text-2xl">
                 Student Zone
             </div>
-            <PiLineVerticalBold size={70} className="text-accent" />
+            <VerticalLineIcon size={70} className="text-accent" />
 
             <div className="mr-2 sm:m-0">
                 <Link href="/download">

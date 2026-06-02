@@ -3,9 +3,8 @@
 import { useState } from 'react'
 import { languages } from '../../../constants/global';
 import useLanguage from '../../../hooks/useLanguage';
-import { IoIosArrowDropdown } from "react-icons/io";
-import { IoIosArrowDropup } from "react-icons/io";
 import { useRouter } from 'next/navigation';
+import { ArrowDropdown, ArrowDropup } from "../../ui/Icons";
 
 export default function Language () {
 
@@ -29,9 +28,9 @@ export default function Language () {
 
     return (
         <div className="">
-            <div className={`flex items-center cursor-pointer gap-x-1 border-2 border-primary p-3 rounded-xl text-primary mt-8 ${isOpen ? "text-[#CC9966] bg-primary" : ""}`} onClick={toggleDropdown}>
+            <div className={`flex items-center cursor-pointer gap-x-1 border-2 border-primary p-3 rounded-xl  mt-8 ${isOpen ? "text-accent bg-primary" : "text-primary"}`} onClick={toggleDropdown}>
                 <p>Select Language</p>
-                {isOpen ? <IoIosArrowDropup size={21}/> : <IoIosArrowDropdown size={21}/>}
+                {isOpen ? <ArrowDropup className="text-accent" size={21}/> : <ArrowDropdown className="text-primary" size={21}/>}
             </div>
             <div className={`flex flex-col items-center max-h-20 overflow-y-scroll mt-2 ${isOpen ? "" : "hidden"}`}>
                 {languages.map((item, index) => (

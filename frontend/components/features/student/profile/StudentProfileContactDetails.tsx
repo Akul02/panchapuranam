@@ -1,7 +1,6 @@
-import { MdEmail } from "react-icons/md"
-import { GiGraduateCap } from "react-icons/gi"
-import { PiCertificateFill } from "react-icons/pi"
+
 import { StudentProfileDto } from "../../../../types/student"
+import { EmailIcon, GraduateCapIcon, CertificateFillIcon } from "../../../ui/Icons"
 import SectionHeader from "../../../ui/SectionHeader"
 
 export default function StudentProfileContactDetails({ student }: { student: StudentProfileDto }) {
@@ -11,9 +10,9 @@ export default function StudentProfileContactDetails({ student }: { student: Stu
             <div className="grid grid-cols-[30px_90px_1fr] grid-rows-3 gap-2 overflow-x-auto mt-1">
 
                 {/* col one */}
-                <div className="col-start-1 row-start-1 self-center"><MdEmail className="text-primary" size={22} /></div>
-                <div className="col-start-1 row-start-2 self-center"><GiGraduateCap className="text-primary" size={22} /></div>
-                <div className="col-start-1 row-start-3 self-center"><PiCertificateFill className="text-primary" size={22} /></div>
+                <div className="col-start-1 row-start-1 self-center"><EmailIcon className="text-primary" size={22} /></div>
+                <div className="col-start-1 row-start-2 self-center"><GraduateCapIcon className="text-primary" size={22} /></div>
+                <div className="col-start-1 row-start-3 self-center"><CertificateFillIcon className="text-primary" size={22} /></div>
 
                 {/* col two */}
                 <div className="col-start-2 row-start-1 self-center">Email</div>

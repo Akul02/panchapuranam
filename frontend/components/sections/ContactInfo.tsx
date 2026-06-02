@@ -1,8 +1,8 @@
 'use client'
 
 import { useState } from "react";
-import { MdOutlineEmail } from "react-icons/md";
 import NavButton from "../ui/buttons/NavButton";
+import { OutlineEmailIcon } from "../ui/Icons";
 
 export default function Contact () {
     const [isOpen, setIsOpen] = useState(false)
@@ -17,7 +17,7 @@ export default function Contact () {
                     <a href="mailto:ananth00@outlook.com" target="_blank">
                         <div className="flex gap-x-1">
                             <p>Email:</p>
-                            <MdOutlineEmail size={22}/>
+                            <OutlineEmailIcon size={22}/>
                         </div>
                     </a>
                 </div>

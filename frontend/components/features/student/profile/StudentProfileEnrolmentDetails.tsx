@@ -1,12 +1,12 @@
 "use client"
 
 import { useState } from 'react'
-import { FaRegSquarePlus } from "react-icons/fa6";
 import { useRouter } from "next/navigation"
 import { StudentProfileEnrolmentDto } from "../../../../types/student";
 import SectionHeader from "../../../ui/SectionHeader";
 import StudentProgramEnrolment from "./StudentProgramEnrolment";
 import ProgramInfoCard from "./ProgramInfoCard";
+import { PlusIcon } from "../../../ui/Icons";
 
 export default function StudentProfileEnrolmentDetails({ enrolments, availablePrograms }: { enrolments: StudentProfileEnrolmentDto[], availablePrograms: string[] }) {
 
@@ -23,7 +23,7 @@ export default function StudentProfileEnrolmentDetails({ enrolments, availablePr
         <div className="flex flex-col space-y-2">
             <SectionHeader title="Enrolments">
                 <div onClick={() => setShowEnrolModal(true)}>
-                    <FaRegSquarePlus size={20} className="text-primary"/>
+                    <PlusIcon size={20} className="text-primary"/>
                 </div>
             </SectionHeader>
             {enrolments.map((enrolment) => (

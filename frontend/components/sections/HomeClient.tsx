@@ -3,11 +3,10 @@
 import { useRef } from "react";
 import Navbar from "../layout/Navbar";
 import Hero from "./Hero";
-import { IoMusicalNote } from "react-icons/io5";
-import { PiArrowFatLinesDownDuotone } from "react-icons/pi";
 import Language from "../features/songs/Language";
 import Songs from "../features/songs/Songs";
 import { Song } from "../../types/song";
+import { MusicNoteIcon, ArrowDownIcon } from "../ui/Icons";
 
 export default function HomeClient({songs} : {songs: Song[]}) {
     const songsRef = useRef<HTMLDivElement | null>(null);
@@ -27,9 +26,9 @@ export default function HomeClient({songs} : {songs: Song[]}) {
                         Begin Listening
                     </p>
                     <div className="flex items-center animate-pulse">
-                        <IoMusicalNote size={40} className="text-primary" />
-                        <PiArrowFatLinesDownDuotone size={40} className="text-primary" />
-                        <IoMusicalNote size={40} className="text-primary" />
+                        <MusicNoteIcon size={40} className="text-primary" />
+                        <ArrowDownIcon size={40} className="text-primary" />
+                        <MusicNoteIcon size={40} className="text-primary" />
                     </div>
                 </div>
                 {/* sticky footer placeholder h-28 is the height of the footer*/}

@@ -2,8 +2,8 @@
 
 import { useState } from 'react'
 import { StudentProfileEnrolmentDto } from "../../../../types/student"
-import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import { MdOutlineKeyboardArrowUp } from "react-icons/md";
+
+import { ArrowDropdown, ArrowDropup } from "../../../ui/Icons";
 
 export default function ProgramInfoCard ({ enrolment }: { enrolment: StudentProfileEnrolmentDto }) {
 
@@ -14,7 +14,7 @@ export default function ProgramInfoCard ({ enrolment }: { enrolment: StudentProf
             <div className="bg-accent px-4 py-2 cursor-pointer flex justify-between" onClick={() => setShowDetails(!showDetails)}>
                 {enrolment.programName}
                 <div>
-                    {showDetails ? <MdOutlineKeyboardArrowUp size={24} className="text-primary"/> : <MdOutlineKeyboardArrowDown size={24} className="text-primary"/>}
+                    {showDetails ? <ArrowDropup size={24} className="text-primary"/> : <ArrowDropdown size={24} className="text-primary"/>}
                 </div>
                 
             </div>
