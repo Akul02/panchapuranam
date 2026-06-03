@@ -5,6 +5,7 @@ import "../styles/globals.css";
 import LanguageProvider from "../context/LanguageContext";
 import UserProvider from "../context/UserContext";
 import { getUserSessionServer } from "../api/server/authServer";
+import { merriweather, notoSerif, sourceSans } from "../components/ui/fonts";
 
 export const metadata: Metadata = {
   title: "Panchapuranam Home",
@@ -21,7 +22,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en" className="scroll-smooth">
-      <body className="bg-surface">
+      <body className={`bg-surface font-body ${merriweather.variable} ${notoSerif.variable} ${sourceSans.variable}`}>
         <LanguageProvider>
           <UserProvider initialUserRole={session.role}>
             {/* <StudentCounter/> */}

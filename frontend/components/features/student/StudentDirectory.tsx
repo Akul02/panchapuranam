@@ -38,7 +38,7 @@ export default function StudentDirectory() {
 
     return (
         <div className=" flex-1 flex flex-col">
-            <div className="font-bold text-2xl text-primary text-center mt-4 mb-6">Student Directory</div>
+            <div className="font-bold font-heading text-2xl text-primary text-center mt-4 mb-6">Student Directory</div>
             <div className="border-2 border-primary rounded-md mx-4 p-2 flex items-center">
                 <SearchIcon className="shrink-0 text-primary"/>
                 <input className="text-primary bg-surface ml-2 px-1 flex-1 min-w-0" placeholder="enter student's name" value={searchBarValue} onChange={handleChange}/>

@@ -20,10 +20,10 @@ export default async function StudentProfile({studentId} : {studentId : number})
                     {/* profile header */}
                     <div className="flex">
                         <div className="w-20 h-20 rounded-full bg-primary border-2 border-accent flex-shrink-0
-                            flex items-center justify-center text-white text-2xl font-bold tracking-wide">
+                            flex items-center justify-center text-white text-2xl font-bold font-heading tracking-wide">
                             {student.firstname.charAt(0).toLocaleUpperCase()}{student.lastname.charAt(0).toUpperCase()}
                         </div>
-                        <div className="text-primary font-bold text-xl pl-6">
+                        <div className="text-primary font-bold font-heading text-xl pl-6">
                             {student.firstname} {student.lastname}
                             <p className="text-sm mt-0.5">Student ID: #{student.id}</p>    
                         </div>

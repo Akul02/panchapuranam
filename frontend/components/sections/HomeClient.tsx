@@ -21,8 +21,8 @@ export default function HomeClient({songs} : {songs: Song[]}) {
             <div className="flex flex-col items-center justify-between h-screen">
                 <Navbar showDashButton={true} />
                 <Hero />
-                <div className="cursor-pointer" onClick={goToSongs}>
-                    <p className="italic text-primary text-center font-semibold">
+                <div className="cursor-pointer flex flex-col items-center" onClick={goToSongs}>
+                    <p className="italic text-primary text-center font-heading font-semibold text-lg">
                         Begin Listening
                     </p>
                     <div className="flex items-center animate-pulse">
@@ -37,7 +37,7 @@ export default function HomeClient({songs} : {songs: Song[]}) {
 
             {/* songs component */}
             <div ref={songsRef} className="flex flex-col items-center w-full">
-                <div className="text-primary italic text-center text-base mt-4 mx-2 md:mt-8 md:mx-4 md:text-lg">
+                <div className="text-primary italic text-center text-lg mt-4 mx-4 md:mt-8 md:mx-12 md:text-xl xl:text-2xl">
                     If you have memorised and sung the below 5 songs, we will honor you by
                     issuing a certificate. Contact us when you are ready. No age limit.
                 </div>

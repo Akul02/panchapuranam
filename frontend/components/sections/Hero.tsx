@@ -1,19 +1,4 @@
-import {Merriweather, Noto_Serif_Tamil, Arima} from "next/font/google";
-
-const merriweather = Merriweather({
-    subsets:["latin"],
-    weight:["700"]
-})
-
-const noto_serif = Noto_Serif_Tamil({
-    subsets: ["tamil"],
-    weight: ["700"]
-})
-
-const arima = Arima({
-    subsets:["tamil"],
-    weight:["700"]
-})
+import { merriweather, merriweatherSans, notoSerif } from "../ui/fonts";
 
 export default function Hero() {
   return (
@@ -23,8 +8,8 @@ export default function Hero() {
         <div className="absolute inset-0 bg-white/25"/>
 
         <div className="absolute pt-[10%] pl-[15%] inset-0 text-2xl font-semibold text-orange-800 sm:text-3xl md:text-4xl xl:text-5xl">
-            <p className={`${noto_serif.className}`}>பஞ்சபுராணம்</p>
-            <p className={`${merriweather.className} mt-6`}>PANCHAPURANAM</p>
+            <p className={`font-tamil font-bold`}>பஞ்சபுராணம்</p>
+            <p className={`font-heading font-bold mt-6`}>PANCHAPURANAM</p>
         </div>
     </div>
   )

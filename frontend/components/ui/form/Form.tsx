@@ -32,7 +32,7 @@ export default function Form({handleSubmit, formHeading, isError, errorString, i
                     <CloseIcon className="text-primary" size={28} />
                     </div>
 
-                    <h1 className="mt-2 font-bold text-2xl text-primary text-center">
+                    <h1 className="mt-2 font-bold font-heading text-2xl text-primary text-center">
                         {formHeading}
                     </h1>
 

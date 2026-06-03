@@ -52,7 +52,7 @@ export default function page() {
                         {/* Quick Access  */}
                         <DashboardCard className="min-h-[450px] mx-10 mt-10">
                             <div className="flex flex-col mx-8">
-                                <div className="font-bold text-2xl text-primary text-center mt-4 mb-6">Quick Access</div>
+                                <div className="font-bold font-heading text-2xl text-primary text-center mt-4 mb-6">Quick Access</div>
                                 <Link href="/register/student">
                                     <NavButton className="mb-4">Enrol Student</NavButton>
                                 </Link>
@@ -87,7 +87,7 @@ export default function page() {
                     {/* quick access */}
                     <DashboardCard style={{ gridArea: "card1"}} className="max-h-[300px] overflow-y-auto">
                         <div className="flex-1 w-full flex flex-col justify-start gap-4 px-4">
-                            <div className="font-bold text-2xl text-primary text-center mt-4">Quick Access</div>
+                            <div className="font-bold font-heading text-2xl text-primary text-center mt-4">Quick Access</div>
                             <Link href="/register/student">
                                 <NavButton className="">Enrol Student</NavButton>
                             </Link>

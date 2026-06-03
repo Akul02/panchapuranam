@@ -14,6 +14,11 @@ export default {
                 accent: "var(--accent)",
                 placeholder: "var(--placeholder)"
             },
+            fontFamily: {
+                heading: ["var(--font-merriweather)"],
+                tamil: ["var(--font-tamil)"],
+                body: ["var(--font-sourceSans)"],
+            }
         },
     },
     plugins: [],

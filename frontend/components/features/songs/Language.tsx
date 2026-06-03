@@ -28,11 +28,11 @@ export default function Language () {
 
     return (
         <div className="">
-            <div className={`flex items-center cursor-pointer gap-x-1 border-2 border-primary p-3 rounded-xl  mt-8 ${isOpen ? "text-accent bg-primary" : "text-primary"}`} onClick={toggleDropdown}>
+            <div className={`flex items-center cursor-pointer gap-x-1 border-2 border-primary p-3 rounded-xl  mt-8 font-bold font-heading ${isOpen ? "text-accent bg-primary" : "text-primary"}`} onClick={toggleDropdown}>
                 <p>Select Language</p>
                 {isOpen ? <ArrowDropup className="text-accent" size={21}/> : <ArrowDropdown className="text-primary" size={21}/>}
             </div>
-            <div className={`flex flex-col items-center max-h-20 overflow-y-scroll mt-2 ${isOpen ? "" : "hidden"}`}>
+            <div className={`flex flex-col items-center max-h-20 overflow-y-scroll mt-2 font-bold font-heading text-primary ${isOpen ? "" : "hidden"}`}>
                 {languages.map((item, index) => (
                     <div className="p-2 w-full text-center cursor-pointer hover:border-primary hover:border-2 rounded-xl" key={index} onClick={() => selectLanguage(item)}>
                         {item}

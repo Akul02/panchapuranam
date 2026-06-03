@@ -10,9 +10,9 @@ export default function Contact () {
     return (
         <div onClick={() => setIsOpen(!isOpen)}>
             <NavButton>
-                <h1 className={`flex gap-x-1 font-semibold ${isOpen ? "hidden" : "null"}`}>Contact Info</h1>
+                <h1 className={`flex gap-x-1 ${isOpen ? "hidden" : "null"}`}>Contact Info</h1>
 
-                <div className={`flex gap-x-1 font-semibold ${isOpen ? "null" : "hidden"}`}>
+                <div className={`flex gap-x-1 ${isOpen ? "null" : "hidden"}`}>
                     <h1>Name: Ananth &</h1>
                     <a href="mailto:ananth00@outlook.com" target="_blank">
                         <div className="flex gap-x-1">
