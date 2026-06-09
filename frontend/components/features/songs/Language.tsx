@@ -3,14 +3,17 @@
 import { useState } from 'react'
 import { languages } from '../../../constants/global';
 import useLanguage from '../../../hooks/useLanguage';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { ArrowDropdown, ArrowDropup } from "../../ui/Icons";
 
 export default function Language () {
 
     const [isOpen, setIsOpen] = useState(false);
-    const [language, setLanguage] = useLanguage();
     const router = useRouter();
+    const searchParams = useSearchParams();
+
+    const language = searchParams.get("language");
+
 
     function toggleDropdown () {
         if (isOpen) {
@@ -21,7 +24,6 @@ export default function Language () {
     }
 
     function selectLanguage (item:string) {
-        setLanguage(item);
         toggleDropdown();
         router.push(`/?language=${item}`);
     }
@@ -29,7 +31,7 @@ export default function Language () {
     return (
         <div className="">
             <div className={`flex items-center cursor-pointer gap-x-1 border-2 border-primary p-3 rounded-xl  mt-8 font-bold font-heading ${isOpen ? "text-accent bg-primary" : "text-primary"}`} onClick={toggleDropdown}>
-                <p>Select Language</p>
+                <p>{language}</p>
                 {isOpen ? <ArrowDropup className="text-accent" size={21}/> : <ArrowDropdown className="text-primary" size={21}/>}
             </div>
             <div className={`flex flex-col items-center max-h-20 overflow-y-scroll mt-2 font-bold font-heading text-primary ${isOpen ? "" : "hidden"}`}>

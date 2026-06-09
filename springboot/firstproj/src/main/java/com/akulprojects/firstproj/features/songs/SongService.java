@@ -1,5 +1,6 @@
 package com.akulprojects.firstproj.features.songs;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -32,7 +33,7 @@ public class SongService {
         List<Song> songs = songRepo.findByLanguageOrderBySongIdAsc(lang);
 
         if (songs.isEmpty()) {
-            throw new ResourceNotFoundException("no songs found for the language: " + languageString);
+            return new ArrayList<SongDto>();
         }
 
         

@@ -9,6 +9,13 @@ export default function Songs({songs} : {songs: Song[]}) {
     const currentAudioRef = useRef(null);
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
+    if (songs.length == 0) {
+
+        return (
+            <div className="text-xl text-primary m-16 font-heading">No songs found for selected language</div>
+        )
+    }
+
     return (
         <div className="flex flex-col items-center gap-y-8 mt-8 mb-20 w-full">
             {songs.map((song) => (
