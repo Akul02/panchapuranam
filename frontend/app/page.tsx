@@ -12,7 +12,8 @@ export default async function Home({
 }) {
 
     const session = await getUserSessionServer();
-    const language = await searchParams.language ?? "";
+
+    const language = (await searchParams).language ?? "";
 
     const isSupportedLanguage = (language : string) => {
       return languages.includes(language);

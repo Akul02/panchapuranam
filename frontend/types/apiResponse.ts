@@ -5,3 +5,8 @@ export type ErrorResponse = {
 export type SuccessResponse = {
     message : string
 }
+
+type Success<T> = { success: true; data: T };
+type Failure<ErrorResponse> = { success: false; error: ErrorResponse };
+
+export type Result<T, E> = Success<T> | Failure<E>;
