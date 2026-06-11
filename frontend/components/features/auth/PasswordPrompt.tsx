@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import Form from "../../ui/form/Form";
 import { changePassword } from "../../../api/client/auth";
 import SubmitButton from "../../ui/buttons/SubmitButton";
+import { handleAppErrors } from "../../../lib/api/handlerAppErrors";
 
 export default function PasswordPrompt () {
 
@@ -27,12 +28,21 @@ export default function PasswordPrompt () {
             return;
         }
 
-        try {
-            await changePassword(password1String);
-            router.push("/");
-        } catch (err) {
+        // try {
+        //     await changePassword(password1String);
+        //     router.push("/");
+        // } catch (err) {
+        //     setIsError(true);
+        //     setErrorString(err instanceof Error ? err.message : "Something went wrong");
+        // }
+
+        const apiResult = await handleAppErrors(changePassword(password1String));
+
+        if (apiResult.success == false) {
             setIsError(true);
-            setErrorString(err instanceof Error ? err.message : "Something went wrong");
+            setErrorString(apiResult.data.message);
+        } else {
+            router.push("/")
         }
     }
 

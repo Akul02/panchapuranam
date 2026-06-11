@@ -8,6 +8,7 @@ import com.akulprojects.firstproj.features.users.Users;
 import com.akulprojects.firstproj.features.users.UsersService;
 import com.akulprojects.firstproj.features.users.UsersDtos.LoginRequestDto;
 import com.akulprojects.firstproj.features.users.UsersDtos.SessionDto;
+import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.password4j.Password;
 
@@ -40,10 +41,16 @@ public class AuthService {
             return new SessionDto(Role.NO_USER.toString(), false);
         }
 
-        DecodedJWT decodedJWT = jwt.extractJwtFromCookie(cookie);
-        Users current_user = usersService.findUserWithId(jwt.getId(decodedJWT));
+        try {
+            DecodedJWT decodedJWT = jwt.extractJwtFromCookie(cookie);
+            Users current_user = usersService.findUserWithId(jwt.getId(decodedJWT));
+            return new SessionDto(decodedJWT.getClaim("role").asString(), current_user.isFirstLogin());
 
-        return new SessionDto(decodedJWT.getClaim("role").asString(), current_user.isFirstLogin());
+        } catch (JWTVerificationException ex) {
+            return new SessionDto(Role.NO_USER.toString(), false);
+        }
+        
+        
     }
 
 

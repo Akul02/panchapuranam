@@ -1,4 +1,5 @@
 import { getStudentAvailablePrograms, getStudentProfile } from "../../../../api/server/studentServer";
+import { handleAppErrors } from "../../../../lib/api/handlerAppErrors";
 import StyledPageCard from "../../../ui/cards/StyledPageCard";
 import StudentProfileCertificates from "./StudentProfileCertificates";
 import StudentProfileContactDetails from "./StudentProfileContactDetails";
@@ -7,9 +8,25 @@ import StudentProfileEnrolmentDetails from "./StudentProfileEnrolmentDetails";
 
 export default async function StudentProfile({studentId} : {studentId : number}) {
 
-    const student = await getStudentProfile(studentId.toString());
+    const apiResultStudentProfile = await handleAppErrors(getStudentProfile(studentId.toString()));
 
-    const availablePrograms = await getStudentAvailablePrograms(studentId.toString());
+    if (apiResultStudentProfile.success == false) {
+        return (
+            <div>Student Not Found</div>
+        )
+    } 
+    
+    const student = apiResultStudentProfile.data;
+    
+    const apiResultAvailablePrograms = await handleAppErrors(getStudentAvailablePrograms(studentId.toString()));
+
+    if (apiResultAvailablePrograms.success == false) {
+        return (
+            <div>Error finding student details </div>
+        )
+    }
+
+    const availablePrograms = apiResultAvailablePrograms.data;
     
     return (
         <div className="flex justify-center w-screen">

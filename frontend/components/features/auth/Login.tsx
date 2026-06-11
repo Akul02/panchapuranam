@@ -10,6 +10,8 @@ import PasswordPrompt from './PasswordPrompt';
 import Form from '../../ui/form/Form';
 import { getUserSession, login } from "../../../api/client/auth";
 import SubmitButton from "../../ui/buttons/SubmitButton";
+import { getApiData } from "../../../lib/api/apiData";
+import { handleAppErrors } from "../../../lib/api/handlerAppErrors";
 
 
 
@@ -34,7 +36,7 @@ export default function Login () {
             await login(emailString, passwordString);
 
             try {
-                const sessionInfo = await getUserSession();
+                const sessionInfo = await getApiData(handleAppErrors(getUserSession()));
                 
                 switch (sessionInfo.role) {
                     case UserRole.ADMIN:

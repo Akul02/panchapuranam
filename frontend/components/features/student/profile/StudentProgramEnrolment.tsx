@@ -7,6 +7,7 @@ import { enrolStudentInProgram } from "../../../../api/client/enrolment";
 import SubmitButton from "../../../ui/buttons/SubmitButton";
 import StyledSelect from "../../../ui/form/StyledSelect";
 import Modal from "../../../ui/Modal";
+import { handleAppErrors } from "../../../../lib/api/handlerAppErrors";
 
 export default function StudentProgramEnrolment({
     availablePrograms,
@@ -46,18 +47,27 @@ export default function StudentProgramEnrolment({
 
         setError(null);
 
-        try {
-            const resSuccess = await enrolStudentInProgram(
-                params.id,
-                newPrograms,
-            );
-            setMessage(resSuccess.message);
+        // try {
+        //     const resSuccess = await enrolStudentInProgram(
+        //         params.id,
+        //         newPrograms,
+        //     );
+        //     setMessage(resSuccess.message);
+        //     onSuccess();
+        // } catch (err) {
+        //     setError(
+        //         err instanceof Error ? err.message : "Something went wrong",
+        //     );
+        //     setMessage(null);
+        // }
+
+        const apiResult = await handleAppErrors(enrolStudentInProgram(params.id, newPrograms));
+
+        if (apiResult.success == false) {
+            setError(apiResult.data.message);
+        } else {
+            setMessage(apiResult.data.message);
             onSuccess();
-        } catch (err) {
-            setError(
-                err instanceof Error ? err.message : "Something went wrong",
-            );
-            setMessage(null);
         }
     };
 

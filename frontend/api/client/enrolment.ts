@@ -1,11 +1,11 @@
-import { SuccessResponse } from "../../types/apiResponse";
+import { ApiResult, SuccessResponse } from "../../types/apiResponse";
 import { apiFetch } from "../client";
 
 
 export async function enrolStudentInProgram(
     studentId: string,
     programNames: string[],
-): Promise<SuccessResponse> {
+): Promise<ApiResult<SuccessResponse>> {
 
     return apiFetch("/enrolment/enrol-student", {
         method: "POST",

@@ -4,6 +4,7 @@ import { FormEvent, useRef, useState } from 'react'
 import Form from '../../ui/form/Form';
 import { bulkRegisterStudents } from "../../../api/client/student";
 import SubmitButton from '../../ui/buttons/SubmitButton';
+import { handleAppErrors } from "../../../lib/api/handlerAppErrors";
 
 export default function BulkEnrolStudents() {
 
@@ -37,21 +38,36 @@ export default function BulkEnrolStudents() {
         const formData = new FormData;
         formData.append("file", selectedFile);
 
-        try {
-            const resSuccess = await bulkRegisterStudents(formData);
-            setIsSuccess(true);
-            setSuccessString(resSuccess.message);
+        // try {
+        //     const resSuccess = await bulkRegisterStudents(formData);
+        //     setIsSuccess(true);
+        //     setSuccessString(resSuccess.message);
 
-        } catch (err) {
+        // } catch (err) {
+        //     setIsError(true);
+        //     setErrorString(err instanceof Error ? err.message : "Something went wrong");
+
+        // } finally {
+        //     if (fileInputRef.current) {
+        //         fileInputRef.current.value = "";
+        //     }
+        //     setSelectedFile(null);
+        // }
+
+        const apiResult = await handleAppErrors(bulkRegisterStudents(formData));
+
+        if (apiResult.success == false) {
             setIsError(true);
-            setErrorString(err instanceof Error ? err.message : "Something went wrong");
-
-        } finally {
-            if (fileInputRef.current) {
-                fileInputRef.current.value = "";
-            }
-            setSelectedFile(null);
+            setErrorString(apiResult.data.message);
+        } else {
+            setIsSuccess(true);
+            setSuccessString(apiResult.data.message);
         }
+
+        if (fileInputRef.current) {
+            fileInputRef.current.value = "";
+        }
+        setSelectedFile(null);
     }
 
     return (

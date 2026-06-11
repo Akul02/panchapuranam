@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react'
 import { StudentSearchResult } from "../../../types/student";
 import { searchStudentDirectory } from "../../../api/client/student";
 import { SearchIcon } from "../../ui/Icons";
+import { getApiData } from "../../../lib/api/apiData";
+import { handleAppErrors } from "../../../lib/api/handlerAppErrors";
 
 export default function StudentDirectory() {
 
@@ -26,12 +28,16 @@ export default function StudentDirectory() {
             return;
         }
         const timer = setTimeout( async () => {
-            try {
-                const results = await searchStudentDirectory(searchBarValue);
-                setSearchResults(results);
-            } catch (err) {
-                console.log(err instanceof Error ? err.message : "Something went wrong");
-            }
+            // try {
+            //     const results = await searchStudentDirectory(searchBarValue);
+            //     setSearchResults(results);
+            // } catch (err) {
+            //     console.log(err instanceof Error ? err.message : "Something went wrong");
+            // }
+
+            const results = await getApiData(handleAppErrors(searchStudentDirectory(searchBarValue)));
+            setSearchResults(results);
+
         }, 300)
         return () => clearTimeout(timer);
     }, [searchBarValue]);

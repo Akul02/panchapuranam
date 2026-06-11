@@ -4,6 +4,8 @@ import HomeClient from "../components/sections/HomeClient";
 import { getSongs } from "../api/client/songs";
 import { getUserSessionServer } from "../api/server/authServer";
 import { redirect } from "next/navigation";
+import { getApiData } from "../lib/api/apiData";
+import { handleAppErrors } from "../lib/api/handlerAppErrors";
 
 export default async function Home({
     searchParams,
@@ -11,7 +13,7 @@ export default async function Home({
     searchParams: { language?: string };
 }) {
 
-    const session = await getUserSessionServer();
+    const session = await getApiData(getUserSessionServer());
 
     const language = (await searchParams).language ?? "";
 
@@ -23,7 +25,7 @@ export default async function Home({
       redirect("/?language=Tamil");
     }
 
-    const songs = await getSongs(language);
+    const songs = await getApiData(handleAppErrors(getSongs(language)));
 
     return (
         <div className="text-[#333333] w-full">

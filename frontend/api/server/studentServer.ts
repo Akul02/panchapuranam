@@ -1,8 +1,9 @@
 import { cookies } from "next/headers";
 import { StudentProfileDto } from "../../types/student";
 import { apiFetch } from "../client";
+import { ApiResult } from "../../types/apiResponse";
 
-export async function getStudentProfile(studentId: string): Promise<StudentProfileDto> {
+export async function getStudentProfile(studentId: string): Promise<ApiResult<StudentProfileDto>> {
 
     const cookieStore = await cookies();
     const cookieHeader = cookieStore.toString();
@@ -13,7 +14,7 @@ export async function getStudentProfile(studentId: string): Promise<StudentProfi
     })
 }
 
-export async function getStudentAvailablePrograms(studentId: string): Promise<string[]> {
+export async function getStudentAvailablePrograms(studentId: string): Promise<ApiResult<string[]>> {
     const cookieStore = await cookies();
     const cookieHeader = cookieStore.toString();
 

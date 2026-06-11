@@ -3,15 +3,19 @@ import { getUserSessionServer } from "../../api/server/authServer";
 import { UserRole } from "../../constants/global";
 
 export async function requireRole(role: UserRole) {
-    const session = await getUserSessionServer();
+    const apiResult = await getUserSessionServer();
+    
+    if (apiResult.success == true ) {
+        const session = apiResult.data;
+        if (session.role == UserRole.NO_USER) {
+            redirect("/login");
+        }
 
-    if (!session) {
-        redirect("/login");
+        if (session.role !== role) {
+            redirect("/");
+        }
+
+        return session;
     }
-
-    if (session.role !== role) {
-        redirect("/");
-    }
-
-    return session;
+    
 }

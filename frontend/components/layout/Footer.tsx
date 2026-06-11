@@ -2,10 +2,12 @@ import StudentCounter from "../features/counter/studentCounter";
 import Link from "next/link";
 import { certificatesCount } from "../../api/client/certificate";
 import { VerticalLineIcon } from "../ui/Icons";
+import { getApiData } from "../../lib/api/apiData";
+import { handleAppErrors } from "../../lib/api/handlerAppErrors";
 
 export default async function Footer() {
 
-    const res = await certificatesCount();
+    const res = await getApiData(handleAppErrors(certificatesCount()));
     
     return (
         <div className="bg-primary w-full h-20 sticky bottom-0 flex justify-center items-center lg:h-28">

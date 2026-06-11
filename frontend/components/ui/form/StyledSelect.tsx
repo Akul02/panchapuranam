@@ -1,3 +1,6 @@
+"use client"
+
+import { useEffect, useState } from "react";
 import Select, { MultiValue, StylesConfig } from "react-select";
 
 type OptionType = {
@@ -83,6 +86,13 @@ export default function StyledSelect({
     instanceId: string;
     label: string;
 }) {
+
+    const [menuPortalTarget, setMenuPortalTarget] = useState<HTMLElement | null>(null);
+
+    useEffect(() => {
+        setMenuPortalTarget(document.body);
+    }, []);
+
     return (
         <div className="w-full">
             <label className="block text-xs font-bold uppercase tracking-widest text-maroon/60 mb-1">
@@ -93,7 +103,7 @@ export default function StyledSelect({
                 options={options}
                 onChange={handleSelectInput}
                 instanceId={instanceId}
-                menuPortalTarget={document.body}
+                menuPortalTarget={menuPortalTarget ?? undefined}
                 menuPosition="fixed"
                 styles={{
                     ...selectStyles,

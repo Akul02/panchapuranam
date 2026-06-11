@@ -7,6 +7,7 @@ import Form from "../../ui/form/Form";
 import { registerStudent } from "../../../api/client/student";
 import SubmitButton from "../../ui/buttons/SubmitButton";
 import StyledSelect from "../../ui/form/StyledSelect";
+import { handleAppErrors } from "../../../lib/api/handlerAppErrors";
 
 export default function RegisterStudent( {availablePrograms} : {availablePrograms: string[]}) {
     const [formData, setFormData] = useState({
@@ -43,21 +44,32 @@ export default function RegisterStudent( {availablePrograms} : {availableProgram
         setIsSuccess(false);
         setIsError(false);
 
-        try {
-            const resSuccess = await registerStudent(formData);
-            setFormData({
-                firstName: "",
-                lastName: "",
-                email: "",
-                programNames: [],
-            });
-            setIsSuccess(true);
-            setSuccessString(resSuccess.message);
-        } catch (err) {
+        // try {
+        //     const resSuccess = await registerStudent(formData);
+        //     setFormData({
+        //         firstName: "",
+        //         lastName: "",
+        //         email: "",
+        //         programNames: [],
+        //     });
+        //     setIsSuccess(true);
+        //     setSuccessString(resSuccess.message);
+        // } catch (err) {
+        //     setIsError(true);
+        //     setErrorString(
+        //         err instanceof Error ? err.message : "Something went wrong",
+        //     );
+        // }
+
+        const apiResult = await handleAppErrors(registerStudent(formData));
+
+        if (apiResult.success == false) {
             setIsError(true);
-            setErrorString(
-                err instanceof Error ? err.message : "Something went wrong",
-            );
+            setErrorString(apiResult.data.message);
+        } else {
+            setFormData({firstName: "", lastName: "", email: "", programNames: []});
+            setIsSuccess(true);
+            setSuccessString(apiResult.data.message);
         }
     };
 

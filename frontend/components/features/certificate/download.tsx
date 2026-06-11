@@ -8,6 +8,7 @@ import { CertificateDto } from "../../../types/certficateDto";
 import { downloadCertificates } from "../../../api/client/certificate";
 import SubmitButton from "../../ui/buttons/SubmitButton";
 import { CloseIcon } from "../../ui/Icons";
+import { handleAppErrors } from "../../../lib/api/handlerAppErrors";
 
 export default function Download() {
 
@@ -29,10 +30,14 @@ export default function Download() {
         setErrorString("");
         setIsSuccess(false);
         setSuccessString("")
-        
-        try {
-            const data = await downloadCertificates(emailString);
 
+        const apiResult = await handleAppErrors(downloadCertificates(emailString));
+
+        if (apiResult.success == false) {
+            setIsError(true);
+            setErrorString(apiResult.data.message)
+        } else {
+            const data = apiResult.data;
             setCertificates(data);
             if (data.length == 0) {
                 setSuccessString("You have no certificates")
@@ -40,10 +45,6 @@ export default function Download() {
                 setSuccessString("Here are your certificates:")
             }
             setShowUrls(true);
-
-        } catch (err) {
-            setIsError(true);
-            setErrorString(err instanceof Error ? err.message : "Something went wrong");
         }
     }
 

@@ -5,6 +5,7 @@ import SimpleTextField from "../../ui/form/SimpleTextField";
 import Form from "../../ui/form/Form";
 import { registerTeacher } from "../../../api/client/teacher";
 import SubmitButton from "../../ui/buttons/SubmitButton";
+import { handleAppErrors } from "../../../lib/api/handlerAppErrors";
 
 export default function RegisterTeacher () {
 
@@ -37,15 +38,27 @@ export default function RegisterTeacher () {
         setIsSuccess(false);
         setIsError(false);
 
-        try {
-            const resSuccess = await registerTeacher(formData);
+        // try {
+        //     const resSuccess = await registerTeacher(formData);
+        //     setFormData({"firstName": "", "lastName" : "", "email" : "", "password" : ""});
+        //     setIsSuccess(true);
+        //     setSuccessString(resSuccess.message);
+        // } catch (err) {
+        //     setIsError(true);
+        //     setErrorString(err instanceof Error ? err.message : "Something went wrong");
+        // }
+
+        const apiResult = await handleAppErrors(registerTeacher(formData));
+
+        if (apiResult.success == false) {
+            setIsError(true);
+            setErrorString(apiResult.data.message);
+        } else {
             setFormData({"firstName": "", "lastName" : "", "email" : "", "password" : ""});
             setIsSuccess(true);
-            setSuccessString(resSuccess.message);
-        } catch (err) {
-            setIsError(true);
-            setErrorString(err instanceof Error ? err.message : "Something went wrong");
+            setSuccessString(apiResult.data.message);
         }
+
     }
 
     return (
