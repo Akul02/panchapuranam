@@ -6,6 +6,7 @@ import LanguageProvider from "../context/LanguageContext";
 import UserProvider from "../context/UserContext";
 import { getUserSessionServer } from "../api/server/authServer";
 import { merriweather, notoSerif, sourceSans } from "../components/ui/fonts";
+import { getApiData } from "../lib/api/apiData";
 
 export const metadata: Metadata = {
   title: "Panchapuranam Home",
@@ -18,7 +19,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
 
-  const session = await getUserSessionServer();
+  const session = await getApiData(getUserSessionServer());
 
   return (
     <html lang="en" className="scroll-smooth">
