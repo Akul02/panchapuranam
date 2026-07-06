@@ -59,7 +59,11 @@ export default function Login () {
                 if (sessionInfo.firstLogin) {
                     setIsFirstLogin(true);
                 } else {
-                    router.push("/")
+                    if (sessionInfo.role == UserRole.TEACHER) {
+                        router.push("/dashboard");
+                    } else {
+                        router.push("/")    
+                    }   
                 }
 
             } catch (err) {

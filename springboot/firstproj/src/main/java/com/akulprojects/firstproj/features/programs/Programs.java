@@ -2,6 +2,7 @@ package com.akulprojects.firstproj.features.programs;
 
 import java.util.List;
 
+import com.akulprojects.firstproj.features.assessments.Assessments;
 import com.akulprojects.firstproj.features.enrolments.Enrolments;
 
 import jakarta.persistence.Column;
@@ -30,5 +31,9 @@ public class Programs {
     @OneToMany(mappedBy = "program", fetch = FetchType.LAZY)
     private List<Enrolments> enrolments;
 
+    @Column(name = "assessment_number")
+    private int assessmentNumber;
 
+    @OneToMany(mappedBy = "program", fetch = FetchType.LAZY)
+    private List<Assessments> assessments;
 }

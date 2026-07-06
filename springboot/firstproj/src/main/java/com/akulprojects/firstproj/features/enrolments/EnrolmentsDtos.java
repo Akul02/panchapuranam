@@ -7,5 +7,4 @@ import lombok.Getter;
 @Getter
 public class EnrolmentsDtos {
     public record StudentProgramEnrolmentDto (List<String> programNames, int studentId) {}
-
 }

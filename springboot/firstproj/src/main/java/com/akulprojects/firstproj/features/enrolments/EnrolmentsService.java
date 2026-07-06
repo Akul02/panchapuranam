@@ -12,6 +12,8 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.akulprojects.firstproj.apidto.ApiResponses.SuccessResponse;
 import com.akulprojects.firstproj.exception.ConflictException;
 import com.akulprojects.firstproj.exception.ForbiddenException;
+import com.akulprojects.firstproj.features.assessments.AssessmentResults;
+import com.akulprojects.firstproj.features.assessments.AssessmentStatus;
 import com.akulprojects.firstproj.features.auth.JwtUtil;
 import com.akulprojects.firstproj.exception.ResourceNotFoundException;
 import com.akulprojects.firstproj.features.programs.Programs;
@@ -69,5 +71,35 @@ public class EnrolmentsService {
 
         return new SuccessResponse("Successfully enrolled student into selected programs");
     }
+
+    public double enrolmentProgress(String authCookie, String enrolmentId) {
+
+        DecodedJWT decodedJWT = jwtUtil.extractJwtFromCookie(authCookie);
+        if (!jwtUtil.checkPermissions(decodedJWT, Role.TEACHER)) {
+            throw new ForbiddenException("do not have permission to see student enrolment progress");
+        }
+
+        Enrolments enrolment = enrolmentsRepo.findById(Integer.valueOf(enrolmentId))
+                                    .orElseThrow(() -> new ResourceNotFoundException("enrolment not found"));
+
+
+        List<AssessmentResults> assessments = enrolment.getAssessmentResults();
+
+        if (assessments.size() == 0) {
+            return 0;
+        }
+
+        double progress = 0;
+
+        for (AssessmentResults assessment : assessments) {
+            if (assessment.getStatus() == AssessmentStatus.PASS) {
+                progress++;
+            }
+        }
+
+
+        return progress / enrolment.getProgram().getAssessmentNumber();
+    }
+
 
 }

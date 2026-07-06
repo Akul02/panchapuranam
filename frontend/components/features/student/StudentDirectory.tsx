@@ -11,7 +11,7 @@ import { handleAppErrors } from "../../../lib/api/handlerAppErrors";
 export default function StudentDirectory() {
 
     const [searchBarValue, setSearchBarValue] = useState("");
-    const [searchResults, setSearchResults] = useState<StudentSearchResult[]>([]);
+    const [searchResults, setSearchResults] = useState<StudentSearchResult[] | null>(null);
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
     const handleChange = (e : React.ChangeEvent<HTMLInputElement>) => {
@@ -24,20 +24,16 @@ export default function StudentDirectory() {
 
     useEffect(() => {
         if (searchBarValue.trim().length <= 2) {
-            setSearchResults([]);
+            setSearchResults(null);
             return;
         }
         const timer = setTimeout( async () => {
-            // try {
-            //     const results = await searchStudentDirectory(searchBarValue);
-            //     setSearchResults(results);
-            // } catch (err) {
-            //     console.log(err instanceof Error ? err.message : "Something went wrong");
-            // }
-
             const results = await getApiData(handleAppErrors(searchStudentDirectory(searchBarValue)));
-            setSearchResults(results);
-
+            if (results.length == 0) {
+                setSearchResults([]);
+            } else {
+                setSearchResults(results);
+            }            
         }, 300)
         return () => clearTimeout(timer);
     }, [searchBarValue]);
@@ -50,7 +46,7 @@ export default function StudentDirectory() {
                 <input className="text-primary bg-surface ml-2 px-1 flex-1 min-w-0" placeholder="enter student's name" value={searchBarValue} onChange={handleChange}/>
             </div>
             <div className="border-2 border-primary rounded-md flex-1 m-4">
-                {searchResults.map((student, index) => (
+                {searchResults && searchResults.length > 0 ? searchResults.map((student, index) => (
                     <div key={student.id} className={`flex items-center justify-between gap-x-1 px-4 py-2 text-primary hover:bg-primary hover:text-surface transition-colors duration-150 border-b border-primary border-opacity-30`}> 
                         {student.name}
                         <Link href={`/student/${student.id}`}>
@@ -60,7 +56,9 @@ export default function StudentDirectory() {
                         </Link>
                         
                     </div>
-                ))}
+                ))
+                : null}
+                {searchResults && searchResults.length == 0 ? <div className="text-center py-4 border-b border-primary border-opacity-30">No students found</div> : null}
             </div>
         </div>
     )
