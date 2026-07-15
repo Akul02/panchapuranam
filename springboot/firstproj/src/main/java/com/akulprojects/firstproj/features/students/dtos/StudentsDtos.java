@@ -6,6 +6,8 @@ import java.util.List;
 import com.akulprojects.firstproj.features.assessments.AssessmentStatus;
 import com.akulprojects.firstproj.features.certificates.CertificatesDtos.CertificateDto;
 
+import io.micrometer.common.lang.Nullable;
+
 public class StudentsDtos {
     public record StudentProfileDto(
         int id,
@@ -33,7 +35,8 @@ public class StudentsDtos {
     public record StudentProfileEnrolmentAssessmentsDto(
         int id,
         String assessmentDescription,
-        AssessmentStatus status
+        AssessmentStatus status,
+        @Nullable LocalDateTime completedAt
     ) {}
 
     public record StudentsSignUpDto(

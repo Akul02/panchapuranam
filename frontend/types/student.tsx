@@ -1,9 +1,18 @@
+import { AssessmentStatus } from "../constants/global";
 import { CertificateDto } from "./certficateDto";
 
 export type StudentProfileEnrolmentDto = {
     id: number;
     enrolmentDate: string;
     programName: string;
+    assessments: StudentProfileEnrolmentAssessmentDto[]
+}
+
+export type StudentProfileEnrolmentAssessmentDto = {
+    id: number,
+    assessmentDescription :  string,
+    status : AssessmentStatus,
+    completedAt: string | null
 }
 
 export type StudentProfileDto = {

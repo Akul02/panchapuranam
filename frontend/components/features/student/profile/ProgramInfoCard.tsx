@@ -1,9 +1,10 @@
 "use client"
 
 import { useState } from 'react'
-import { StudentProfileEnrolmentDto } from "../../../../types/student"
+import { StudentProfileDto, StudentProfileEnrolmentAssessmentDto, StudentProfileEnrolmentDto } from "../../../../types/student"
 
 import { ArrowDropdown, ArrowDropup } from "../../../ui/Icons";
+import AssessmentInfoCard from "./AssessmentInfoCard";
 
 export default function ProgramInfoCard ({ enrolment }: { enrolment: StudentProfileEnrolmentDto }) {
 
@@ -19,7 +20,11 @@ export default function ProgramInfoCard ({ enrolment }: { enrolment: StudentProf
                 
             </div>
             <div className={`px-4 py-2 ${showDetails ? "" : "hidden"}`}>
-                details
+                {enrolment.assessments.map((assessment : StudentProfileEnrolmentAssessmentDto) => (
+
+                    <AssessmentInfoCard assessment={assessment} />
+
+                ))}
             </div>
         </div>
     )

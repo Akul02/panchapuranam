@@ -169,7 +169,7 @@ public class StudentsService {
 
             List<StudentProfileEnrolmentAssessmentsDto> assessments = enrolment.getAssessmentResults().stream()
             .map((AssessmentResults assessment) -> {
-                return new StudentProfileEnrolmentAssessmentsDto(assessment.getId(), assessment.getAssessment().getDescription(), assessment.getStatus());
+                return new StudentProfileEnrolmentAssessmentsDto(assessment.getId(), assessment.getAssessment().getDescription(), assessment.getStatus(), assessment.getCompletedAt());
             })
             .toList();
     

@@ -30,3 +30,7 @@ export { RxHamburgerMenu as MenuIcon} from "react-icons/rx";
 export { IoMusicalNote as MusicNoteIcon} from "react-icons/io5";
 
 export { PiArrowFatLinesDownDuotone as ArrowDownIcon} from "react-icons/pi";
+
+export { FaRegCheckCircle as CompletedIcon } from "react-icons/fa";
+export { FaRegClock as InProgressIcon } from "react-icons/fa6";
+

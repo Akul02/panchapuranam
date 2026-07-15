@@ -1,13 +1,14 @@
 const languages = ['Tamil', 'English', 'Telegu']
 
-const TEACHER = "TEACHER"
-const ADMIN = "ADMIN"
-const NO_USER = ""
-
 enum UserRole {
     TEACHER = "TEACHER",
     ADMIN = "ADMIN",
     NO_USER = "NO_USER"
 }
 
-export {languages, UserRole}
+enum AssessmentStatus {
+    IN_PROGRESS = "IN_PROGRESS",
+    COMPLETED = "COMPLETED",
+}
+
+export {languages, UserRole, AssessmentStatus}

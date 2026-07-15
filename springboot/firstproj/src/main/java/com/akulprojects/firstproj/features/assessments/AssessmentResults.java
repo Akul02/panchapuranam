@@ -39,7 +39,7 @@ public class AssessmentResults {
     private Enrolments enrolment;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable = false)
+    @Column(name = "status", nullable = true)
     @JdbcType(value = PostgreSQLEnumJdbcType.class)
     private AssessmentStatus status;
 
