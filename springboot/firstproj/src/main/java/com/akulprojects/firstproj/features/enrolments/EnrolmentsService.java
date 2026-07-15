@@ -92,11 +92,10 @@ public class EnrolmentsService {
         double progress = 0;
 
         for (AssessmentResults assessment : assessments) {
-            if (assessment.getStatus() == AssessmentStatus.PASS) {
+            if (assessment.getStatus() == AssessmentStatus.COMPLETED) {
                 progress++;
             }
         }
-
 
         return progress / enrolment.getProgram().getAssessmentNumber();
     }

@@ -23,7 +23,7 @@ public class Assessments {
     private int id;
     
     @Column(name = "name")
-    private String name;
+    private String description;
 
     @Column(name = "number")
     private int number;
@@ -31,4 +31,11 @@ public class Assessments {
     @ManyToOne
     @JoinColumn(name = "program_id", nullable = false)
     private Programs program;
+
+    /*
+    Type:
+    Oral 
+    Written
+    
+    */
 }

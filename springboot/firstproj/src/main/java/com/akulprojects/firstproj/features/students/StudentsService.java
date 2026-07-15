@@ -18,6 +18,7 @@ import com.akulprojects.firstproj.apidto.ApiResponses.SuccessResponse;
 import com.akulprojects.firstproj.exception.ConflictException;
 import com.akulprojects.firstproj.exception.ForbiddenException;
 import com.akulprojects.firstproj.exception.ResourceNotFoundException;
+import com.akulprojects.firstproj.features.assessments.AssessmentResults;
 import com.akulprojects.firstproj.features.auth.JwtUtil;
 import com.akulprojects.firstproj.features.certificates.CertificatesService;
 import com.akulprojects.firstproj.features.students.dtos.StudentsSearchDto;
@@ -158,9 +159,21 @@ public class StudentsService {
         Students student = studentsRepo.findById(Integer.valueOf(uidString))
                             .orElseThrow(() -> new ResourceNotFoundException("id does not correspond to a student"));
 
+
         List<StudentProfileEnrolmentDto> enrolments = new ArrayList<>();
         for (Enrolments enrolment : student.getEnrolments()) {
-            enrolments.add(new StudentProfileEnrolmentDto(enrolment.getId(), enrolment.getEnrolmentDate(), enrolment.getProgram().getName()));
+            
+            // calculate the progress of the students learning for this particular enrolment/program
+
+            // get a list of the assessments the student has done for this program
+
+            List<StudentProfileEnrolmentAssessmentsDto> assessments = enrolment.getAssessmentResults().stream()
+            .map((AssessmentResults assessment) -> {
+                return new StudentProfileEnrolmentAssessmentsDto(assessment.getId(), assessment.getAssessment().getDescription(), assessment.getStatus());
+            })
+            .toList();
+    
+            enrolments.add(new StudentProfileEnrolmentDto(enrolment.getId(), enrolment.getEnrolmentDate(), enrolment.getProgram().getName(), assessments));
         }
 
         StudentProfileDto profileDto = new StudentProfileDto(
