@@ -8,14 +8,14 @@ export default function AssessmentInfoCard({
     assessment: StudentProfileEnrolmentAssessmentDto;
 }) {
 
-    const createdAt = assessment.completedAt ? new Date(assessment.completedAt) : null;
+    const completedAt = assessment.completedAt ? new Date(assessment.completedAt) : null;
 
     return (
         <div key={assessment.id} className="flex items-center justify-between">
             <div className="pl-4">
                 {assessment.assessmentDescription}
                 <br/>
-                {createdAt?.toLocaleDateString()}
+                {completedAt ? <div> Completed At {completedAt.toLocaleDateString()} </div> : null}
                 </div>
             <div className="pr-8">
                 <StatusBadge status={assessment.status} />
