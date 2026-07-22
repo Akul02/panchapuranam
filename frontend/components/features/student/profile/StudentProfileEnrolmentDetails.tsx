@@ -20,7 +20,7 @@ export default function StudentProfileEnrolmentDetails({ enrolments, availablePr
     }
 
     return (
-        <div className="flex flex-col space-y-2">
+        <div className="flex flex-col space-y-4">
             <SectionHeader title="Enrolments">
                 <div onClick={() => setShowEnrolModal(true)} className="cursor-pointer">
                     <PlusIcon size={20} className="text-primary"/>

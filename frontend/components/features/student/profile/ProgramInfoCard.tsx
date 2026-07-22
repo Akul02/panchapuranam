@@ -21,13 +21,13 @@ export default function ProgramInfoCard ({ enrolment }: { enrolment: StudentProf
             <div className="self-stretch flex items-center justify-between">
                 <h1 className="font-heading font-semibold text-primary">{enrolment.programName}</h1>
                 {enrolment.certificateUrl ?
-                    <a href={enrolment.certificateUrl}>
+                    <a href={enrolment.certificateUrl} target="_blank">
                         <CertificateFillIcon className="text-primary mr-1" size={22}/> 
                     </a>
                 : null}
             </div>
             
-            <StatusBadge status={Status.IN_PROGRESS}/>
+            <StatusBadge status={enrolment.programStatus}/>
 
             <ProgressBar className="w-full" completed={enrolment.completedAssessments} total={enrolment.totalAssessments}/>
             
