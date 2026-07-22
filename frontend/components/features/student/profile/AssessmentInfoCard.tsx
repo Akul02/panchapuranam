@@ -1,6 +1,6 @@
 import React from "react";
 import { StudentProfileEnrolmentAssessmentDto } from "../../../../types/student";
-import StatusBadge from "./StatusBadge";
+import StatusBadge from "../../../ui/StatusBadge";
 
 export default function AssessmentInfoCard({
     assessment,
@@ -11,7 +11,7 @@ export default function AssessmentInfoCard({
     const completedAt = assessment.completedAt ? new Date(assessment.completedAt) : null;
 
     return (
-        <div key={assessment.id} className="flex items-center justify-between">
+        <div className="flex items-center justify-between">
             <div className="pl-4">
                 {assessment.assessmentDescription}
                 <br/>

@@ -34,3 +34,5 @@ export { PiArrowFatLinesDownDuotone as ArrowDownIcon} from "react-icons/pi";
 export { FaRegCheckCircle as CompletedIcon } from "react-icons/fa";
 export { FaRegClock as InProgressIcon } from "react-icons/fa6";
 
+export { FaArrowRight as ArrowRightIcon } from "react-icons/fa6";
+

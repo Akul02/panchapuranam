@@ -6,9 +6,9 @@ enum UserRole {
     NO_USER = "NO_USER"
 }
 
-enum AssessmentStatus {
+enum Status {
     IN_PROGRESS = "IN_PROGRESS",
     COMPLETED = "COMPLETED",
 }
 
-export {languages, UserRole, AssessmentStatus}
+export {languages, UserRole, Status}

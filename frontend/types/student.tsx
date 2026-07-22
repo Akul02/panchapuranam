@@ -1,26 +1,29 @@
-import { AssessmentStatus } from "../constants/global";
+import { Status } from "../constants/global";
 import { CertificateDto } from "./certficateDto";
 
 export type StudentProfileEnrolmentDto = {
-    id: number;
-    enrolmentDate: string;
-    programName: string;
-    assessments: StudentProfileEnrolmentAssessmentDto[]
+    id: number,
+    enrolmentDate: string,
+    completionDate: string | null,
+    programName: string,
+    certificateUrl: string | null,
+    programStatus: Status,
+    completedAssessments: number,
+    totalAssessments: number
 }
 
-export type StudentProfileEnrolmentAssessmentDto = {
-    id: number,
-    assessmentDescription :  string,
-    status : AssessmentStatus,
-    completedAt: string | null
-}
+// export type StudentProfileEnrolmentAssessmentDto = {
+//     id: number,
+//     assessmentDescription :  string,
+//     status : Status,
+//     completedAt: string | null
+// }
 
 export type StudentProfileDto = {
     id: number;
     firstname: string;
     lastname: string;
     email: string;
-    certificates: CertificateDto[];
     enrolments: StudentProfileEnrolmentDto[];
 }
 

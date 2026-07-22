@@ -53,9 +53,6 @@ export default async function StudentProfile({studentId} : {studentId : number})
 
                     {/* enrolments */}
                     <StudentProfileEnrolmentDetails enrolments={student?.enrolments} availablePrograms={availablePrograms}/>
-                    
-                    {/* Certificates */}
-                    <StudentProfileCertificates certificates={student.certificates}/>
                 </div>
 
             </StyledPageCard>
